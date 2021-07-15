@@ -117,5 +117,42 @@ int main(void) {
 
 }
 
+// ======================================================================
 
+#include <stdio.h>
 
+int tmp = 1;       // 전역변수
+void funcTmp();    // 함수의 선언
+
+int main(void) {
+	int tmp = 10;                    // 지역변수
+
+	printf("%d in main()\n", tmp);
+
+	for (int i = 0; i < 5; i++) {
+		int tmp = 0;                 // 지역변수
+		printf("%d in for\n", tmp++);
+	}
+	
+	funcTmp();                      // 함수의 호출
+
+	printf("%d in main() \n", tmp);
+
+	return 0;
+}
+
+// 함수의 정의
+void funcTmp() {
+	int tmp = 99;
+	printf("%d in funcTmp()\n", tmp);
+}
+
+// 결과
+// 10 in main()
+// 0 in for
+// 0 in for
+// 0 in for
+// 0 in for
+// 0 in for
+// 99 in funcTmp()
+// 10 in main()
