@@ -83,6 +83,50 @@ int main(void) {
 
 int main(void) {
 
+	int num;
+
+	printf("정수를 입력하세요 : ");
+	scanf("%d", &num);
+
+	if (num % 2 == 0)
+		printf("\n%d : 짝수!", num);
+	else
+		printf("\n%d : 홀수!", num);
+
+	return 0;
+
+}
+
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS  // scanf
+#include <stdio.h>
+
+int main(void) {
+
+	int num;
+
+	printf("정수를 입력하세요 : ");
+	scanf("%d", &num);
+
+	if (5 >= num && num >= 1)
+		printf("\n작은수!", num);
+	else if (10 >= num && num >= 6)
+		printf("\n큰수!", num);
+	else
+		printf("1~10까지만 가능");
+
+	return 0;
+
+}
+
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS  // scanf
+#include <stdio.h>
+
+int main(void) {
+
 	int x;
 
 	printf("정수 입력 (1~3) : ");
@@ -119,8 +163,3 @@ int main(void) {
 	return 0;
 
 }
-
-
-
-
-
