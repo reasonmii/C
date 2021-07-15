@@ -156,3 +156,54 @@ void funcTmp() {
 // 0 in for
 // 99 in funcTmp()
 // 10 in main()
+
+// ======================================================================
+
+#include <stdio.h>
+void func(void);
+static int cntRunFunc = 0;
+
+int main(void) {
+	printf("함수의 실행 횟수 \t 함수의 변수값 \n");
+	func();
+	func();
+	func();
+
+	printf("이렇게 전역변수로 정의하면 사용 가능 %10d \n", ++cntRunFunc);  // 1
+
+	return 0;
+}
+
+void func(void) {
+	static int cntRunFunc = 0;
+	int cntLocal = 0;
+	printf("%7d \t\t", ++cntRunFunc);   // 1 -> 2 -> 3
+	printf("%10d \n", ++cntLocal);      // 1 -> 1 -> 1
+}
+
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+long factorial(int n);     // 함수선언
+
+int main(void) {
+	int n;
+	printf("정수 입력 : ");
+	scanf("%d", &n);
+	printf("%d! = ", n);  // ex)  4! = 4 * 3 * 2 * 1
+	factorial(n);
+
+	return 0;
+}
+
+long factorial(int n) {
+	printf("%d", n);
+	if (n == 1)
+		return 1;
+	else {
+		printf(" * ");
+		return n * factorial(n - 1);
+	}
+}
