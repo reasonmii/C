@@ -13,6 +13,36 @@
 // _getch()    <conio.h>       사용X         에코X    문자단위      불가능
 // _getche()   <conio.h>       사용X         에코     문자단위      불가능
 
+// 문자 처리 library
+// isalpha(c) : c가 영문자인지 (a-z, A-Z)
+// isupper(c) : 대문자인지
+// islower(c) : 소문자인지
+// isdigit(c) : 숫자인지
+// isalnum(c) : 숫자나 영문자인지 (a-z, A-Z, 0-9)
+// isxdigit(c) : c가 16진수의 숫자인지 (0-9, A-F, a-f)
+// isspace(c) : 공백문자인지 ('', '\m', '\t', '\v', '\r')
+// ispunct(c) : 구두점 문자인지
+// isprint(c) : 출력 가능한 문자인지
+// iscntrl(c) : 제어문자인지
+// isascii(c) : ASCII 코드인지
+
+// 문자열 처리 library
+// strlen(s) : 문자열 s의 길이
+// strcpy(s1, s2) : s2를 s1에 복사
+// strcat(s1, s2) : s2를 s1 끝에 붙이기
+// strcmp(s1, s2) : s1과 s2를 비교
+// strncpy(s1, s2, n) : s2의 최대 n개의 문자를 s1에 복사
+// strncat(s1, s2, n) : s2의 최대 n개의 문자를 s1 끝에 붙이기
+// strncmp(s1, s2, n) : 최대 n개의 문자까지 s1과 s2를 비교
+// strchr(s, c) : 문자열 s안에서 문자 c 찾기
+// strstr(s1, s2) : 문자열 s1에서 문자열 s2 찾기
+// char *strtok(s, delimit) : 문자열 s를 delimit을 이용하여 토큰으로 분리
+
+// 문자열 수치 변환
+// int atoi(const char *str); : str을 int형으로 변환
+// long atoi(const char *str); : str을 long형으로 변환
+// double atof(const char *str); : str을 double형으로 
+
 // ======================================================================
 #include <stdio.h>
 
@@ -175,6 +205,48 @@ int main(void) {
 	return 0;
 
 }
+
+// ======================================================================
+
+#include <stdio.h>
+
+int main(void) {
+
+	int c;
+
+	// 소문자인지 대문자인지 파악하기
+	printf("문자를 입력하세요 : \n");
+	while ((c = getchar()) != EOF) {
+		if (islower(c))
+			printf("%c : 소문자 \n", c);
+		else if (isupper(c))
+			printf("%c : 대문자 \n", c);
+	}
+
+	return 0;
+}
+
+// ======================================================================
+
+#include <stdio.h>
+
+int main(void) {
+
+	// 소문자 입력 시 대문자로 바꾸기
+	int c;
+
+	printf("문자를 입력하세요 : \n");
+	while ((c = getchar()) != EOF) {
+		if (islower(c))
+			c = toupper(c);
+		putchar(c);
+	}
+
+	return 0;
+}
+
+// ======================================================================
+
 
 
 
