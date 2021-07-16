@@ -117,6 +117,7 @@ int main(void) {
 	char str5[4] = "You";
 	char str6[4];
 
+	// 오른쪽 값을 왼쪽에 
 	strcpy(str6, str5);
 
 	printf("원본 = %s\n", str5);   // You
@@ -247,6 +248,48 @@ int main(void) {
 
 // ======================================================================
 
+#include <stdio.h>
+
+int main(void) {
+
+	// 배열로 하면 더 간단하고
+	// 포인터로 하면 더 유용함 -> C에서는 포인터 많이 사용함
+	char s1[10] = "hello";
+	char* s2 = "hello";
+
+	printf("%d \n", strlen(s1));      // 5
+	printf("%d \n", strlen(s2));      // 5
+	printf("%d \n", strlen("hello")); // 5
+
+	return 0;
+}
+
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS     // strcat
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+
+	char s1[20] = "world";
+	char s2[20] = "hello";
+
+	// 왼쪽 값에 오른쪽 값 붙이기
+	// 이때 최소한 s2는 s1을 모두 넣을 수 있도록 크기가 20 이상이어야 함
+	strcat(s2, s1);
+
+	printf("%s \n", s1);      // world
+	printf("%s \n", s2);      // helloworld
+
+	return 0;
+}
+
+// ======================================================================
+
+
+
+// ======================================================================
 
 
 
