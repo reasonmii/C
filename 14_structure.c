@@ -1,3 +1,35 @@
+// 기본 자료형 : int, char, double, void
+// 파생 자료형 : 배열, 포인터, 구조체, 공용체
+// 사용자정의 자료형 : typedef, enum
+
+// 구조체 struct
+// 여러 개의 서로 다른 자료형을 하나로 묶은 것
+// 객체 지향 프로그램에서의 클레스의 모체
+// ※ 배열 : 동일한 종류의 데이터들의 모임
+
+// 구조체 선언
+// 구조체의 틀만 정의
+// 어떤 변수들이 포함되는 지만 있음
+// 아직은 데이터 저장 불가능
+// ; : 구조체 선언이 끝나면 반드시 필요
+
+// structure tag
+// 구조체를 구별하기 위한 이름
+// 생략 시 구조체 변수를 구조체 선언과 함께 선언하는 것
+// - 구조체 선언 후에 구조체 변수 선언 불가능
+
+// structure member
+// 구조체에 포함되는 변수 (이름 중복 불가능)
+// 모든 자료형이 가능
+// 구조체도 가능
+
+// 구조체 변수의 연산은 대입 연산 가능
+// 구조체 변수 안의 자료 복사 가능
+
+// 구조체 배열 : 동일한 구조체 여러 개의 모임
+
+// ======================================================================
+
 #include <stdio.h>
 
 // 날짜 구조체 선언
@@ -84,6 +116,110 @@ int main(void) {
 		printf("같음\n");
 	else
 		printf("다름\n");
+
+	return 0;
+
+}
+
+// ======================================================================
+
+// 구조체에서 포인터가 사용되는 경우
+// - 구조체를 가리키는 포인터
+// - 포인터를 멤버로 가지는 구조체
+
+// 구조체 포인터 변수를 이용한 구조체 멤버 접근
+
+// 포인터 변수 p가 가리키는 구조체의 멤버 name
+// p->name
+// (*p).name
+
+// 구조체 p의 멤버 (포인터 변수) name이 가리키는 내용
+// *p.name
+// *(p.name)
+
+// p가 가리키는 구조체의 멤버 (포인터 변수) name이 가리키는 내용
+// *p->name
+// *(p->name)
+
+// ======================================================================
+
+#include <stdio.h>
+
+// 날짜 구조체 선언
+struct date {
+	int year;
+	int month;
+	int day;
+};
+
+// 학생 구조체 선언
+struct student {
+	int num;
+	char name[20];
+	double grade;
+};
+
+// 함수 생성
+// 함수는 마지막에 ; 하지 않음
+int equal(struct student s1, struct student s2) {
+	if (s1.num == s2.num)
+		return 1;
+	else
+		return 0;
+}
+
+int pointEqual(struct student* p1, struct student* p2) {
+	if (p1->num == p2->num)
+		return 1;
+	else
+		return 0;
+}
+
+struct student create() {
+	struct student s;
+	s.num = 3;
+	strcpy(s.name, "Kim");
+	s.grade = 3.5;
+
+	return s;
+}
+
+int main(void) {
+	
+	struct student s = { 24, "Kim", 4.3 };
+
+	struct student* p;
+	p = &s;
+
+	// 같은 결과 : 학번 = 24        이름 = Kim     , 점수 = 4.30
+	printf("학번 = %d\t 이름 = %s\t, 점수 = %.2f\n", (*p).num, (*p).name, (*p).grade);
+	printf("학번 = %d\t 이름 = %s\t, 점수 = %.2f\n", p->num, p->name, p->grade);
+
+	// -------------------------------------------
+
+	struct student s1 = { 1, "Kim", 4.2 };
+	struct student s2 = { 2, "Lee", 4.4 };
+
+	// 결과 : 구조체 번호 다름
+	if (equal(s1, s2) == 1)
+		printf("구조체 번호 같음\n");
+	else
+		printf("구조체 번호 다름\n");
+
+	// -------------------------------------------
+
+	// 결과 : 구조체 번호 다름
+	if (pointEqual(&s1, &s2) == 1)
+		printf("구조체 번호 같음\n");
+	else
+		printf("구조체 번호 다름\n");
+
+	// -------------------------------------------
+
+	struct student s3 = create();
+
+	// 학번 = 3         이름 = Kim      점수 = 3.5
+	printf("학번 = %d \t 이름 = %s \t 점수 = %.1f\n", s3.num, s3.name, s3.grade);
 
 	return 0;
 
