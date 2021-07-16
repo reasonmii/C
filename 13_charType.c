@@ -287,9 +287,55 @@ int main(void) {
 
 // ======================================================================
 
+#define _CRT_SECURE_NO_WARNINGS     // strcat
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>    // atoi, atof
 
+int main(void) {
 
-// ======================================================================
+	char s1[20] = "world";
+	char s2[20] = " world";
 
+	// 결과 : 다른 배열
+	if (strcmp(s1, s2) == 0)
+		printf("동일한 배열\n\n");
+	else
+		printf("다른 배열\n\n");
 
+	// -------------------------------------------
 
+	char str1[20] = "100";
+	int num1;
+
+	num1 = atoi(str1);
+
+	printf("%d\n\n", num1);
+
+	// -------------------------------------------
+
+	int a;
+	// 한 문장 생성
+	char menu[5][10] = {
+		"init",
+		"open",
+		"close",
+		"read",
+		"write"
+	};
+
+	for (int i = 0; i < 5; i++)
+		printf("%d번째 메뉴 : %s \n", i + 1, menu[i]);
+
+	// -------------------------------------------
+
+	char str2[30] = "The Little Prince";
+	char* ptr = strtok(str2, " ");
+
+	while (ptr != NULL) {
+		printf("%s\n", ptr);
+		ptr = strtok(NULL, " ");
+	}
+
+	return 0;
+}
