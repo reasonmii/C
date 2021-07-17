@@ -182,3 +182,40 @@ int main(void) {
 
 	return 0;
 }
+
+// ======================================================================
+
+#include <stdio.h>
+
+void main() {
+	int i = 10, j = 20;
+	int* ptr;
+	
+	// i의 값 = 10      i의 메모리 주소 (&i) = 11532336
+	printf("i의 값 = %d \t i의 메모리 주소 (&i) = %u\n", i, &i);
+	// j의 값 = 20      j의 메모리 주소 (&j) = 11532324
+	printf("j의 값 = %d \t j의 메모리 주소 (&j) = %u\n", j, &j);
+
+	ptr = &i;
+	// ptr의 메모리 주소(&ptr) = 11532312
+	printf("ptr의 메모리 주소(&ptr) = %u\n", &ptr);
+	// ptr의 값 (ptr) = 11532336
+	printf("ptr의 값 (ptr) = %u\n", ptr);
+	// ptr의 참조 값 (*ptr) = 10
+	printf("ptr의 참조 값 (*ptr) = %d\n", *ptr);
+
+	ptr = &j;
+	// ptr의 메모리 주소(&ptr) = 11532312
+	printf("ptr의 메모리 주소(&ptr) = %u\n", &ptr);
+	// ptr의 값 (ptr) = 11532324
+	printf("ptr의 값 (ptr) = %u\n", ptr);
+	// ptr의 참조 값 (*ptr) = 20
+	printf("ptr의 참조 값 (*ptr) = %d\n", *ptr);
+
+	i = *ptr;
+	printf("i의 값 = %d\n", i);   // i의 값 = 20
+	getchar();
+
+}
+
+
