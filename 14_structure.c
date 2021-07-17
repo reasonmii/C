@@ -123,6 +123,34 @@ int main(void) {
 
 // ======================================================================
 
+#include <stdio.h>
+#include <string.h>
+
+struct employee {
+	char name[10];
+	int year;
+	int pay;
+};
+
+void main() {
+	int i;
+	struct employee Lee[4] = {
+		{"샐리", 2018, 4200},
+		{"베어", 2020, 5300},
+		{"그린", 2021, 3700},
+		{"토토", 2019, 6100}
+	};
+
+	for (i = 0; i < 4; i++) {
+		printf("이름 : %s\t", Lee[i].name);
+		printf("입사 : %d\t", Lee[i].year);
+		printf("연봉 : %d\n", Lee[i].pay);
+	}
+	getchar();
+}
+
+// ======================================================================
+
 // 구조체에서 포인터가 사용되는 경우
 // - 구조체를 가리키는 포인터
 // - 포인터를 멤버로 가지는 구조체
@@ -140,6 +168,34 @@ int main(void) {
 // p가 가리키는 구조체의 멤버 (포인터 변수) name이 가리키는 내용
 // *p->name
 // *(p->name)
+
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+struct employee {
+	char name[10];
+	int year;
+	int pay;
+};
+
+void main() {
+
+	struct employee Lee;
+	struct employee* Sptr = &Lee;
+	strcpy(Sptr->name, "이순신");
+	Sptr->year = 2015;
+	Sptr->pay = 3700;
+
+	printf("이름 : %s\n", Sptr->name);
+	printf("입사 : %d\n", Sptr->year);
+	printf("연봉 : %d\n", Sptr->pay);
+
+	getchar();
+
+}
 
 // ======================================================================
 
