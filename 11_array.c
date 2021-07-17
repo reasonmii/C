@@ -21,6 +21,25 @@ int main(void) {
 // ======================================================================
 
 #include <stdio.h>
+
+void main() {
+	// 3차원 배열 입출력
+	int array[2][3][4];
+	int i, j, k, value = 1;
+	for (i = 0; i < 2; i++) {
+		for (j = 0; j < 3; j++) {
+			for (k = 0; k < 4; k++) {
+				array[i][j][k] = value;
+				printf("\narray[%d][%d][%d] = %d", i, j, k, array[i][j][k]);
+				value++;
+			}
+		}
+	}
+}
+
+// ======================================================================
+
+#include <stdio.h>
 #define SIZE 5
 
 int main(void) {
