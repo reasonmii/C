@@ -218,4 +218,47 @@ void main() {
 
 }
 
+// ======================================================================
+// 포인터를 이용해 문자열 처리하기
+
+#include <stdio.h>
+
+void main() {
+	int i;
+	char string1[20] = "Dreams come true!", string2[20], * ptr1, * ptr2;
+	ptr1 = string1;
+
+	// string1의 주소 = 4126628         ptr1 = 4126628
+	printf("string1의 주소 = %u \t ptr1 = %u\n", string1, ptr1);
+
+	// string1 = Dreams come true!      ptr1 = Dreams come true!
+	printf("string1 = %s \t ptr1 = %s\n", string1, ptr1);
+
+	// come true!
+	printf("ptr1 + 7 : %s\n", ptr1 + 7);
+
+	// come true!
+	ptr2 = &string1[7];
+	printf("ptr2 : %s\n\n", ptr2);
+
+	// 문자 거꾸로 출력
+	// !eurt emoc smaerD
+	for (i = 16; i >= 0; i--) putchar(*(ptr1 + i));
+
+	for (i = 0; i < 20; i++) string2[i] = *(ptr1 + i);
+
+	// string1 = Dreams come true!
+	printf("\nstring1 = %s\n", string1);
+	// string2 = Dreams come true!
+	printf("string2 = %s\n", string2);
+
+	// string1 = Peaces come true!
+	*ptr1 = 'P';
+	*(ptr1 + 1) = 'e';
+	*(ptr1 + 2) = 'a';
+	*(ptr1 + 3) = 'c';
+	*(ptr1 + 4) = 'e';
+	printf("string1 = %s\n", string1);
+	getchar();
+}
 
