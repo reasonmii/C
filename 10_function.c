@@ -182,6 +182,7 @@ void func(void) {
 }
 
 // ======================================================================
+// 팩토리얼
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
@@ -207,3 +208,38 @@ long factorial(int n) {
 		return n * factorial(n - 1);
 	}
 }
+
+// ======================================================================
+// 하노이의 탑
+
+#include <stdio.h>
+
+void hanoi(int n, int start, int work, int target);
+
+void main() {
+	hanoi(3, 'A', 'B', 'C');
+	getchar();
+}
+
+void hanoi(int n, int start, int work, int target) {
+	if (n == 1)
+		printf("%c에서 원반 %d를 %c로 옮김 \n", start, n, target);
+	else {
+		hanoi(n - 1, start, target, work);
+		printf("*****");
+		printf("%c에서 원반 %d를 %c로 옮김 \n", start, n, target);
+		printf("#####");
+		hanoi(n - 1, work, start, target);
+		printf("=====");
+	}
+}
+
+// 결과
+// A에서 원반 1를 C로 옮김
+// *****A에서 원반 2를 B로 옮김
+// #####C에서 원반 1를 B로 옮김
+// =====*****A에서 원반 3를 C로 옮김
+// #####B에서 원반 1를 A로 옮김
+// *****B에서 원반 2를 C로 옮김
+// #####A에서 원반 1를 C로 옮김
+// ==========
