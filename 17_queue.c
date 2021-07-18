@@ -21,8 +21,8 @@ void createQueue(QueueType* Q) {
 	Q->rear = -1;    // rear 초기값 설정
 }
 
-// 순차 큐가 공백 상태인지 검사
-// 만약 front 값과 rear 값이 같으면 공백상태
+// 순차 큐가 공백상태인지 검사
+// 공백상태 : front == rear
 int isEmpty(QueueType* Q) {
 	if (Q->front == Q->rear) {
 		printf("큐가 공백상태입니다!\n");
