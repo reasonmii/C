@@ -1,5 +1,3 @@
-Visual Studio
-
 ● Create new project
 
 File - New - Project
