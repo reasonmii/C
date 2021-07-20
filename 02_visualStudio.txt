@@ -1,0 +1,58 @@
+● Create new project
+
+File - New - Project
+Windows Desktop Wizard - Next
+
+Project name : MyFirstPrj
+Location : C:\github-repository\learningC
+Solution name : myFirstSolution
+※ Project and solution name should have been matched for 2017 ver. (not for 2019 ver.)
+
+Create
+
+Application type - Console Application (.exe) -> For basic studing
+※ Desktop Application etc. : have more functions (for company)
+
+OK
+
+Defualt script is created for beginners (print 'Hello World')
+
+Right part of the screen : Solution Explorer
+Source Files - Check your file
+※ When 'Solution Explorer' is gone : View - Solution Explorer
+
+Build   : Build - Solution Build
+Execute : Debug - Start Without Debugging (ctrl + F5)
+
+=====================================================================================
+
+● Convert File : C++ -> C
+
+default : cpp = C++
+
+Method2)
+Solution Explorer - Click 'MyFirstPrj.cpp' + F2 = rename - MyFirstPrj.c
+
+Method2)
+Solution Explorer - Right click 'MyFirstPrj' - Properties - C/C++
+1) Language : Check 'C++ Language Standard'
+2) Advanced : Find 'Compile As Default' - Change to 'Compile As C Code(/TC)'
+
+After converting, some codes in the script would have red lines
+This is because they are for C++, not C
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
