@@ -1,0 +1,41 @@
+Visual Studio
+
+● Create new project
+
+File - New - Project
+Windows Desktop Wizard - Next
+
+Project name : MyFirstPrj
+Location : C:\github-repository\learningC
+Solution name : myFirstSolution
+※ 2017 버전에서는 project name과 solution name 일치했어야 했는데, 2019는 아님
+
+Create
+
+Application type - Console Application (.exe) -> 기본 문법 공부 시
+※ Desktop Application 등에는 더 많은 기능 있고 실무에서 사용
+
+OK
+
+초보자를 위한 기본 소스 나옴 (Hello World)
+
+오른쪽 화면 Solution Explorer - Source Files - 내 파일 확인 가능
+Solution Explorer 없어졌을 때 : View - Solution Explorer
+
+빌드하기 : Build - Solution Build
+실행하기 : Debug - Start Without Debugging (ctrl + F5)
+
+=====================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
