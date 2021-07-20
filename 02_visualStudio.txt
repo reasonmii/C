@@ -26,6 +26,14 @@ Execute : Debug - Start Without Debugging (ctrl + F5)
 
 =====================================================================================
 
+● Convert Language : Kor -> Eng
+
+도구 - 도구 및 기능 가져오기 - 언어팩 : Check '영어' - 수정
+Rebooting - 도구 - 옵션 - 환경 - 국가별 설정 - 언어 : English - 확인
+Rebooting
+
+=====================================================================================
+
 ● Convert File : C++ -> C
 
 default : cpp = C++
