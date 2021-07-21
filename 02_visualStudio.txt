@@ -146,4 +146,25 @@ Check directory's files and folders : Type 'dir'
 
 Execute the project file : Type 'mySecondPrj.exe'
 
+=====================================================================================
+
+● Set 'Visual Studio Code'
+
+Google 'Visual Studio Code' - Download for Windows
+https://code.visualstudio.com/
+
+'Visual studio code' needs 'compiler' program separately
+※ Visual Studio : IDE -> includes 'compiler'
+
+Google 'minGW' (minimalist GNU for Windows) - Downloads - MingW-W64-builds - Sourceforge
+http://mingw-w64.org/doku.php
+
+● 
+Windows 검색 - 시스템 환경 변수 편집 - 고급 - 환경 변수
+시스템 변수 'Path' 더블클릭
+
+
+
+
+
 
