@@ -31,12 +31,19 @@ Block 주석 처리로 반영됨 /* */
 2) double (8byte)
 3) long double (10byte)
 
-형식지정자
-%d : 10진 정수 출력
-%f : float 형 실수 출력
+A summary of printf format specifiers
+%c : character - 문자 출력
+%s : a string of characters - 문자열 출력
+%i : integer (base 10)
+%d : decimal (integer) number (base 10) - 10진 정수 출력
+%u : unsigned decimal (integer) number
+%o : octal number (base 8)
+%x : number in hexadecimal (base 16)
+%f : floating-point number
 %lf : double 형 실수 출력
-%c : 문자 출력
-%s : 문자열 출력
+%e : exponential floating-point number
+%% : print a percent sign
+\% : print a percent sign
 
 =====================================================================================
 
