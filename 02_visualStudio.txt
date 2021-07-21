@@ -1,3 +1,17 @@
+● Tips for Visual studio
+
+Tools - Options - Fonts and Colors
+※ Google 'Visual Studio Themes'
+
+부가기능 설치
+Extensions - Extensions and Updates - Online
+- 'GitHub Extensions for Visual Studio - Download
+
+Google 'Visual Studio Power mode'
+: Glitter whenever you code
+
+=====================================================================================
+
 ● Create new project
 
 File - New - Project
@@ -85,5 +99,51 @@ Come back to visual studio
 Build - Clean Solution - Every file above is gone
 Build - Build Solution - Files are created again
 
+=====================================================================================
+
+● Make Multiple Projects
+
+Solution Explorer - Click 'Solution myFirstSolution (1 of 1 project)' - Add - New Project
+- Windows Desktop Wizard - Next - Create - OK
+- 'cpp' file is created
+
+● Save First Project's setting and apply to other Projects
+
+Go to the first project's file 'myFirstPrj.c'
+Project - Export Template - Yes - Next - Template name : myCProgrammingStart - Finish
+The file is showed - Double click - Check the files saved
+
+Solution Explorer - Click 'Solution myFirstSolution (1 of 1 project)' - Add - New Project
+- Click 'myCProgrammingStart' (not 'Windows Desktop Wizard') - Next
+- Rename 'mySecondPrj'
+- Create
+
+Solution Explorer - Right Click 'mySecondPrj' - Set as Startup Project
+-> If you don't do this, 'myFirstPrj' would be executed whenever you click 'ctrl + F5'
+
+=====================================================================================
+
+● Command Prompt : Check 'exe' file and execute
+
+Start Command Prompt
+Method1) Tools - Visual Studio Command Prompt
+Method2) Windows search 'x86 Native Tools Command Prompt for VS 2019'
+         -> Visual Studio 창 보면 'x86' 이라고 써 있으니, x86 버전 사용
+
+탐색기 실행하기 : Type 'explorer .'
+
+Working directory 변경
+상위 directory : Type 'cd ..'
+다시 원래 위치 : Type 'cd Comm' + tab -> cd Community
+
+Drive 위치 변경 : Type 'd:' or 'c:'
+
+Console 창 위치를 아예 변경
+Method1) Type 'cd C:\Users\User\Desktop\C_inflearn\myFirstSolution\Debug'
+Method2) Type 'cd ' + Drag and drop the folder 'Debug' from C:\Users\User\Desktop\C_inflearn\myFirstSolution
+
+Check directory's files and folders : Type 'dir'
+
+Execute the project file : Type 'mySecondPrj.exe'
 
 
