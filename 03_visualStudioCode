@@ -1,0 +1,85 @@
+Visual Studio Code에서 파일을 만들고, 컴파일 하고, 실행하기
+
+=====================================================================================
+
+● Install 'minGW'
+
+Google 'minGW' (minimalist GNU for Windows) - Downloads - MingW-W64-builds - Sourceforge
+http://mingw-w64.org/doku.php
+
+Windows 검색 - 시스템 환경 변수 편집 - 고급 - 환경 변수
+시스템 변수 'Path' 더블클릭 - 새로 만들기
+- 'C:\Program Files (x86)\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin'
+- OK - OK - OK
+- Reboot the whole computer
+
+● Install 'Visual Studio Code'
+
+Google 'Visual Studio Code' - Download for Windows
+https://code.visualstudio.com/
+
+'Visual studio code' needs 'compiler' program separately
+※ Visual Studio : IDE -> includes 'compiler'
+
+Start 'visual studio code'
+Method1) Click 'Extensions' icon on the left (ctrl + Shift + X)
+Method2) View - Extensions
+
+C/C++ 검색 - Install
+-> C/C++ 할 때, 자동완성 등 여러 편리한 기능들 포함
+
+=====================================================================================
+
+● Setting
+
+File - Preferences - Settings
+File - Preferences - Color Theme
+
+=====================================================================================
+
+● Visual Studio Code
+
+File - Open Folder - Create new folder to save files - 'myCfiles' - Select Folder
+Click the icon 'New File' - name : 'main.c'
+※ 'main.cpp' -> it would be identified as c++ file
+
+Write code
+''''''''''''''''''''''''
+#include <stdio.h>
+
+int main(){
+    printf("Hello!");
+    return 0;
+}
+''''''''''''''''''''''''
+
+Terminal - New Terminal -> Power Shell (like command prompt)
+
+● Power Shell 창
+
+1) Check Current File
+Type 'dir'
+Type 'gcc main.c' -> nothing happens
+Type 'dir'
+-> can check current file's name is saved as 'a'
+
+Execute the File
+Type '.\a.exe'
+Result : 'Hello!'
+
+Convert file's name from 'a' to 'main'
+Type 'gcc main.c -o main.exe'   ※ o : output
+
+Execute the File
+Type '.\main.exe'
+Result : 'Hello!'
+
+2) Check Object File
+Type 'gcc -c main.c'   ※ c : compile
+-> File 'main.o' is created on the left   ※ o : object file
+
+Convert file's name to 'exe_from_obj.exe'
+Type 'gcc main.o -o exe_from_obj.exe'
+
+Type '.\exe_from_obj.exe'
+Result : 'Hello!'
