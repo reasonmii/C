@@ -73,6 +73,27 @@ void printLine(char c) {
 
 // ======================================================================
 
+#include <stdio.h>
+void say_hello(void);  // Function declaration
+
+int main() {
+
+	int i = 0;
+
+	for (i = 0; i < 5; i++)
+		say_hello();
+
+	return 0;
+}
+
+void say_hello(void) {  // Function Definition
+	printf("Hello, World\n");
+
+	return;
+}
+
+// ======================================================================
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <math.h>     // math 함수 활용하기
