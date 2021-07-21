@@ -25,4 +25,43 @@ int main() {
 	return 0;
 }
 
+// ======================================================================
 
+#include <stdio.h>
+
+int main() {
+
+	int i = 0, j = 0;
+	int sum = 0;
+
+	printf("Input two integers\n");
+	scanf("%d%d", &i, &j);
+
+	printf("Your numbers are %d and %d\n", i, j);
+
+	sum = i + j;
+
+	printf("%d + %d = %d\n", i, j, i+j);
+	printf("%d + %d = %d\n", i, j, sum);
+
+	return 0;
+}
+
+// ======================================================================
+
+#include <stdio.h>
+
+int main() {
+
+	float won = 0;
+	float dollar = 0;
+
+	printf("Input Won\n");
+	scanf("%f", &won);
+
+	// 0.00089f : float형임을 선언
+	dollar = won * 0.00089f;
+	printf("Dollar = %f\n", dollar);
+
+	return 0;
+}
