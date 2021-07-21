@@ -2,6 +2,8 @@
 전처리기 Preprocessor Instruction
 Compile 전에 처리하는 것
 
+※ stdio : 표준입출력 standard input output
+
 =====================================================================================
 
 정수형 short, int, long
