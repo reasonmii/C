@@ -1,3 +1,6 @@
+// 변수명 한 번에 변경하기
+// 해당 변수명 우클릭 - Rename - 입력 - Apply
+
 #define _CRT_SECURE_NO_WARNINGS  // scanf
 #include <stdio.h>
 
