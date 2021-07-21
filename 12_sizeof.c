@@ -19,3 +19,22 @@ int main(void) {
 	printf("자료형 char의 크기   : %d\n", sizeof(char));    // 1
 
 }
+
+// ======================================================================
+
+#include <stdio.h>
+
+int main() {
+
+	unsigned int i = 0;
+
+	// 마우스를 위에 올리면 '4U' 글자 보임
+	// -> 4byte 라는 의미
+	sizeof(unsigned int);
+	sizeof(i);
+
+	printf("%u\n", sizeof(unsigned int));
+	printf("%u\n", sizeof(i));
+
+	return 0;
+}
