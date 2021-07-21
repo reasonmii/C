@@ -10,9 +10,13 @@ Compile 전에 처리하는 것
 Line : //
 Block : /* */
 
-/* 
- * Written by Yuna
- */
+한 번에 // 주석처리
+원하는 부분 첫 line 맨 앞부터 드래그
+상단 'Comment out the selected lines' 클릭 (ctrl K C)
+<-> 상단 'Uncomment the selected lines' 클릭 (ctrl K U)
+
+첫 line 맨 앞부터 드래그 하지 않으면
+Block 주석 처리로 반영됨 /* */
 
 =====================================================================================
 
