@@ -152,9 +152,14 @@ Execute the project file : Type 'mySecondPrj.exe'
 
 ※ clang : c language
 
+Why 'clang'?
+Visual studio doesn't provide the latest version of code ex) vla[n];
+It will offer functions that basic visual studio doesn't offer
+
 Tools - Get Tools and Features - Individual components
 Search 'clang'
 Check both two - Modify
 
-It will offer functions that basic visual studio doesn't offer
-
+Solution explorer - Right click 'myFirstPrj' - Properties
+General - Platform Toolset - LLVM (clang-cl)
+→ The project would compile the file using 'clang'
