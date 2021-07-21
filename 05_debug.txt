@@ -1,0 +1,8 @@
+왼쪽 line 회색 부분 클릭 - 빨간 동그라미
+
+상단 Debug - Start Debugging (F5)
+빨간 표시까지 실행됨
+하단 'Autos'에 실행된 부분까지 변수 초기화 되어 있으면 값 표시
+
+다음 줄 실행
+상단 Debug - Step into (F11)
