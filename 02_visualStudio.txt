@@ -145,3 +145,16 @@ Method2) Type 'cd ' + Drag and drop the folder 'Debug' from C:\Users\User\Deskto
 Check directory's files and folders : Type 'dir'
 
 Execute the project file : Type 'mySecondPrj.exe'
+
+=====================================================================================
+
+● 'clang' in Visual Studio
+
+※ clang : c language
+
+Tools - Get Tools and Features - Individual components
+Search 'clang'
+Check both two - Modify
+
+It will offer functions that basic visual studio doesn't offer
+
