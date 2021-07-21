@@ -20,8 +20,16 @@ Block 주석 처리로 반영됨 /* */
 
 =====================================================================================
 
-정수형 : char (문자형), int, short, long
-실수형 : double, float
+정수형
+1) 문자형 char, unsigned char, signed char (1byte)
+2) int, unsigned int (2byte or 4byte)
+3) short, unsigned short (2byte)
+4) long, unsigned long (4byte)
+
+실수형
+1) float (4byte)
+2) double (8byte)
+3) long double (10byte)
 
 형식지정자
 %d : 10진 정수 출력
