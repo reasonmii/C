@@ -49,18 +49,41 @@ Solution Explorer - Right click 'MyFirstPrj' - Properties - C/C++
 After converting, some codes in the script would have red lines
 This is because they are for C++, not C
 
+=====================================================================================
 
+● Simple Example
 
+// stdio : 표준입출력 standard input output
+#include <stdio.h>
 
+int main() {
 
+	printf("Hello, World!");
+	return 0;
+}
 
+=====================================================================================
 
+● Executive File
 
+Click file's name of the script "myFirstPrj.c" - 'Open Containing Folder'
+It shows the file's location
 
+Click the folder 'Debug' - myFirstPrj.obj
+-> This is the object file
 
+Go to the upper folder 'myFirstSolution' - Click the folder 'Debug' - myFirstPrj.exe
+-> This is the exe File that linked object file
+   The file is executed by 'ctrl + F5'
 
+When you click this file, it is just blinked
+This is because you didn't say 'wait' to computer
 
+실무에서 결국 해야 할 일은 이 실행 파일 만드는 것
 
+Come back to visual studio
+Build - Clean Solution - Every file above is gone
+Build - Build Solution - Files are created again
 
 
 
