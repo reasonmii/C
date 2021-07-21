@@ -33,8 +33,8 @@ int main() {
 	sizeof(unsigned int);
 	sizeof(i);
 
-	printf("%u\n", sizeof(unsigned int));
-	printf("%u\n", sizeof(i));
+	printf("%u\n", sizeof(unsigned int));   // 4
+	printf("%u\n", sizeof(i));              // 4
 
 	return 0;
 }
