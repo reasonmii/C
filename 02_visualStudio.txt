@@ -8,6 +8,7 @@ Extensions - Extensions and Updates - Online
 - 'GitHub Extensions for Visual Studio - Download
 
 Google 'Visual Studio Power mode'
+https://marketplace.visualstudio.com/items?itemName=BigEgg.PowerMode
 : Glitter whenever you code
 
 =====================================================================================
