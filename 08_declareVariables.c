@@ -128,3 +128,31 @@ int main() {
 	return 0;
 }
 
+// ======================================================================
+
+#include <stdio.h>
+#include <limits.h>
+#include <stdlib.h>
+
+int main() {
+
+	// Maximum numbers
+	unsigned int decimal = 4294967295;
+	unsigned int binary = 0b11111111111111111111111111111111;  // 32개
+	unsigned int oct = 037777777777;
+	unsigned int hex = 0xffffffff;
+
+	printf("%u\n", decimal);   // 4294967295
+	printf("%u\n", binary);    // 4294967295
+	printf("%u\n", oct);       // 4294967295
+	printf("%u\n", hex);       // 4294967295
+
+	// %o : 8진수
+	// %x : 16진수
+	// %#o : 앞에 0을 붙여서 출력  -> 8진수임을 알 수 있음
+	// %#x : 앞에 0x을 붙여서 출력 -> 16진수임을 알 수 있음
+	// 37777777777 ffffffff 037777777777 0xffffffff, 0XFFFFFFFF
+	printf("%o %x %#o %#x, %#X", decimal, decimal, decimal, decimal, decimal);
+
+	return 0;
+}
