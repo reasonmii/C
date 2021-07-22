@@ -12,6 +12,9 @@
  * Change to : WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS
 */
 
+// ======================================================================
+// Int and scanf
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
@@ -21,24 +24,6 @@ int main() {
 	scanf("%d", &i);   // & : ampersand
 
 	printf("Value is %d\n", i);
-
-	return 0;
-}
-
-// ======================================================================
-
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
-
-int main() {
-
-	// char : stores only 1 character
-	char fruit_name;
-
-	printf("What is your favorite fruit?\n");
-	scanf("%c", &fruit_name);
-
-	printf("You like %c!\n", fruit_name);
 
 	return 0;
 }
@@ -94,6 +79,46 @@ int main() {
 	float salary;
 	printf("$______\b\b\b\b\b\b"); // $ _____
 	scanf("%f", &salary);
+
+	return 0;
+}
+
+// ======================================================================
+// Char and scanf
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+
+	// char : stores only 1 character
+	char fruit_name;
+
+	printf("What is your favorite fruit?\n");
+	scanf("%c", &fruit_name);
+
+	printf("You like %c!\n", fruit_name);
+
+	return 0;
+}
+
+// ======================================================================
+// Array and scanf
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+
+	// 1byte 40개 확보
+	char fruit_name[40];
+
+	printf("What is your favorite fruit?\n");
+	// ★ & 없어짐
+	// fruit_name 자체가 40개 공간에 대한 주소이기 때문
+	scanf("%s", fruit_name);
+
+	printf("You like %s!\n", fruit_name);
 
 	return 0;
 }
