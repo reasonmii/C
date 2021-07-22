@@ -58,32 +58,6 @@ int main(void) {
 #define _CRT_SECURE_NO_WARNINGS  // scanf
 #include <stdio.h>
 
-// 기호 상수 Symbolic Constant
-#define EX_RATE 1200
-
-int main(void) {
-
-	int dollar1 = 10;
-	int dollar2 = 100;
-	int dollar3 = 1000;
-
-	int won1 = EX_RATE * dollar1;
-	int won2 = EX_RATE * dollar2;
-	int won3 = EX_RATE * dollar3;
-
-	printf("%d원 = %d달러 \n", won1, dollar1);  // 12000원 = 10달러
-	printf("%d원 = %d달러 \n", won2, dollar2);
-	printf("%d원 = %d달러 \n", won3, dollar3);
-
-	return 0;
-
-}
-
-// ======================================================================
-
-#define _CRT_SECURE_NO_WARNINGS  // scanf
-#include <stdio.h>
-
 int main(void) {
 
 	// const로 선언 시 밑에서 값 수정 불가능
