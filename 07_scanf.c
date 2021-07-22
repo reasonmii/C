@@ -65,3 +65,17 @@ int main() {
 
 	return 0;
 }
+
+// ======================================================================
+
+#include <stdio.h>
+
+int main() {
+
+	// 맨 앞부터 6글자 입력
+	float salary;
+	printf("$______\b\b\b\b\b\b"); // $ _____
+	scanf("%f", &salary);
+
+	return 0;
+}
