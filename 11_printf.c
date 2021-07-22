@@ -151,4 +151,50 @@ Modifiers 변환 지정자의 수식어들
 [length] : length of data type / memory
 */
 
+#include <stdio.h>
+#include <limits.h>
 
+int main() {
+
+	printf("%10i\n", 1234567);         // 10칸 오른쪽 정렬 :    1234567
+	printf("%-10i\n", 1234567);        // 10칸 왼쪽 정렬 : 1234567
+	printf("%+i, %+i\n", 123, -123);   // +- 부호표시 : + 123, -123
+	printf("% i % i\n", 123, -123);    // +는 빈칸, -는 부호표시 :  123 -123
+	printf("%X\n", 17);                // 16진수 : 11
+	printf("%#X\n", 17);               // 16진수 : 0X11
+	printf("%05i\n", 123);             // 5칸 확보, 남는 자리 0 채우기 : 00123
+
+	// result :     456
+	// 이때 *은 7을 의미 -> 7자리 확보
+	// 456 오른쪽 정렬
+	printf("%*i\n", 7, 456);
+
+	// -------------------------------------------
+	// Precision
+
+	printf("%.3d\n", 1024);             // 3자리 확보, 더 크면 그냥 입력 : 1024
+	printf("%.5d\n", 1024);             // 5자리 확보, 남는 자리 0 : 01024
+	printf("%.3f\n", 123456.1234567);   // 소수점 3자리, 반올림 : 123456.123
+	printf("%.3f\n", 123456.1235);      // 소수점 3자리, 반올림 : 123456.124
+	printf("%10.3f\n", 123.45678);      // 전체 10자리, 소수점 3자리 :    123.457
+	printf("%010.3f\n", 123.45678);     // 전체 10자리, 소수점 3자리, 빈칸 0 : 000123.457
+	printf("%.5s\n", "ABCDEFGHIJKLMN"); // ABCDE
+	printf("%.s\n", "ABCDEFGHIJKLMN");  // 숫자가 없으면 0이라고 간주 -> 아무 글자도 안 나옴
+
+	// -------------------------------------------
+	// Length
+
+	// result : 1 257 257
+	// hhd : char -> maximum value of char type : 256 (unsigned) 127 (signed) -> overflow -> 1
+	// hd, d : short, decimal -> 257 표현 가능 (no prob.)
+	printf("%hhd %hd %d\n", 257, 257, 257);
+
+	// -2147483648 -2147483648 -2147483648
+	// %d : INT_MAX+1 -> overflow
+	// %lld : long long decimal -> 정상 출력 (no prob.)
+	//        but, 상단 Solution Platforms가 'x64'로 설정되어 있어야 원하는 결과 나옴
+	//        최근에는 이처럼 'x86'보다 'x64' 더 많이 사용하는 추세
+	printf("%d %11d %11d\n", INT_MAX + 1, INT_MAX + 1, 2147483648LL);
+
+	return 0;
+}
