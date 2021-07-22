@@ -3,13 +3,17 @@ Symbolic Constant 기호 상수
 Compiler 입장에서는 기호 상수를 쓰나 안 쓰나 똑같은 과정을 거쳐 계산해야 함
 그러나, 프로그래머가 보기 편하고 실수도 줄어드니 사용
 
-Method1)
-use '#define'
+Method1) use '#define'
 관습적으로 define 할 때는 모두 대문자 사용
        
-Method2)
-use 'const'
+Method2) use 'const'
 최근에 이 방법 많이 사용하고, 특히 C++에서는 이 방법을 권장
+
+Manifest Constants
+명백하게 값을 정의하는 것
+기호 상수도 이에 해당하고, C언어 자체에서도 manifest constants 제공
+ex1) #include <limits.h> 에 있는 int, long 범위
+ex2) #include <float.h> 에 있는 float, double 범위
 */
 
 // ======================================================================
@@ -88,3 +92,19 @@ int main() {
 	return 0;
 }
 
+// ======================================================================
+// Manifest Constants
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <limits.h>
+#include <float.h>
+
+int main() {
+
+	printf("Biggest int : %d\n", INT_MAX);                     // 2147483647
+	printf("One byte in this system is %d bits\n", CHAR_BIT);  // 8
+	printf("Smallest normal float %e\n", FLT_MIN);             // 1.175494e-38
+
+	return 0;
+}
