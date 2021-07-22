@@ -4,6 +4,7 @@ Error
 2) underflow : 숫자가 너무 작아서 발생
 3) round-off error : 정밀도 문제
    ex. 0.01을 0.0099로 인지하는 작은 오차로 인해 0.01을 100번 더해도 1이 되지 않음
+4) printf : 메모리 확보, type 불일치 문제   
 */
 
 // ======================================================================
@@ -127,6 +128,51 @@ int main() {
 	}
 
 	printf("%f\n", d);
+
+	return 0;
+}
+
+// ======================================================================
+
+#include <stdio.h>
+
+int main() {
+
+	float   n1 = 3.14;  // 4 bytes
+	double  n2 = 1.234; // 8 bytes
+	int     n3 = 1024;  // 4 bytes
+
+	// result : 3.140000  1.234000  1024
+	printf("%f  %f  %d\n\n", n1, n2, n3);
+
+	// Note the warnings in output window
+
+	// result : 1610612736 1074339512 -927712936
+	// why three numbers are all strange?
+	// %d %d %d : 4 bytes, 4 bytes, 4 bytes (N, N, N)
+	// 그런데 printf는 float(4 bytes)를 double(8 bytes)로 바꿔서 저장
+	// 따라서, 원래는 flaot, double, int 이면, 8 bytes, 8 bytes, 4 bytes 공간 필요
+	// 하지만 여기서는 4, 4, 4를 제공하니 다 공간이 부족하고 서로 밀리게 됨
+	// -> 전체 숫자가 다 오류 발생
+	printf("%d %d %d\n\n", n1, n2, n3);
+
+	// result : 4614253070451212288 4608236261112822104 1024
+	// %lld %lld %d : 8 bytes, 8 bytes, 4 bytes (N, N, Y)
+	// 공간은 충분히 다 확보가 됨
+	// 그러나, float, double을 강제로 integer처럼 출력하려고 하니,
+	// type이 안 맞아서 오류 발생
+	printf("%lld %lld %d\n\n", n1, n2, n3);
+
+	// result : 3.140000 -927712936 1072938614
+	// %f %d %d : 8 bytes, 4 bytes, 4 bytes (Y, N, N)
+	// 두 번째부터는 공간도 부족하고 type도 안 맞으니 오류 발생
+	printf("%f %d %d\n\n", n1, n2, n3);
+
+	// result : 3.140000 4608236261112822104 1024
+	// %f %lld %d : 8 bytes, 8 bytes, 4 bytes (Y, N, Y)
+	// 가운데만 type이 안 맞아서 오류 발생
+	// 공간은 다 잘 맞으니 밀리는 문제는 발생하지 않음
+	printf("%f %lld %d\n\n", n1, n2, n3);
 
 	return 0;
 }
