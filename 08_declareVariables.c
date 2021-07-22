@@ -121,9 +121,10 @@ int main() {
 
 	printf("char         = %hhd, %d, %c\n", c, c, c);  // 65, 65, A
 	printf("short        = %hhd, %hd, %d\n", s, s, s); // -56(overflow), 200, 200
-	printf("unsigned int = %u, %d\n");                 // 200, 200
+	printf("unsigned int = %u, %d\n", ui, ui);         // 3000000000, -1294967296(overflow)
 	printf("long         = %ld, %hd\n", l, l);         // 65537, 1
 	printf("long long    = %lld, %ld\n", ll, ll);      // 12345678908642, 1942899938
 
 	return 0;
 }
+
