@@ -22,6 +22,24 @@ int main(void) {
 
 #include <stdio.h>
 
+int main() {
+
+	int a = 1;
+	int int_arr[10] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+	printf("%i %i %i\n", int_arr[0], int_arr[1], int_arr[9]);
+
+	// 10개 배열인데 그보다 더 뒤 메모리 접근하려는 경우
+	// 에러 : exited with code -1073741819
+	printf("%i\n", int_arr[10000]);
+
+	return 0;
+}
+
+// ======================================================================
+
+#include <stdio.h>
+
 void main() {
 	// 3차원 배열 입출력
 	int array[2][3][4];
