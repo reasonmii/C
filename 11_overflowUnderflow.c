@@ -1,3 +1,9 @@
+// Error
+// overflow : 입력 값이 해당 Type보다 너무 큰 메모리가 필요해서 (숫자가 너무 커서) 발생
+// underflow : 숫자가 너무 작아서 발생
+
+// ======================================================================
+
 #include <stdio.h>
 #include <limits.h>
 #include <stdlib.h>
