@@ -1,47 +1,49 @@
-// 문자 : 하나의 글자 -> 작은 따옴표 사용
-// 문자열 : 일련의 문자들의 모임 -> 큰 따옴표 사용, NULL 문자로 문자의 끝 표시 ('\0', '0')
+/*
+문자 : 하나의 글자 -> 작은 따옴표 사용
+문자열 : 일련의 문자들의 모임 -> 큰 따옴표 사용, NULL 문자로 문자의 끝 표시 ('\0', '0')
 
-// EOF (End of File)
-// 파일의 끝을 표현하기 위해 정의된 상수
-// 더 이상 읽을 수 있는 데이터가 없음을 의미함
-// 보통 -1 로 정의된 상수
-// 콘솔 창에서 ctrl + z 입력
-// 함수 호출이 실패했을 때 발생
+EOF (End of File)
+파일의 끝을 표현하기 위해 정의된 상수
+더 이상 읽을 수 있는 데이터가 없음을 의미함
+보통 -1 로 정의된 상수
+콘솔 창에서 ctrl + z 입력
+함수 호출이 실패했을 때 발생
 
-// 입출력함수     설명      버퍼사용여부     에코여부    응답성     문자수정여부
-// getchar()   <stdio.h>       사용          에코      줄단위        가능
-// _getch()    <conio.h>       사용X         에코X    문자단위      불가능
-// _getche()   <conio.h>       사용X         에코     문자단위      불가능
+입출력함수     설명      버퍼사용여부     에코여부    응답성     문자수정여부
+getchar()   <stdio.h>       사용          에코      줄단위        가능
+_getch()    <conio.h>       사용X         에코X    문자단위      불가능
+_getche()   <conio.h>       사용X         에코     문자단위      불가능
 
-// 문자 처리 library
-// isalpha(c) : c가 영문자인지 (a-z, A-Z)
-// isupper(c) : 대문자인지
-// islower(c) : 소문자인지
-// isdigit(c) : 숫자인지
-// isalnum(c) : 숫자나 영문자인지 (a-z, A-Z, 0-9)
-// isxdigit(c) : c가 16진수의 숫자인지 (0-9, A-F, a-f)
-// isspace(c) : 공백문자인지 ('', '\m', '\t', '\v', '\r')
-// ispunct(c) : 구두점 문자인지
-// isprint(c) : 출력 가능한 문자인지
-// iscntrl(c) : 제어문자인지
-// isascii(c) : ASCII 코드인지
+문자 처리 library
+isalpha(c) : c가 영문자인지 (a-z, A-Z)
+isupper(c) : 대문자인지
+islower(c) : 소문자인지
+isdigit(c) : 숫자인지
+isalnum(c) : 숫자나 영문자인지 (a-z, A-Z, 0-9)
+isxdigit(c) : c가 16진수의 숫자인지 (0-9, A-F, a-f)
+isspace(c) : 공백문자인지 ('', '\m', '\t', '\v', '\r')
+ispunct(c) : 구두점 문자인지
+isprint(c) : 출력 가능한 문자인지
+iscntrl(c) : 제어문자인지
+isascii(c) : ASCII 코드인지
 
-// 문자열 처리 library
-// strlen(s) : 문자열 s의 길이
-// strcpy(s1, s2) : s2를 s1에 복사
-// strcat(s1, s2) : s2를 s1 끝에 붙이기
-// strcmp(s1, s2) : s1과 s2를 비교
-// strncpy(s1, s2, n) : s2의 최대 n개의 문자를 s1에 복사
-// strncat(s1, s2, n) : s2의 최대 n개의 문자를 s1 끝에 붙이기
-// strncmp(s1, s2, n) : 최대 n개의 문자까지 s1과 s2를 비교
-// strchr(s, c) : 문자열 s안에서 문자 c 찾기
-// strstr(s1, s2) : 문자열 s1에서 문자열 s2 찾기
-// char *strtok(s, delimit) : 문자열 s를 delimit을 이용하여 토큰으로 분리
+문자열 처리 library
+strlen(s) : 문자열 s의 길이
+strcpy(s1, s2) : s2를 s1에 복사
+strcat(s1, s2) : s2를 s1 끝에 붙이기
+strcmp(s1, s2) : s1과 s2를 비교
+strncpy(s1, s2, n) : s2의 최대 n개의 문자를 s1에 복사
+strncat(s1, s2, n) : s2의 최대 n개의 문자를 s1 끝에 붙이기
+strncmp(s1, s2, n) : 최대 n개의 문자까지 s1과 s2를 비교
+strchr(s, c) : 문자열 s안에서 문자 c 찾기
+strstr(s1, s2) : 문자열 s1에서 문자열 s2 찾기
+char *strtok(s, delimit) : 문자열 s를 delimit을 이용하여 토큰으로 분리
 
-// 문자열 수치 변환
-// int atoi(const char *str); : str을 int형으로 변환
-// long atoi(const char *str); : str을 long형으로 변환
-// double atof(const char *str); : str을 double형으로 
+문자열 수치 변환
+int atoi(const char *str); : str을 int형으로 변환
+long atoi(const char *str); : str을 long형으로 변환
+double atof(const char *str); : str을 double형으로 
+*/
 
 // ======================================================================
 #include <stdio.h>
@@ -76,6 +78,44 @@ int main(void) {
 
 	return 0;
 
+}
+
+// ======================================================================
+
+#include <stdio.h>
+
+int main() {
+
+	char c = 'a';
+	// 10 : 9 characters + null character
+	char str1[10] = "Hello";
+	char str2[10] = { 'H', 'i' };
+
+	printf("%c\n", c);     // a
+	printf("%s\n", str1);  // Hello
+	printf("%s\n", str2);  // Hi
+
+	// result : 72 105 0 0 0
+	// ASCII 'H' : 72
+	// ASCII 'i' : 105
+	printf("%hhi %hhi %hhi %hhi %hhi\n",
+		str2[0], str2[1], str2[2], str2[3], str2[4]);
+
+	// array size is not enough
+	// char str3[10] = "Hello, World";
+	// But, how can we know the size in advance?
+	// -> we can use 동적할당 later
+	char str3[20] = "Hello, \0World";
+
+	// result : Hello,
+	// 중간에 '\0'라는 null character를 만남
+	// -> 끝까지 출력 안함
+	printf("%s\n", str3);
+
+	// 그렇다고 값이 저장 안된 것은 아님
+	printf("%c\n", str3[10]);          // r
+
+	return 0;
 }
 
 // ======================================================================
@@ -260,6 +300,44 @@ int main(void) {
 	printf("%d \n", strlen(s1));      // 5
 	printf("%d \n", strlen(s2));      // 5
 	printf("%d \n", strlen("hello")); // 5
+
+	return 0;
+}
+
+// ======================================================================
+
+#include <stdio.h>
+#include <string.h>  // strlen and more
+
+int main() {
+
+	char str1[100] = "Hello";
+	char str2[] = "Hello";
+	char str3[100] = "\0";
+	char str4[100] = " \0";
+	char str5[100] = "\n";
+
+	// strlen 위에 마우스 놓으면 type이 size_t -> %zu
+	// strlen은 '\0'을 제외하고 실제 의미가 있는 문자만 셈
+	printf("%zu %zu\n", sizeof(str1), strlen(str1));  // 100 5
+	printf("%zu %zu\n", sizeof(str2), strlen(str2));  // 6 5
+	printf("%zu %zu\n", sizeof(str3), strlen(str3));  // 100 0
+	printf("%zu %zu\n", sizeof(str4), strlen(str4));  // 100 1
+	printf("%zu %zu\n", sizeof(str5), strlen(str5));  // 100 1
+
+	// -------------------------------------------
+	// 동적할당 예시
+
+	char* str6 = (char*)malloc(sizeof(char) * 100);
+	str6[0] = 'H';
+	str6[1] = 'e';
+	str6[2] = 'l';
+	str6[3] = 'l';
+	str6[4] = 'o';
+	str6[5] = '\0';
+
+	// sizeof(str6) : 4 - point 주소 사이즈
+	printf("%zu %zu\n", sizeof(str6), strlen(str6));  // 4 5
 
 	return 0;
 }
