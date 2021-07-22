@@ -104,3 +104,26 @@ int main(void) {
 	return 0;
 
 }
+
+// ======================================================================
+
+#include <stdio.h>
+#include <limits.h>
+#include <stdlib.h>
+
+int main() {
+
+	char c = 65;
+	short s = 200;
+	unsigned int ui = 3000000000U;    // 3'000'000'000U
+	long l = 65537L;
+	long long ll = 12345678908642LL; 
+
+	printf("char         = %hhd, %d, %c\n", c, c, c);  // 65, 65, A
+	printf("short        = %hhd, %hd, %d\n", s, s, s); // -56(overflow), 200, 200
+	printf("unsigned int = %u, %d\n");                 // 200, 200
+	printf("long         = %ld, %hd\n", l, l);         // 65537, 1
+	printf("long long    = %lld, %ld\n", ll, ll);      // 12345678908642, 1942899938
+
+	return 0;
+}
