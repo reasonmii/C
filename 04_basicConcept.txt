@@ -25,6 +25,7 @@ Block 주석 처리로 반영됨 /* */
 2) int, unsigned int (2byte or 4byte)
 3) short, unsigned short (2byte)
 4) long, unsigned long (4byte)
+5) long long, unsigned long long (8byte)
 
 실수형
 1) float (4byte)
