@@ -1,6 +1,5 @@
 /*
 Conversion Specifiers 변환 지정자
-※ http://www.cplusplus.com/reference/cstdio/printf/
 
 %a : 부동 소수점 수, 16진수, p-표기법
 %A : 부동 소수점 수, 16진수, P-표기법
@@ -128,6 +127,7 @@ we owe this to everyone who's not in this room to try.\n");
 
 /*
 Modifiers 변환 지정자의 수식어들
+※ http://www.cplusplus.com/reference/cstdio/printf/
 
 형식 지정자
 %[flags][width][.precision][length]specifier
@@ -149,7 +149,6 @@ Modifiers 변환 지정자의 수식어들
 .*
 
 [length] : length of data type / memory
-
-
 */
+
 
