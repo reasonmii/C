@@ -27,6 +27,24 @@ int main() {
 
 // ======================================================================
 
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+
+	// char : stores only 1 character
+	char fruit_name;
+
+	printf("What is your favorite fruit?\n");
+	scanf("%c", &fruit_name);
+
+	printf("You like %c!\n", fruit_name);
+
+	return 0;
+}
+
+// ======================================================================
+
 #include <stdio.h>
 
 int main() {
