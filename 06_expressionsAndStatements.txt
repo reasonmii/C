@@ -1,0 +1,43 @@
+● Expressions
+q = 5 * 2            -> 10
+3 + (c = 1 + 2)      -> 6
+2 > 1                -> 1
+2 < 1                -> 0
+a                    -> a의 값
+x = ++q % 3          -> x와 q의 값에 의해 결정
+q > 3                -> q의 값에 의해 결정
+a * (b / c + d) / 20 -> a, b, c, d의 값에 의해 결정
+
+=====================================================================================
+
+● Statements : ;가 들어가는 문장
+int x, y, apples;     // declaration statement
+apples = 3;           // assignment statement
+;                     // null statement
+7;
+1 + 2;
+x = 4;
+++x;
+x = 1 + (y = 5);      // y = 5 is subexpression
+while (x++ < 10)      // while statment (structured statements)
+printf("%d\n", y);    // function statement
+return 0;             // return statement
+
+=====================================================================================
+
+● Side Effects and Sequence Ponits
+※ Sequence points : ;인 경우가 대부분
+x = 4             // main intent is evaluating expressions
+y = 1 + x++;
+
+while (x++ < 10) 
+while에서는 괄호 자체가 full expression이기 때문에 ;가 없어도
+다음 문장으로 넘어가기 전에 x++를 먼저 계산
+
+y = (4 + x++) + (6 + x++);
+Not (4 + x++) nor (6 + x++) is a full expression
+They are subexpression
+따라서, x++가 언제 계산될 지 알기 어려움
+-> 불명확한 경우 최대한 x++ 사용 자제해야 함
+*/
+
