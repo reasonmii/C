@@ -66,6 +66,34 @@ This is because they are for C++, not C
 
 =====================================================================================
 
+#include <stdio.h>
+전처리기 Preprocessor Instruction
+Compile 전에 처리하는 것
+
+※ stdio : 표준입출력 standard input output
+
+=====================================================================================
+
+주석
+Line : //
+Block : /* */
+
+한 번에 // 주석처리
+원하는 부분 첫 line 맨 앞부터 드래그
+상단 'Comment out the selected lines' 클릭 (ctrl K C)
+<-> 상단 'Uncomment the selected lines' 클릭 (ctrl K U)
+
+첫 line 맨 앞부터 드래그 하지 않으면
+Block 주석 처리로 반영됨 /* */
+
+=====================================================================================
+
+너무 바쁘고 급해서 코드 줄맞춤 제대로 못 했을 때,
+코드 싹 긁어서 ctrl x -> ctrl v
+Visual Studio가 자동으로 줄맞춤 해 줌
+
+=====================================================================================
+
 ● Simple Example
 
 // stdio : 표준입출력 standard input output
