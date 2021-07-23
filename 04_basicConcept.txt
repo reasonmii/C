@@ -1,25 +1,3 @@
-#include <stdio.h>
-전처리기 Preprocessor Instruction
-Compile 전에 처리하는 것
-
-※ stdio : 표준입출력 standard input output
-
-=====================================================================================
-
-주석
-Line : //
-Block : /* */
-
-한 번에 // 주석처리
-원하는 부분 첫 line 맨 앞부터 드래그
-상단 'Comment out the selected lines' 클릭 (ctrl K C)
-<-> 상단 'Uncomment the selected lines' 클릭 (ctrl K U)
-
-첫 line 맨 앞부터 드래그 하지 않으면
-Block 주석 처리로 반영됨 /* */
-
-=====================================================================================
-
 정수형
 1) 문자형 char, unsigned char, signed char (1byte)
 2) int, unsigned int (2byte or 4byte)
