@@ -1,3 +1,28 @@
+/*
+operator : 연산자
+operand : 피연산자
+
+Data object
+어떤 데이터가 메모리 안에 존재하고 있을 때
+정수 한 개 ex) int i
+이 개념이 발전해서 객체지향 프로그램이 등장
+
+L-value : object locator value
+메모리를 차지하고 있는 특정 데이터 객체
+L-value는 R-value도 될 수 있음 ex) i = i + 1
+등호 기준 왼쪽 값
+
+R-value : value of an expression
+숫자 (값) 자체
+수정 가능한 L-value에 대입될 수는 있지만 L-value가 될 수는 없음
+등호 기준 오른쪽 값
+
+ex)
+a = 42;
+b = a;              -> a, b 모두 L-value
+c = TWO * (a + b);  -> a+b 값은 R-value
+*/
+
 #define _CRT_SECURE_NO_WARNINGS  // scanf
 #include <stdio.h>
 
