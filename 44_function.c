@@ -1,3 +1,11 @@
+/*
+Arguments 인수 vs. Parameters 매개변수
+1) actual argument, actual parameter -> argument (values)
+2) formal argument, formal parameter -> parameter (variables)
+*/
+
+// ======================================================================
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
@@ -70,6 +78,34 @@ void printLine(char c) {
 // ****************************************
 // 프로그램 결과
 // ----------------------------------------
+
+// ======================================================================
+
+#include <stdio.h>
+
+void draw(int n);
+
+int main() {
+	
+	int i = 5;
+	char c = '#';     // #을 정수로 변환하면 35
+	float f = 7.1f;
+
+	draw(i);      // 이 때 i는 5로 정의되어 있음 -> argument (values)
+	draw(c);
+	draw(f);
+	//draw((int)c);
+	//draw((int)f);
+
+	return 0;
+}
+
+void draw(int n) {    // 이 때 n은 parameter (variables)
+
+	while (n-- > 0)
+		printf("*");  // asterisks
+	printf("\n");
+}
 
 // ======================================================================
 
