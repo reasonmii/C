@@ -24,3 +24,32 @@ int main(void) {
 	return 0;
 }
 
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+
+	int div, mod;
+
+	div = 11 / 5;
+	mod = 11 % 5;
+	printf("div = %d, mod = %d\n", div, mod);  // 2 1
+
+	// 앞 피연산자가 양수이면 mod 값은 양수
+	div = 11 / -5;
+	mod = 11 % -5;
+	printf("div = %d, mod = %d\n", div, mod);  // -2, 1
+
+	// 앞 피연산자가 음수이면 mod 값은 음수
+	div = -11 / -5;
+	mod = -11 % -5;
+	printf("div = %d, mod = %d\n", div, mod);  // 2, -1
+
+	div = -11 / 5;
+	mod = -11 % 5;
+	printf("div = %d, mod = %d\n", div, mod);  // -2, -1
+
+	return 0;
+}
