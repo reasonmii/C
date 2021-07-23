@@ -167,6 +167,116 @@ int main(void) {
 
 // ======================================================================
 
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+
+	// ++ and -- affect modifiable L-values
+	// 수정가능한 x, y와 같은 변수에만 사용 가능 (상수에는 사용 불가)
+	// 따라서, (x * y)++ 나 3++ 와 같이 사용 불가
+	// 꼭 필요한 경우에만 사용하기
+
+	int a = 0;
+	a++;                // a = a + 1 or a += 1;
+	printf("%d\n", a);  // 1
+
+	++a;                // a = a + 1 or a += 1;
+	printf("%d\n", a);  // 2
+
+	double b = 0;
+	b++;
+	printf("%f\n", b);  // 1.000000
+
+	++b;
+	printf("%f\n", b);  // 2.000000
+
+	// -------------------------------------------
+
+	int i = 1, j = 1;
+	int i_post, pre_j;
+
+	i_post = i++;
+	pre_j = ++j;
+
+	printf("%d %d\n", i, j);            // 2 2
+	printf("%d %d\n", i_post, pre_j);   // 1 2
+
+	// -------------------------------------------
+
+	int cnt1 = 0;
+	while (cnt1 < 10) {
+		// 0 1 2 3 4 5 6 7 8 9
+		printf("%d ", cnt1);
+		++cnt1;
+	}
+
+	printf("\n");
+
+	int cnt2 = 0;
+	while (++cnt2 < 10) {
+		// 1 2 3 4 5 6 7 8 9
+		printf("%d ", cnt2);
+	}
+
+	printf("\n");
+
+	int cnt3 = 0;
+	while (cnt3 < 10) {
+		// 1 2 3 4 5 6 7 8 9 10
+		printf("%d ", ++cnt3);
+	}
+
+	printf("\n");
+
+	int cnt4 = 0;
+	while (cnt4 < 10) {
+		// 0 1 2 3 4 5 6 7 8 9
+		printf("%d ", cnt4);
+		cnt4++;
+	}
+
+	printf("\n");
+
+	int cnt5 = 0;
+	while (cnt5++ < 10) {
+		// 1 2 3 4 5 6 7 8 9 10
+		printf("%d ", cnt5);
+	}
+
+	printf("\n");
+
+	int cnt6 = 0;
+	while (cnt6 < 10) {
+		// 0 1 2 3 4 5 6 7 8 9
+		printf("%d ", cnt6++);
+	}
+
+	printf("\n");
+
+	// -------------------------------------------
+
+	int x = 3;
+	int y = 2 * --x;
+	printf("%d %d\n", x, y);   // 2 4
+
+	x = 1;
+	y = 2 * x--;
+	printf("%d %d\n", x, y);   // 0 2
+
+	// -------------------------------------------
+	// very high precedence
+
+	int x1, y1, z1;
+	x1 = 3, y1 = 4;
+	z1 = (x1 + y1++) * 5;
+	printf("%d %d %d\n", x1, y1, z1);  // 3 5 35
+
+	return 0;
+}
+
+// ======================================================================
+
 #define _CRT_SECURE_NO_WARNINGS  // scanf
 #include <stdio.h>
 
