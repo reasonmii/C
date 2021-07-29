@@ -123,6 +123,32 @@ int main() {
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
+int main() {
+
+	int num, sum = 0;
+	int status;
+
+	printf("Enter an integer (q to quit) : ");
+
+	// 정수를 입력하지 않으면 status는 0이 됨
+	status = scanf("%d", &num);
+
+	while (status == 1) {
+		sum += num;
+
+		printf("Enter next integer (q to quit) : ");
+		status = scanf("%d", &num);
+	}
+
+	printf("Sum = %d", sum);
+	return 0;
+}
+
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
 int main(void) {
 
 	int start = 1;
