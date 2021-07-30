@@ -59,6 +59,31 @@ int main() {
 
 // ======================================================================
 
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+#define SIZE 5
+
+int main() {
+
+	int my_arr[SIZE];
+
+	// ★ 나중에 큰 데이터 처리할 때
+	// 이렇게 Prepare, Print 나눠서 처리하는 게 효율적
+	
+	// Prepare for array data
+	for (int i = 0; i < SIZE; ++i)
+		my_arr[i] = i;
+
+	// Print array data
+	for (int i = 0; i < SIZE; ++i)
+		printf("%d ", my_arr[i]);     // 0 1 2 3 4
+
+	return 0;
+}
+
+// ======================================================================
+
 #include <stdio.h>
 
 void main() {
