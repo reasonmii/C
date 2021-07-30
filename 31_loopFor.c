@@ -1,3 +1,113 @@
+#include <stdio.h>
+
+int main() {
+
+	for (int i = 1; i <= 10; i++)
+		printf("%d\n", i);
+
+	return 0;
+}
+
+// ======================================================================
+
+#include <stdio.h>
+
+int main() {
+
+	for (int i = 0; i < 100; i = i + 8)
+		printf("%d\n", i);
+
+	return 0;
+}
+
+// ======================================================================
+
+#include <stdio.h>
+
+int main() {
+
+	for (char c = 'A'; c <= 'Z'; c++)
+		printf("%c\n", c);
+
+	return 0;
+}
+
+// ======================================================================
+
+#include <stdio.h>
+
+int main() {
+
+	for (int i = 0; i * i < 10; i++)
+		printf("%d\n", i);   // 0 1 2 3
+
+	return 0;
+}
+
+// ======================================================================
+
+#include <stdio.h>
+
+int main() {
+
+	// 같은 자료형일 때만 여러 개 input 가능
+	for (int x = 1, y = 5; y <= 20; y = (++x * 3) + 10)
+		printf("%d %d\n", x, y);
+	// 1 5
+	// 2 16
+	// 3 19
+
+	return 0;
+}
+
+// ======================================================================
+
+#include <stdio.h>
+
+int main() {
+
+	int i, n;
+	n = 2;
+
+	for (i = 2; n < 10; ) {
+		n = n * i;
+		printf("%d\n", n);  // 4 8 16
+	}
+
+	return 0;
+}
+
+// ======================================================================
+
+#include <stdio.h>
+
+int main() {
+
+	// 무한LOOP
+	for (; ;)
+		printf("I love you!");
+
+	return 0;
+}
+
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+
+	// 입력 숫자가 7이 아니면 계속 LOOP
+	// 너무 복잡해서 권장하지 않는 코드
+	int i = 0;
+	for (printf("Let's go!\n"); i != 7; scanf("%d", &i))
+		;
+
+	return 0;
+}
+
+// ======================================================================
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
@@ -71,3 +181,50 @@ int main(void) {
 
 	return 0;
 }
+
+// ======================================================================
+// Zeno's Paradox 제논의 역설
+// 매 step마다 시간 간격을 반으로 줄이는 것
+// Step1 : 1.0 * 1.0 = 1.0, 1.0
+// Step2 : 1.0 * 0.5 = 0.5, 1.0 + 0.5 = 1.5
+// Step3 : 1.0 * 0.25 = 0.25, 1.5 + 0.25 = 1.75
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+
+	const double speed = 1.0;
+
+	// 최대 반복횟수는 보통 0 이상이니 unsigned 사용하기도 함
+	const unsigned repeat_max = 50;
+
+	double time = 0.0;       // Elapsed time
+	double dist_arch = 0.0;  // Archilleus distance from start point
+	double dist_turt = 1.0;  // Turtle distance from start point
+	double speed_arch = 10.0;
+	double speed_turt = 0.001;
+	double dt = 0.01;       // 시간간격
+
+	unsigned i;
+
+	printf("Time = %fs, dt = %fs, Archilleus = %fm, turtle = %fm\n", time, dt, dist_arch, dist_turt);
+
+	for (i = 0; i < repeat_max; ++i) {
+		dist_arch += speed_arch * dt;   // dist = dist + speed * dt;
+		dist_turt += speed_turt * dt;
+		time += dt;
+
+		printf("Time = %fs, dt = %fs, Archilleus = %fm, turtle = %fm\n", time, dt, dist_arch, dist_turt);
+
+		// dt가 실수니까 2로 나눌 때, 2.0 쓸 것
+		// dt /= 2.0;
+
+		// ★ 곱하기가 나누기보다 빠름
+		// 가능하면 곱하기 사용할 것
+		dt *= 0.5;
+	}
+
+	return 0;
+}
+
