@@ -27,7 +27,6 @@ out:
 int main() {
 
 	int n = 1;
-
 	while (n < 11) {
 		printf("%d\n", n);
 		n = n + 1;
@@ -43,9 +42,39 @@ int main() {
 int main() {
 
 	int i = 0;
-
 	while (i++ < 5)
 		printf("Hi\n");
+
+	return 0;
+}
+
+// ======================================================================
+// 0 : False
+// 그 외 모든 값 : True
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+
+	int tv, fv;
+	tv = (1 < 2);
+	fv = (1 > 2);
+
+	printf("True is %d\n", tv);    // 1
+	printf("False is %d\n", fv);   // 0
+
+	int i = -5;
+	while (i)
+		printf("%d is true\n", i++);
+	printf("%d is false\n", i);
+
+	/*-5 is true
+	  - 4 is true
+	  - 3 is true
+	  - 2 is true
+	  - 1 is true
+	  0 is false*/
 
 	return 0;
 }
