@@ -131,6 +131,31 @@ int main(void) {
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
+int main() {
+
+	// 3 4
+	// 3**4 = 81
+	int base, exp;
+	int i, result;
+
+	scanf("%d %d", &base, &exp);
+
+	result = 1;
+	for (int i = 0; i < exp; ++i) {
+		result *= base;
+	}
+
+	printf("Result = %d\n", result);
+
+
+	return 0;
+}
+
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
 int main(void) {
 
 	int start = 3, i;
