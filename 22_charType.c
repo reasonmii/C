@@ -9,11 +9,6 @@ EOF (End of File)
 콘솔 창에서 ctrl + z 입력
 함수 호출이 실패했을 때 발생
 
-입출력함수     설명      버퍼사용여부     에코여부    응답성     문자수정여부
-getchar()   <stdio.h>       사용          에코      줄단위        가능
-_getch()    <conio.h>       사용X         에코X    문자단위      불가능
-_getche()   <conio.h>       사용X         에코     문자단위      불가능
-
 문자 처리 library
 isalpha(c) : c가 영문자인지 (a-z, A-Z)
 isupper(c) : 대문자인지
@@ -181,109 +176,6 @@ int main(void) {
   
   return 0;
   
-}
-
-// ======================================================================
-// 버퍼를 사용하고 에코가 있는 방식
-// int getchar(void) : 한 문자 읽어서 반환
-// void putchar(int c) : 변수 c에 저장된 문자 출력
-//                       (버퍼에 저장된 문자들이 프로그램으로 전달)
-
-#include <stdio.h>
-
-int main(void) {
-	
-	int ch;
-
-	// 문자열 입출력
-	printf("한 문자씩 입력하세요 (종료 : q)\n");
-	while ((ch = getchar()) != 'q')
-		putchar(ch);
-
-	return 0;
-
-}
-
-// ======================================================================
-// 버퍼를 사용하지 않고 에코가 없는 방식
-// int _getch(int c) : 한 문자 읽어서 반환
-// void _putch(int c) : 변수 c에 저장된 문자 출력
-
-#include <stdio.h>
-#include <conio.h>
-
-int main(void) {
-	
-	int ch;
-
-	// 문자열 입출력
-	printf("한 문자씩 입력하세요 (종료 : q)\n");
-	while ((ch = _getch()) != 'q')
-		_putch(ch);
-
-	return 0;
-
-}
-
-// ======================================================================
-// char * gets_s(char *s, int size) : 한 줄의 문자열을 읽어서 문자 배열 s[]에 저장
-// int puts(const char *s) : 배열 s[]에 저장되어 있는 한 줄의 문자열을 추력
-
-#include <stdio.h>
-
-int main(void) {
-
-	char name[20];
-
-	printf("이름 : ");
-
-	// scanf("%s", name);
-	gets_s(name, sizeof(name));
-
-	// printf(name);
-	puts(name);
-
-	return 0;
-
-}
-
-// ======================================================================
-
-#include <stdio.h>
-
-int main(void) {
-
-	int c;
-
-	// 소문자인지 대문자인지 파악하기
-	printf("문자를 입력하세요 : \n");
-	while ((c = getchar()) != EOF) {
-		if (islower(c))
-			printf("%c : 소문자 \n", c);
-		else if (isupper(c))
-			printf("%c : 대문자 \n", c);
-	}
-
-	return 0;
-}
-
-// ======================================================================
-
-#include <stdio.h>
-
-int main(void) {
-
-	// 소문자 입력 시 대문자로 바꾸기
-	int c;
-
-	printf("문자를 입력하세요 : \n");
-	while ((c = getchar()) != EOF) {
-		if (islower(c))
-			c = toupper(c);
-		putchar(c);
-	}
-
-	return 0;
 }
 
 // ======================================================================
