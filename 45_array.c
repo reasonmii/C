@@ -243,7 +243,9 @@ int main() {
 	int my_numbers[5];
 
 	// Runtime Error
-	my_numbers[5] = 123;   // out of bound
+	// out of bound : array[5]는 0~4까지만 가능
+	my_numbers[5] = 123;
+	printf("%d\n", my_numbers[5]);
 
 	// Compile Error
 	my_numbers = 7;
