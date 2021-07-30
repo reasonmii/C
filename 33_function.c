@@ -129,6 +129,38 @@ void say_hello(void) {  // Function Definition
 }
 
 // ======================================================================
+// 제곱수 구하기
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int compute_pow(int base, int exp);
+
+int main() {
+
+	int base, exp;
+	int result;
+
+	while (scanf("%d %d", &base, &exp) == 2) {
+		result = compute_pow(base, exp);
+		printf("Result = %d\n", result);
+	}
+
+	return 0;
+}
+
+int compute_pow(int base, int exp) {
+
+	int i, result;
+
+	result = 1;
+	for (i = 0; i < exp; ++i)
+		result *= base;
+
+	return result;
+}
+
+// ======================================================================
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
