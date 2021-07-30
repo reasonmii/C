@@ -40,6 +40,20 @@ int main() {
 
 #include <stdio.h>
 
+int main() {
+
+	int i = 0;
+
+	while (i++ < 5)
+		printf("Hi\n");
+
+	return 0;
+}
+
+// ======================================================================
+
+#include <stdio.h>
+
 int main(void) {
 
 	int start = 1;
@@ -120,24 +134,35 @@ int main() {
 
 // ======================================================================
 
+#include <stdio.h>
+
+int main() {
+
+	int i;
+	// 숫자가 아닌 값을 입력할 때까지 계속 새로 입력 받기
+	while (scanf("%d", &i) == 1)
+		;    // null statement
+
+	return 0;
+}
+
+// ======================================================================
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
 int main() {
 
 	int num, sum = 0;
-	int status;
 
 	printf("Enter an integer (q to quit) : ");
 
 	// 정수를 입력하지 않으면 status는 0이 됨
-	status = scanf("%d", &num);
+	// status = scanf("%d", &num);
 
-	while (status == 1) {
+	while (scanf("%d", &num) == 1) {
 		sum += num;
-
 		printf("Enter next integer (q to quit) : ");
-		status = scanf("%d", &num);
 	}
 
 	printf("Sum = %d", sum);
@@ -149,73 +174,38 @@ int main() {
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
-int main(void) {
+int main() {
 
-	int start = 1;
-	int end = 10;
-	int sum = 0;
-	int i = start;
-
-	for (i = start; i <= end; i = i + 2)
-		sum = sum + i;
-
-	printf("%d ~ %d의 홀수합 = %3d", start, end, sum);
+	char c = 'A';
+	while (c != 'Z')
+		// output : A~Y
+		printf("%c\n", c++);
 
 	return 0;
 }
 
 // ======================================================================
+// 완전히 똑같은 값을 입력하기 어려운 경우
+// 비슷한 값을 입력하고, 그 차이가 거의 없으면 잘 맞췄다고 판단하는 방법
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include <math.h>    // fabs() : 절대값
 
-int main(void) {
+int main() {
 
-	int start = 3, i;
+	const double PI = 3.1415926535897932384626433832795;
+	double guess = 0.0;
 
-	for (i = 1; i < 10; i++)
-		printf("구구단 : %3d * %d = %3d\n", start, i, start * i);
+	printf("Input PI : ");
+	scanf("%lf", &guess);
 
-	return 0;
-}
-
-// ======================================================================
-
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
-
-int main(void) {
-
-	int dan, i;
-
-	// 구구단 전체 : 2 ~ 9단
-	for (dan = 2; dan <= 9; dan++) {
-		printf("\n\n\n===================== %d단 =====================\n", dan);
-		for (i = 2; i <= 9; i++)
-			printf("%d * %d = %d\n", dan, i, dan * i);
+	while (fabs(guess - PI) > 0.01) {
+		printf("Fool! Try Again!");
+		scanf("%lf", &guess);
 	}
-
-	return 0;
-}
-
-// ======================================================================
-
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
-
-int main(void) {
-
-	int sum = 0;
-	int i, inData;
-
-	// 5개 정수 입력해서 더하기
-	for (i = 0; i < 5; i++) {
-		printf("%d번째 정수 입력 : ", i + 1);
-		scanf("%d", &inData);
-		sum = sum + inData;
-	}
-
-	printf("합 = %2d \n", sum);
+	
+	printf("Good!");
 
 	return 0;
 }
@@ -238,3 +228,4 @@ int main(void) {
 
 	return 0;
 }
+
