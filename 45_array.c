@@ -1,3 +1,24 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+#define NUM_DAYS 365
+
+int main() {
+
+	char my_chars[] = "Hello, World!";
+
+	int daily_temperature[NUM_DAYS];
+	double stock_prices_history[NUM_DAYS];
+
+	printf("%d\n", sizeof(stock_prices_history));      // 2920 : 8 * 365
+	printf("%d\n", sizeof(double) * NUM_DAYS);         // 2920
+	printf("%d\n", sizeof(stock_prices_history[0]));   // 8 : double 1개
+
+	return 0;
+}
+
+// ======================================================================
+
 #include <stdio.h>
 
 int main(void) {
@@ -284,8 +305,4 @@ int biSearch(int a[], int size, int key) {
 	}
 	return -1;
 }
-
-
-
-
 
