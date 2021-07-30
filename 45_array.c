@@ -233,6 +233,25 @@ int main(void) {
 }
 
 // ======================================================================
+// ERROR
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+
+	int my_numbers[5];
+
+	// Runtime Error
+	my_numbers[5] = 123;   // out of bound
+
+	// Compile Error
+	my_numbers = 7;
+
+	return 0;
+}
+
+// ======================================================================
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
