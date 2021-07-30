@@ -1,3 +1,5 @@
+// ※ https://theasciicode.com.ar/
+
 #define _CRT_SECURE_NO_WARNINGS  // scanf
 #include <stdio.h>
 
