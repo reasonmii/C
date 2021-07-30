@@ -58,6 +58,8 @@ int main() {
 }
 
 // ======================================================================
+// ★ 큰 데이터 처리할 때는 for loop 안에 여러 가지를 넣는 것보다
+//    최대한 나눠서 여러 for loop 사용해서 처리하는 게 효율적 ex) Prepare, Print
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
@@ -68,9 +70,6 @@ int main() {
 
 	int my_arr[SIZE];
 
-	// ★ 나중에 큰 데이터 처리할 때
-	// 이렇게 Prepare, Print 나눠서 처리하는 게 효율적
-	
 	// Prepare for array data
 	for (int i = 0; i < SIZE; ++i)
 		my_arr[i] = i;
@@ -78,6 +77,32 @@ int main() {
 	// Print array data
 	for (int i = 0; i < SIZE; ++i)
 		printf("%d ", my_arr[i]);     // 0 1 2 3 4
+
+	return 0;
+}
+
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+#define SIZE 5
+
+int main() {
+
+	int numbers[SIZE];
+	int sum = 0;
+	int i;
+
+	printf("Enter %d numbers :", SIZE);
+
+	for (i = 0; i < SIZE; ++i)
+		scanf("%d", &numbers[i]);
+
+	for (i = 0; i < SIZE; ++i)
+		sum += numbers[i];
+
+	printf("sum = %d\n", sum);
 
 	return 0;
 }
