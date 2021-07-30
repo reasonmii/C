@@ -157,6 +157,8 @@ int main(void) {
 	int score[SIZE];
 
 	// 배열 초기화
+	// ★ 반드시 & 붙여야 함
+	// ★ scanf("%d", score); -> score array의 [0]번째 값으로 입력됨
 	for (i = 0; i < SIZE; i++) {
 		printf("%d번째 학생의 점수는? ", i + 1);  // 점수 입력
 		scanf("%d", &score[i]);
