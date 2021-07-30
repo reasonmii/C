@@ -165,6 +165,143 @@ int main(void) {
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
+#define NUM_ROWS 5
+#define FIRST_CHAR 'A'
+#define LAST_CHAR 'K'
+
+int main() {
+
+	int r;    // row loop
+	int c;    // character loop
+
+	// A~K 5번 출력
+	for (r = 0; r < NUM_ROWS; ++r) {
+		for (c = FIRST_CHAR; c <= LAST_CHAR; ++c)
+			printf("%c", c);
+		printf("\n");
+	}
+
+	return 0;
+}
+
+// ======================================================================
+/*
+A
+AB
+ABC
+ABCD
+ABCDE
+ABCDEF
+ABCDEFG
+ABCDEFGH
+ABCDEFGHI
+ABCDEFGHIJ
+*/
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+#define NUM_ROWS 10
+#define FIRST_CHAR 'A'
+
+int main() {
+
+	int r;    // row loop
+	int c;    // character loop
+
+	// A~K 5번 출력
+	for (r = 0; r < NUM_ROWS; ++r) {
+		for (c = FIRST_CHAR; c <= FIRST_CHAR + r; ++c)
+			printf("%c", c);
+		printf("\n");
+	}
+
+	return 0;
+}
+
+// ======================================================================
+/*
+ABCDEFGHIJK
+ABCDEFGHIJ
+ABCDEFGHI
+ABCDEFGH
+ABCDEFG
+ABCDEF
+ABCDE
+ABCD
+ABC
+AB
+A
+*/
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+#define NUM_ROWS 10
+#define FIRST_CHAR 'A'
+
+int main() {
+
+	int r;    // row loop
+	int c;    // character loop
+
+	// A~K 5번 출력
+	for (r = NUM_ROWS; r >= 0; --r) {
+		for (c = FIRST_CHAR; c <= FIRST_CHAR + r; c++)
+			printf("%c", c);
+		printf("\n");
+	}
+
+	return 0;
+}
+
+// ======================================================================
+/*
+ABCDEFGHIJK
+BCDEFGHIJK
+CDEFGHIJK
+DEFGHIJK
+EFGHIJK
+FGHIJK
+GHIJK
+HIJK
+IJK
+JK
+K
+*/
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+#define FIRST_CHAR 'A'
+
+int main() {
+
+	const char last_char;
+
+	printf("What's your last character? (upper case) :");
+	scanf("%c", &last_char);
+
+	const int num_rows = last_char - FIRST_CHAR + 1;
+
+	int r;    // row loop
+	int c;    // character loop
+
+	// A~K 5번 출력
+	for (r = 0; r < num_rows; ++r) {
+		for (c = FIRST_CHAR + r; c < FIRST_CHAR + num_rows; ++c)
+			printf("%c", c);
+		printf("\n");
+	}
+
+	return 0;
+}
+
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
 int main(void) {
 
 	int sum = 0;
