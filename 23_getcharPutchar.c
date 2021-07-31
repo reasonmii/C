@@ -170,3 +170,27 @@ int main(void) {
 
 	return 0;
 }
+
+// ======================================================================
+
+#include <stdio.h>
+
+int main(void) {
+
+	char ch;
+
+	// 소문자 → 대문자, 대문자 → 소문자, 숫자 → *
+	while ((ch = getchar()) != '\n') {
+		if (islower(ch))
+			ch = toupper(ch);
+		else if (isupper(ch))
+			ch = tolower(ch);
+		
+		if (isdigit(ch) != 0)
+			ch = '*';
+
+		putchar(ch);
+	}
+	
+	return 0;
+}
