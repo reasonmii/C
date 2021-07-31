@@ -10,6 +10,7 @@ EOF (End of File)
 함수 호출이 실패했을 때 발생
 
 문자 처리 library
+※ https://www.tutorialspoint.com/c_standard_library/ctype_h.htm
 isalpha(c) : c가 영문자인지 (a-z, A-Z)
 isupper(c) : 대문자인지
 islower(c) : 소문자인지
