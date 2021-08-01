@@ -74,6 +74,10 @@ int main(void) {
 
 		printf(".\n");
 
+		// ※ 여러 문자를 입력했을 때
+		// 같은 줄에 있는 첫 글자 외 모든 글자 무시
+		while (getchar() != '\n')
+			continue;
 	}
 
 	return 0;
