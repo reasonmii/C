@@ -90,6 +90,32 @@ int main(void) {
 }
 
 // ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+    
+    int count = 0;
+
+    while (1) {
+        printf("Current count is %d. Continue? (y/n)\n", count);
+
+        if (getchar() == 'n')
+            break;
+
+        // ※ 여러 문자를 입력했을 때
+        // 같은 줄에 있는 첫 글자 외 모든 글자 무시
+        while (getchar() != '\n')
+            continue;
+
+        count++;
+    }
+
+    return 0;
+}
+
+// ======================================================================
 // 버퍼를 사용하지 않고 에코가 없는 방식
 // int _getch(int c) : 한 문자 읽어서 반환
 // void _putch(int c) : 변수 c에 저장된 문자 출력
@@ -147,45 +173,6 @@ int main(void) {
 
 	// printf(name);
 	puts(name);
-
-	return 0;
-}
-
-// ======================================================================
-
-#include <stdio.h>
-
-int main(void) {
-
-	int c;
-
-	// 소문자인지 대문자인지 파악하기
-	printf("문자를 입력하세요 : \n");
-	while ((c = getchar()) != EOF) {
-		if (islower(c))
-			printf("%c : 소문자 \n", c);
-		else if (isupper(c))
-			printf("%c : 대문자 \n", c);
-	}
-
-	return 0;
-}
-
-// ======================================================================
-
-#include <stdio.h>
-
-int main(void) {
-
-	// 소문자 입력 시 대문자로 바꾸기
-	int c;
-
-	printf("문자를 입력하세요 : \n");
-	while ((c = getchar()) != EOF) {
-		if (islower(c))
-			c = toupper(c);
-		putchar(c);
-	}
 
 	return 0;
 }
