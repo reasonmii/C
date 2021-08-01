@@ -14,6 +14,8 @@ int main() {
 
 	int c;
 	FILE* file = NULL;
+
+	// 실무에서는 scanf로 입력받는 경우가 더 많음
 	char file_name[] = "my_file.txt";
 
 	// fopen : file open
