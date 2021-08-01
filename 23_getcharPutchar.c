@@ -247,3 +247,4 @@ void display(char cr, int lines, int width) {
         putchar('\n');
     }
 }
+
