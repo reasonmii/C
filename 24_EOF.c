@@ -42,3 +42,41 @@ int main() {
     return 0;
 }
 
+// ======================================================================
+
+#include <stdio.h>
+
+int main(void) {
+
+	int c;
+
+	// 소문자인지 대문자인지 파악하기
+	printf("문자를 입력하세요 : \n");
+	while ((c = getchar()) != EOF) {
+		if (islower(c))
+			printf("%c : 소문자 \n", c);
+		else if (isupper(c))
+			printf("%c : 대문자 \n", c);
+	}
+
+	return 0;
+}
+
+// ======================================================================
+
+#include <stdio.h>
+
+int main(void) {
+
+	// 소문자 입력 시 대문자로 바꾸기
+	int c;
+
+	printf("문자를 입력하세요 : \n");
+	while ((c = getchar()) != EOF) {
+		if (islower(c))
+			c = toupper(c);
+		putchar(c);
+	}
+
+	return 0;
+}
