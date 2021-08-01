@@ -34,7 +34,6 @@ int main(void) {
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include <ctype.h>      // islower()
 #include <stdbool.h>
 
 #define PERIOD '.'
@@ -80,7 +79,6 @@ Short-circuit Evaluation
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include <ctype.h>      // islower()
 #include <stdbool.h>
 
 #define PERIOD '.'
@@ -108,7 +106,6 @@ int main(void) {
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include <ctype.h>      // islower()
 #include <stdbool.h>
 
 #define PERIOD '.'
@@ -124,10 +121,4 @@ int main(void) {
 
 	return 0;
 }
-
-// ======================================================================
-
-
-
-
 
