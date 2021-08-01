@@ -91,25 +91,53 @@ int main(void) {
 
 // ======================================================================
 
+#include <stdio.h>
+
+int main(void) {
+
+	char ch;
+
+	// 소문자 → 대문자, 대문자 → 소문자, 숫자 → *
+	while ((ch = getchar()) != '\n') {
+		if (islower(ch))
+			ch = toupper(ch);
+		else if (isupper(ch))
+			ch = tolower(ch);
+		
+		if (isdigit(ch) != 0)
+			ch = '*';
+
+		putchar(ch);
+	}
+	
+	return 0;
+}
+
+// ======================================================================
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
 int main() {
-    
+
     int count = 0;
 
     while (1) {
         printf("Current count is %d. Continue? (y/n)\n", count);
 
-        if (getchar() == 'n')
+        int c = getchar();
+
+        if (c == 'n')
             break;
+        else if (c == 'y')
+            count++;
+        else
+            printf("Please input y or n\n");
 
         // ※ 여러 문자를 입력했을 때
-        // 같은 줄에 있는 첫 글자 외 모든 글자 무시
+        // 같은 줄에 있는 첫 글자 외 모든 글자 무시       
         while (getchar() != '\n')
-            continue;
-
-        count++;
+             continue;
     }
 
     return 0;
@@ -174,29 +202,5 @@ int main(void) {
 	// printf(name);
 	puts(name);
 
-	return 0;
-}
-
-// ======================================================================
-
-#include <stdio.h>
-
-int main(void) {
-
-	char ch;
-
-	// 소문자 → 대문자, 대문자 → 소문자, 숫자 → *
-	while ((ch = getchar()) != '\n') {
-		if (islower(ch))
-			ch = toupper(ch);
-		else if (isupper(ch))
-			ch = tolower(ch);
-		
-		if (isdigit(ch) != 0)
-			ch = '*';
-
-		putchar(ch);
-	}
-	
 	return 0;
 }
