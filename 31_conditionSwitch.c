@@ -46,7 +46,6 @@ int main(void) {
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include <float.h>    // float max, float min
 
 int main(void) {
 
