@@ -94,6 +94,27 @@ int main(void) {
 // int _getch(int c) : 한 문자 읽어서 반환
 // void _putch(int c) : 변수 c에 저장된 문자 출력
 
+// _getch(), _getche() : buffer 미사용
+// e : echo의 약자
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <conio.h>   // _getch(), _getche() 
+
+int main() {
+    char c;
+
+    // ※ buffer 사용 시 : hello 입력 -> hello 출력
+    // buffer 미사용 시 한 글자 입력할 때마다 매번 출력
+    // ex) result : hheelllloo
+    while ((c = _getche()) != '.')
+        putchar(c);
+
+    return 0;
+}
+
+// ======================================================================
+
 #include <stdio.h>
 #include <conio.h>
 
@@ -107,7 +128,6 @@ int main(void) {
 		_putch(ch);
 
 	return 0;
-
 }
 
 // ======================================================================
@@ -129,7 +149,6 @@ int main(void) {
 	puts(name);
 
 	return 0;
-
 }
 
 // ======================================================================
