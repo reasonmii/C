@@ -204,3 +204,46 @@ int main(void) {
 
 	return 0;
 }
+
+// ======================================================================
+/*
+scanf는 특정 buffer를 만들어 놓고
+입력한 것을 출력한 후에도 buffer가 남으면 빈 공간으로 buffer를 모두 출력함
+이처럼 콘솔 창 실행 시 무의미한 빈 공간들이 출력되는 현상을 막기 위해 아래 코드 사용
+★ while (getchar() != '\n') continue;
+*/
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void display(char cr, int lines, int width);
+
+int main() {
+
+    char c;
+    int rows, cols;
+
+    printf("Input one character and two integers:\n");
+
+    while ((c = getchar()) != '\n') {
+        scanf("%d %d", &rows, &cols);
+        while (getchar() != '\n') continue;
+
+        display(c, rows, cols);
+        printf("Input another character and two integers:\n");
+        printf("Press Enter to quit.\n");
+    }
+
+    return 0;
+}
+
+void display(char cr, int lines, int width) {
+
+    int row, col;
+
+    for (row = 1; row <= lines; row++) {
+        for (col = 1; col <= width; col++)
+            putchar(cr);
+        putchar('\n');
+    }
+}
