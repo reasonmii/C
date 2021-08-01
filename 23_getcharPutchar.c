@@ -248,3 +248,35 @@ void display(char cr, int lines, int width) {
     }
 }
 
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+
+	// Input : Hello 123 3.14
+
+	char str[255];
+	int i, i2;
+	double d;
+
+	// Output : Hello 123 3.140000
+	scanf("%s %d %lf", str, &i, &d);
+	printf("%s %d %f\n", str, i, d);
+
+	// Output : Hello 123 3
+	scanf("%s %d %d", str, &i, &i2);
+	printf("%s %d %d\n", str, i, i2);
+
+	// 위에서 input 내용 중 마지막 3.14에서
+	// 3까지만 읽혀지니, buffer에 .14가 남게 됨
+	// 이를 getchar가 문자로 받아들여서 그대로 출력함
+	// Output : .14
+	char c;
+	while ((c = getchar()) != '\n')
+		putchar(c);
+	printf("\n");
+	
+	return 0;
+}
