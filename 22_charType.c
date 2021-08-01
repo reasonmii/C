@@ -2,13 +2,6 @@
 문자 : 하나의 글자 -> 작은 따옴표 사용
 문자열 : 일련의 문자들의 모임 -> 큰 따옴표 사용, NULL 문자로 문자의 끝 표시 ('\0', '0')
 
-EOF (End of File)
-파일의 끝을 표현하기 위해 정의된 상수
-더 이상 읽을 수 있는 데이터가 없음을 의미함
-보통 -1 로 정의된 상수
-콘솔 창에서 ctrl + z 입력
-함수 호출이 실패했을 때 발생
-
 문자 처리 library
 ※ https://www.tutorialspoint.com/c_standard_library/ctype_h.htm
 isalpha(c) : c가 영문자인지 (a-z, A-Z)
