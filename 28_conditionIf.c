@@ -122,44 +122,63 @@ int main(void) {
 
 // ======================================================================
 
-#define _CRT_SECURE_NO_WARNINGS  // scanf
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
 int main(void) {
 
-	int x;
+	int number;
 
-	printf("정수 입력 (1~3) : ");
-	scanf("%d", &x);
+	printf("Your number? ");
+	scanf("%d", &number);
 
-	switch (x) {
-	case 1: printf("1번\n");
-		break;
-	case 2: printf("2번\n");
-		break;
-	case 3: printf("3번\n");
-		break;
-
-	default: printf("1~3까지 입력하세요");
+	if (number > 5) {
+		if (number < 10)
+			printf("Larger than 5 smaller than 10\n");
+		else
+			printf("Larger than 10");
 	}
-
-	// -------------------------------------------
-	// 누적 값 출력
-
-	int y;
-
-	printf("정수 입력 (0~2) : ");
-	scanf("%d", &y);
-
-	switch (y) {
-	case 0: printf("delete 권한 있음\n");   // delete + write + read 권한
-	case 1: printf("write 권한 있음\n");    // write + read 권한
-	case 2: printf("read 권한 있음\n");     // read 권한
-		break;
-
-	default: printf("1~3까지 입력하세요");
-	}
+	else
+		printf("Less than or equal to 5");
 
 	return 0;
-
 }
+
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdbool.h>
+
+int main(void) {
+
+	unsigned num;
+
+	// ★ FLAG - try bool type
+	bool isPrime = true;
+
+	// Check if num is a prime number
+
+	scanf("%u", &num);
+	
+	// 사칙연산 : div와 num type 같은 게 좋음 - 다른 경우 warning
+	// ★ div*div < num -> for문 반복을 줄일 수 있음
+	for (unsigned div = 2; (div*div) <= num; ++div) {
+		if (num % div == 0) {
+			isPrime = false;
+
+			if (num == div * div)
+				printf("%u is divisible by %u.\n", num, div);
+			else
+				printf("%u is divisible by %u and %u.\n", num, div, num/div);
+		}
+	}
+
+	if (isPrime)
+		printf("%u is a prime number.\n", num);
+	else
+		printf("%u is not a prime number.\n", num);
+
+	return 0;
+}
+
