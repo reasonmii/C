@@ -1,3 +1,5 @@
+// 간단한 case가 여러 개일 때는 switch가 보기 좋기 때문에 많이 사용함
+
 #define _CRT_SECURE_NO_WARNINGS  // scanf
 #include <stdio.h>
 
@@ -41,3 +43,42 @@ int main(void) {
 }
 
 // ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <float.h>    // float max, float min
+
+int main(void) {
+
+	char c;
+	while ((c = getchar()) != '.') {
+		printf("You love : ");
+
+		// Note : integer types only
+		switch (c) {
+		case 'a':
+		case 'A':
+			printf("apple");
+			break;
+		case 'b':
+		case 'B':
+			printf("baseball");
+			break;
+		case 'c':
+		case 'C':
+			printf("cake");
+			break;
+		default:
+			printf("nothing");
+		}
+
+		printf(".\n");
+
+		// 여러 문자를 입력했을 때
+		// 첫 글자 하나만 보고 같은 줄 다른 글자들은 전부 무시하겠다는 의미
+		while (getchar() != '\n')
+			continue;
+	}
+
+	return 0;
+}
