@@ -58,3 +58,37 @@ int main(void) {
 	return 0;
 }
 
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <float.h>    // float max, float min
+
+int main(void) {
+
+	float max = -FLT_MAX;
+	float min = FLT_MAX;
+	float sum = 0.0f;
+	float input;
+	int n = 0;
+
+	while (scanf("%f", &input) == 1) {
+
+		// Ignore negative value and the number larger than 100
+		if (input < 0 || input > 100.0f) continue;
+
+		max = (input > max) ? input : max;
+		min = (input < min) ? input : min;
+		sum += input;
+
+		// Count number of inputs
+		n++;
+	}
+
+	if (n > 0)
+		printf("min = %f, max = %f, avg = %f\n", min, max, sum / n);
+	else
+		printf("No input\n");
+
+	return 0;
+}
