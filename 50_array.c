@@ -58,6 +58,200 @@ int main() {
 }
 
 // ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+// symbolic constant, macro
+#define MONTHS 12
+
+int main() {
+
+	int high[MONTHS] = { 2, 5, 11, 18, 23, 27, 29, 30, 26, 20, 12, 4 };
+	
+	// 평균 계산하기
+	float avg = 0.0;
+	for (int i = 0; i < MONTHS; ++i)
+		avg += high[i];
+	printf("Average = %f\n", avg / (float)MONTHS);
+
+	// 한 번 초기화된 배열은 아래와 같이 변경 불가능
+	//high = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+	//high[12] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+
+	return 0;
+}
+
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+// symbolic constant, macro
+#define MONTHS 12
+
+int main() {
+
+	// 배열은 0번부터 시작
+	// ★ ERROR : high[12], high[-1]
+	// -> 주의 : Compiler가 이 오류를 안 잡아주고 경고만 함
+	int high[MONTHS] = { 2, 5, 11, 18, 23, 27, 29, 30, 26, 20, 12, 4 };
+
+	// 평균 계산하기
+	float avg = 0.0;
+	for (int i = 0; i < MONTHS; ++i)
+		avg += high[i];
+	printf("Average = %f\n", avg / (float)MONTHS);
+
+	// -------------------------------------------
+
+	// 한 번 초기화된 배열은 아래와 같이 변경 불가능
+	//high = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+	//high[12] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+
+	// -------------------------------------------
+
+	// 주소 같음
+	// 012FFB10 012FFB10
+	printf("%p %p\n", high, &high[0]);
+
+	/* 숫자가 4씩 증가
+	15726608
+	15726612
+	15726616
+	15726620
+	15726624
+	15726628
+	15726632
+	15726636
+	15726640
+	15726644
+	15726648
+	15726652*/
+
+	for (int i = 0; i < MONTHS; ++i)
+		printf("%lld\n", (long long)&high[i]);
+	printf("\n");
+
+	// -------------------------------------------
+
+	// const and array
+	// 해당 배열의 원소 값 변경 불가
+	const int low[12] = { -7, -5, 1, 7, 13, 18, 22, 22, 16, 9, 2, -5 };
+
+	// -------------------------------------------
+
+	// When array is not initialized
+	// result : -858993460 -858993460 -858993460 -858993460
+	// ※ static int not_init[4] -> result : 0 0 0 0
+	int not_init[4];
+	for (int i = 0; i < 4; ++i)
+		printf("%d ", not_init[i]);
+	printf("\n");
+
+	// -------------------------------------------
+
+	// Partially initialized
+	// result : 2 4 0 0
+	// 개발자가 일부 초기화를 시도하면, 알아서 나머지는 0으로 초기화 함
+	int insuff[4] = { 2, 4 };
+	for (int i = 0; i < 4; ++i)
+		printf("%d ", insuff[i]);
+	printf("\n");
+
+	// -------------------------------------------
+
+	// Omitting size
+	const int power_of_twos[] = { 1, 2, 4, 8, 16, 32, 64 };
+	printf("%d\n", sizeof(power_of_twos));     // 28 (4 * 7)
+	printf("%d\n", sizeof(int));               // 4
+	printf("%d\n", sizeof(power_of_twos[0]));  // 4
+
+	// 1 2 4 8 16 32 64
+	for (int i = 0; i < sizeof power_of_twos / sizeof power_of_twos[0]; ++i)
+		printf("%d ", power_of_twos[i]);
+	printf("\n");
+
+	// -------------------------------------------
+
+	// Designated initializers
+	// [1] = 29 : index 1 값을 29로 하라고 덮어 썼으니 두 번째 값이 29가 됨
+	// [4] 자리는 31
+	// 31 29 0 0 31 30 31 0 0 0 0 0
+	int days[MONTHS] = { 31, 28,[4] = 31, 30, 31,[1] = 29 };
+	for (int i = 0; i < MONTHS; ++i)
+		printf("%d ", days[i]);
+
+	// -------------------------------------------
+
+	// Specifying Array sizes
+	int arr1[MONTHS];   // Symbolic integer constant
+	double arr2[123];   // Literal integer constant
+	float arr3[3 * 4 + 1];
+	float arr4[sizeof(int) + 1];
+	// float arr5[-10];   -> Error
+	// float arr6[0];     -> Error
+	// float arr7[1.5];   -> Error
+	float arr8[(int)1.5];  // arr8[1] 과 같음
+
+	// Variable-Length Array is optional from C11
+	// Visual Studio에서는 ERROR
+	// int n = 8;
+	// float arr9[n];
+
+	return 0;
+}
+
+// ======================================================================
+// 포인터 
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+
+	// ★ C언어에서 void 포인터는 산술연산 불가 -> ERROR!
+	// int* ptr = 0;
+	// char* ptr = 0;
+	// double* ptr = 0;
+	long long* ptr = 0;
+
+	// 00000000 0
+	printf("%p %lld\n", ptr, (long long)ptr);
+
+	// 자료형의 사이즈만큼 더하게 됨
+	// Try : -=, ++, --, -, +
+	ptr++;
+
+	// int       : 00000004 4
+	// char      : 00000001 1
+	// double    : 00000008 8
+	// long long : 00000008 8
+	printf("%p %lld\n", ptr, (long long)ptr);
+
+	// -------------------------------------------
+
+	// Subtraction
+	int arr[10];
+	int* ptr1 = &arr[3], * ptr2 = &arr[5];
+
+	// 포인터 간 덧셈 불가능
+	// 주소 두 개를 더해서 새로 나온 주소 값은 아무 의미가 없음
+	// int ptr3 = ptr1 + ptr2 -> Error
+
+	// ★ 뺄셈은 가능
+	// 주소 두 개 값의 차이는 주소 간 거리를 의미
+	int i = ptr2 - ptr1;
+
+	// result : 7076972 7076980 2
+	// int 자료형이 4byte이니 arr[3]과 arr[5]의 주소 차이값은 8
+	// 8 / (자료형 크기) 4 = 2
+	printf("%d %d %d\n", (int)ptr1, (int)ptr2, i);
+
+	return 0;
+}
+
+// ======================================================================
 // ★ 큰 데이터 처리할 때는 for loop 안에 여러 가지를 넣는 것보다
 //    최대한 나눠서 여러 for loop 사용해서 처리하는 게 효율적 ex) Prepare, Print
 
