@@ -254,21 +254,60 @@ int main() {
 
 // ======================================================================
 
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
-void main() {
-	// 3차원 배열 입출력
-	int array[2][3][4];
-	int i, j, k, value = 1;
-	for (i = 0; i < 2; i++) {
-		for (j = 0; j < 3; j++) {
-			for (k = 0; k < 4; k++) {
-				array[i][j][k] = value;
-				printf("\narray[%d][%d][%d] = %d", i, j, k, array[i][j][k]);
-				value++;
-			}
-		}
-	}
+int main() {
+
+	int arr[10];
+
+	const int num = sizeof(arr) / sizeof(arr[0]);
+	for (int i = 0; i < num; ++i)
+		arr[i] = (i + 1) * 100;
+
+	int* ptr = arr;
+
+	// 012FFAE4 012FFAE4 012FFAE4
+	printf("%p %p %p\n", ptr, ptr, &arr[0]);
+
+	ptr += 2;
+	// 012FFAEC 012FFAEC 012FFAEC
+	printf("%p %p %p\n", ptr, arr + 2, &arr[2]);
+
+	// 00000190 00000190 00000190
+	printf("%p %p %p\n", *(ptr + 1), *(arr + 3), arr[3]);
+
+	// ★ 실수주의
+	// *(ptr + 1)과 *ptr + 1은 다른 값
+	// 301 103 400
+	printf("%d %d %d\n", *ptr + 1, *arr + 3, arr[3]);
+
+	// -------------------------------------------
+
+	/*ptr과 arr는 동일
+	100 100
+	200 200
+	300 300
+	400 400
+	500 500
+	600 600
+	700 700
+	800 800
+	900 900
+	1000 1000
+	*/
+
+	// 방법1
+	int* ptr2 = arr;
+	for (int i = 0; i < num; ++i)
+		printf("%d %d\n", *ptr2++, arr[i]);
+
+	// 방법2
+	int* ptr3 = arr;
+	for (int i = 0; i < num; ++i)
+		printf("%d %d\n", *(ptr3 + i), arr[i]);
+
+	return 0;
 }
 
 // ======================================================================
