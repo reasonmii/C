@@ -207,6 +207,54 @@ int main() {
 
 // ======================================================================
 
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+
+	// ★ C언어에서 void 포인터는 산술연산 불가 -> ERROR!
+	// int* ptr = 0;
+	// char* ptr = 0;
+	// double* ptr = 0;
+	long long* ptr = 0;
+
+	// 00000000 0
+	printf("%p %lld\n", ptr, (long long)ptr);
+
+	// 자료형의 사이즈만큼 더하게 됨
+	// Try : -=, ++, --, -, +
+	ptr++;
+
+	// int       : 00000004 4
+	// char      : 00000001 1
+	// double    : 00000008 8
+	// long long : 00000008 8
+	printf("%p %lld\n", ptr, (long long)ptr);
+
+	// -------------------------------------------
+
+	// Subtraction
+	int arr[10];
+	int* ptr1 = &arr[3], * ptr2 = &arr[5];
+
+	// 포인터 간 덧셈 불가능
+	// 주소 두 개를 더해서 새로 나온 주소 값은 아무 의미가 없음
+	// int ptr3 = ptr1 + ptr2 -> Error
+
+	// ★ 뺄셈은 가능
+	// 주소 두 개 값의 차이는 주소 간 거리를 의미
+	int i = ptr2 - ptr1;
+
+	// result : 7076972 7076980 2
+	// int 자료형이 4byte이니 arr[3]과 arr[5]의 주소 차이값은 8
+	// 8 / (자료형 크기) 4 = 2
+	printf("%d %d %d\n", (int)ptr1, (int)ptr2, i);
+
+	return 0;
+}
+
+// ======================================================================
+
 #include <stdio.h>
 
 int main(void) {
