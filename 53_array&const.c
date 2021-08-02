@@ -1,6 +1,9 @@
 /*
 type qualifiers (한정자) : const, volatile, ...
+
 필요한 곳엔 모두 const 사용해서 혹시 발생할 수 있는 실수 방지
+내용이 바뀌면 안 되는 곳엔 반드시 const 써 줘야
+중간에 의도치 않게 이상한 값 변화 없이 원하는 대로 잘 출력 가능
 */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -47,6 +50,49 @@ int main() {
 	// pd[2]가 의미하는 것 : arr[2]
 	// pd가 1씩 증가한 후 pd[2]가 의미하는 것 : arr[3]
 	printf("%f %f", pd[2], arr2[2]);
+
+	return 0;
+}
+
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void print_array(const int arr[], const int n) {
+	for (int i = 0; i < n; ++i)
+		printf("%d ", arr[i]);
+	printf("\n");
+}
+
+void add_value(int arr[], const int n, const int val) {
+	int i;
+	for (i = 0; i < n; i++)
+		arr[i] += val;
+}
+
+int sum(const int arr[], const int n) {
+	int i;
+	int total = 0;
+	for (i = 0; i < n; i++)
+		total += arr[i];
+
+	return total;
+}
+
+int main() {
+
+	const int arr[] = { 1, 2, 3, 4, 5 };
+	const int n = sizeof(arr) / sizeof(arr[0]);
+
+	print_array(arr, 5);     // 1 2 3 4 5
+	add_value(arr, 5, 100);  // 101 102 103 104 105
+	print_array(arr, 5);
+
+	int s = sum(arr, n);
+	printf("sum is %d\n", s); // 515
+
+	print_array(arr, 5);      // 101 102 103 104 105
 
 	return 0;
 }
