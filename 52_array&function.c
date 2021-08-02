@@ -49,6 +49,35 @@ int main() {
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+
+double average(double*, double*);
+
+int main() {
+
+	double arr1[5] = { 10, 13, 12, 7, 8 };
+	printf("Avg = %f\n", average(arr1, arr1 + 5));
+
+	return 0;
+}
+
+double average(double* start, double* end) {
+
+	// 전체 원소 개수 계산
+	int count = end - start;
+
+	double avg = 0.0;
+	while (start < end) {
+		// 계속해서 다음 원소를 더함
+		avg += *start++;
+	}
+	avg /= (double)count; 
+	return avg;
+}
+
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
 #define SIZE 5
 
 int main(void) {
