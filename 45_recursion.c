@@ -21,23 +21,22 @@ void my_func(int);
 
 int main() {
 
-	my_func(1);  // Debug Red dot 찍기
+	my_func(1);    // Debug Red dot 찍기
 	return 0;
 }
 
 void my_func(int n) {
+
+	// 주소는 기본적으로 16진수
+	// 이해하기 좋게 아래와 같이 10진수로 출력 가능
+	//printf("Level %d, address of variable n = %d\n", n, (int)&n);
 	printf("Level %d, address of variable n = %p\n", n, &n);
 
 	if (n <= 4)
 		my_func(n + 1);
 
 	// Debug Red dot 찍기
-
+	//printf("Level %d, address of variable n = %d\n", n, (int)&n);
+	printf("Level %d, address of variable n = %p\n", n, &n);
 }
-
-// ======================================================================
-
-
-
-
 
