@@ -5,52 +5,6 @@ Arguments 인수 vs. Parameters 매개변수
 */
 
 // ======================================================================
-/*
-********************
-      Yuna Lee
-    Seoul, Korea
-********************
-*/
-
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
-#include <string.h>   // strlen()
-#include <stdbool.h>
-
-#define WIDTH   20
-#define NAME    "Yuna Lee"
-#define ADDRESS "Seoul, Korea"
-
-void print_bar(char c, int n_stars, bool print_newline) {
-	for (int i = 0; i < n_stars; ++i)
-		printf("%c", c);     // putchar(c)
-
-	if (print_newline)
-		printf("\n");
-}
-
-void print_center(char str[]) {
-
-	int n_blanks = 0;
-	n_blanks = (WIDTH - strlen(str)) / 2;
-	print_bar(' ', n_blanks, false);
-	printf("%s\n", str);
-}
-
-
-int main() {
-
-	print_bar('*', WIDTH, true);
-
-	print_center(NAME);
-	print_center(ADDRESS);
-
-	print_bar('*', WIDTH, false);
-
-	return 0;
-}
-
-// ======================================================================
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
@@ -172,6 +126,124 @@ void say_hello(void) {  // Function Definition
 	printf("Hello, World\n");
 
 	return;
+}
+
+// ======================================================================
+/*
+********************
+      Yuna Lee
+    Seoul, Korea
+********************
+*/
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>   // strlen()
+#include <stdbool.h>
+
+#define WIDTH   20
+#define NAME    "Yuna Lee"
+#define ADDRESS "Seoul, Korea"
+
+// 자료형만 넣어서 선언해도 되지만
+// 한 눈에 잘 알기 위해 보통 변수명도 같이 넣어서 선언함
+// void print_bar(char, int, bool);
+void print_bar(char c, int n_stars, bool print_newline);  // prototype
+void print_center(char str[]);
+
+int main() {
+
+	// 함수에 실제로 넣는 값 : Argument
+	// (actual argument/parameter)
+	print_bar('*', WIDTH, true);
+
+	print_center(NAME);
+	print_center(ADDRESS);
+
+	print_bar('*', WIDTH, false);
+
+	return 0;
+}
+
+// 함수에 공식적으로 넣는 값 : Parameter (formal argument/parameter)
+void print_bar(char c, int n_stars, bool print_newline) {
+	for (int i = 0; i < n_stars; ++i)
+		printf("%c", c);     // putchar(c)
+
+	if (print_newline)
+		printf("\n");
+}
+
+void print_center(char str[]) {
+
+	int n_blanks = 0;
+	n_blanks = (WIDTH - strlen(str)) / 2;
+	print_bar(' ', n_blanks, false);
+	printf("%s\n", str);
+}
+
+// ======================================================================
+// 최소값 구하기
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+// 아래와 같이 정수형 반환 자료형인 경우만 생략 가능
+// int_min(int, int)
+int int_min(int, int);
+
+int main() {
+
+	int i1, i2;
+
+	while (1) {
+		printf("Input two integers : ");
+		if (scanf("%d %d", &i1, &i2) != 2) break;
+		int lesser = int_min(i1, i2);
+		printf("The lesser of %d and %d is %d\n", i1, i2, lesser);
+	}
+
+	printf("End.\n");
+}
+
+// int_min(int i, int j) {
+int int_min(int i, int j) {
+
+	// 방법1 : 삼항연산자
+	return (i < j) ? i : j;
+
+	// 방법2
+	/*if (i < j)
+		return i;
+	else
+		return j;*/
+}
+
+// ======================================================================
+// 최대값 구하기
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int int_max(int i, int j);
+
+int main() {
+
+	int i1, i2;
+
+	while (1) {
+		printf("Input two integers : ");
+		if (scanf("%d %d", &i1, &i2) != 2) break;
+		int lesser = int_min(i1, i2);
+		printf("The lesser of %d and %d is %d\n", i1, i2, lesser);
+	}
+
+	printf("End.\n");
+}
+
+int int_max(int i, int j) {
+	int m = (i > j) ? i : j;
+	return m;
 }
 
 // ======================================================================
