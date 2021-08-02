@@ -1,7 +1,45 @@
-// 포인터 변수은 실제 값과 자료형이 같아야 함
-// 자료형이 다르면 원래는 오류 발생
-// ex) int i -> int* p
-//     char c -> char* pc
+/*
+포인터 변수은 실제 값과 자료형이 같아야 함
+자료형이 다르면 원래는 오류 발생
+ex) int i -> int* p
+    char c -> char* pc
+
+Pointer 코딩 스타일 변경하기
+상단 Tools - Options - Text Editor
+- C/C++ - Formatting - General
+1) Visual Studio 선택 : int* a
+2) LLVM : int *a
+3) Google : int *a / int* a -> 둘 다 가능 (int * b : 이것만 안 됨)
+
+★ 쓰레기값
+int *ptr;
+Pointer에 아무것도 넣지 않고 선언했을 때,
+Pointer에 들어있는 default value를 '쓰레기값'이라고 함
+컴퓨터가 쓰레기값 주소를 출력하려고 하면,
+이 주소는 존재하는 지도 사실 불확실 하고 어디 있는 지도 모름
+결국 찾지 못해 ERROR 발생 - Compile도 해 주지 않음
+
+★ Runtime Error
+int *ptr = 1234;
+User가 Pointer에 직접 값 대입하는 경우, Runtime Error 발생
+why? 컴퓨터가 정말 이 주소 '1234'로 가서 값을 가져오려고 했는데,
+     이 프로그램에서 사실 할당받은 주소가 아님
+     강제 종료됨
+
+★ NULL pointer 선언
+int *ptr = NULL;
+포인터에 확실한 주소 값을 대입하면 문제 없음
+그러나 보통 포인터를 사용할 때는 불확실한 변수를 많이 이용함
+ex) 특정 조건에 만족하면 포인터에 값 넣기
+이러한 경우 조건에 만족하지 않으면 포인터에는 최종적으로 값이 아무것도 안 넣어짐 -> ERROR 발생
+★ 따라서 포인터를 처음부터 NULL 값으로 선언하면, 이후에 설령 값이 대입되지 않더라도 에러 발생X
+
+※ Debug에서 전체 메모리 상황 확인하기
+상단 Debug - Windows - Memory - Memory1
+변수 주소 복사 후 Address에서 검색
+*/
+
+// ======================================================================
 
 #include <stdio.h>
 
@@ -48,8 +86,6 @@ int main(void) {
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-
-#include "my_print_functions.h"
 
 int main() {
 	
@@ -143,6 +179,30 @@ void main() {
 	printf("i의 값 = %d\n", i);   // i의 값 = 20
 	getchar();
 
+}
+
+// ======================================================================
+// 포인터 변수의 크기
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+	
+	char a;
+	float b;
+	double c;
+
+	char* ptr_a = &a;
+	float* ptr_b = &b;
+	double* ptr_c = &c;
+
+	printf("%zd %zd %zd\n", sizeof(a), sizeof(b), sizeof(c));                // 1 4 8
+	printf("%zd %zd %zd\n", sizeof(ptr_a), sizeof(ptr_b), sizeof(ptr_c));    // 4 4 4
+	printf("%zd %zd %zd\n", sizeof(&a), sizeof(&b), sizeof(&c));             // 4 4 4
+	printf("%zd %zd %zd\n", sizeof(char*), sizeof(float*), sizeof(double*)); // 4 4 4
+
+	return 0;
 }
 
 // ======================================================================
