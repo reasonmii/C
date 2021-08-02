@@ -1,4 +1,13 @@
 /*
+재귀호출
+장점 : 구현이 간결
+단점
+1) 경우에 따라 memory inefficiency
+2) redundant computation ex) 피보나치 수열
+*/
+
+// ======================================================================
+/*
 Debug 해서 n 값 변화 확인
 1 -> 2 -> 3 -> 4 -> 5 -> 5 -> 4 -> 3 -> 2 -> 1
 
@@ -139,5 +148,92 @@ void hanoi(int n, int start, int work, int target) {
 		hanoi(n - 1, work, start, target);
 		printf("=====");
 	}
+}
+
+// ======================================================================
+/*
+10진수를 2진수로 변환하기
+ex) '10' 변환
+10 / 2 = 5, remainder = 0
+5  / 2 = 2, remainder = 1
+2  / 2 = 1, remainder = 0
+1  / 2 = 0, remainder = 1
+result : 1010
+*/
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void print_binary_loop(unsigned long n);
+void print_binary(unsigned long n);
+
+int main() {
+	unsigned long num = 10;
+	
+	// 1010이 나와야 하는데 loop으로 하면 0101이 나옴
+	// Loop에서 원하는 결과를 얻으려면 배열에 담고 거꾸로 출력해야 함
+	print_binary_loop(num);  // 0101
+	print_binary(num);       // 1010
+
+	printf("\n");
+
+	return 0;
+}
+
+// ★ Printing order should be reversed!
+void print_binary_loop(unsigned long num) {
+
+	while (1) {
+		int quotient = num / 2;
+		int remainder = num % 2;
+
+		printf("%d", remainder);
+		num = quotient;
+
+		if (num == 0) break;
+	}
+	printf("\n");
+}
+
+void print_binary(unsigned long num) {
+
+	int remainder = num % 2;
+
+	if (num >= 2)
+		print_binary(num / 2);
+
+	printf("%d", remainder);
+	return;
+}
+
+// ======================================================================
+/*
+Fibonacci Sequence
+1 1 2 3 5 8 13 21 24 55 89 144 ...
+*/
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int fibonacci(int number);
+
+int main() {
+	
+	for (int count = 1; count < 13; ++count)
+		printf("%d ", fibonacci(count));
+
+	return 0;
+}
+
+int fibonacci(int num) {
+
+	int remainder = num % 2;
+
+	if (num > 2)
+		// double recursion
+		return fibonacci(num - 2) + fibonacci(num - 1);
+	else
+		return 1;
+
 }
 
