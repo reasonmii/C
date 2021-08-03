@@ -95,6 +95,36 @@ int main() {
 }
 
 // ======================================================================
+// 문자를 입력받는 함수를 직접 만들어서 사용
 
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
 
+char* custom_string_input(char* st, int n);
 
+int main() {
+
+	char word[11];
+	puts(custom_string_input(word, 11));
+
+	return 0;
+}
+
+char* custom_string_input(char* st, int n) {
+	char* ret_ptr;
+	int i = 0;
+
+	ret_ptr = fgets(st, n, stdin);
+	if (ret_ptr) {
+		while (st[i] != '\n' && st[i] != '\0')
+			i++;
+		// replace '\n' -> '\0'
+		if (st[i] == '\n')
+			st[i] = '\0';
+		else
+			// clear buffer : 버퍼의 빈공간 있으면 지우기
+			while (getchar() != '\n')
+				continue;
+	}
+	return ret_ptr;
+}
