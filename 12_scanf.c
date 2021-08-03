@@ -11,10 +11,11 @@ C/C++ - Preprocessor
 Professor Derinitions : WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)
 Change to : WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS
 
-★ scanf 한 단어를 입력받음 (공백을 만나면 출력하지 않음)
+★ scanf 한 단어를 입력받음
+- 공백을 만나면 더 이상 읽지 않음
 
 ★ scanf의 장점 : 여러 가지 자료형이 섞여 있을 때 입력받기 좋음
-  (단어, 정수, 실수, etc.)
+- 단어, 정수, 실수, etc.
 */
 
 // ======================================================================
@@ -213,7 +214,7 @@ int main() {
 
 int main() {
 
-	// ★ scanf는 한 단어를 입력받음 (공백을 만나면 출력하지 않음)
+	// ★ scanf는 한 단어를 입력받음 (공백을 만나면 더이상 읽지 않음)
 	char input[100] = "";
 	int ret = scanf("%10s", input);   // Just do it, do it!
 	printf("%s\n", input);            // Just
