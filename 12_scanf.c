@@ -10,6 +10,11 @@ Solution Explorer - Right click 'myFirstPrj' - Properties
 C/C++ - Preprocessor
 Professor Derinitions : WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)
 Change to : WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS
+
+★ scanf 한 단어를 입력받음 (공백을 만나면 출력하지 않음)
+
+★ scanf의 장점 : 여러 가지 자료형이 섞여 있을 때 입력받기 좋음
+  (단어, 정수, 실수, etc.)
 */
 
 // ======================================================================
@@ -196,6 +201,28 @@ int main() {
 	scanf("%c", &fruit_name);
 
 	printf("You like %c!\n", fruit_name);
+
+	return 0;
+}
+
+// ======================================================================
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+
+	// ★ scanf는 한 단어를 입력받음 (공백을 만나면 출력하지 않음)
+	char input[100] = "";
+	int ret = scanf("%10s", input);   // Just do it, do it!
+	printf("%s\n", input);            // Just
+
+	// 이 상태에서 다시 scanf를 호출하면
+	// 위에서 읽지 않고 남아있던 문자를 받아들임
+	// 공백을 만나기 전까지만 받음
+	ret = scanf("%10s", input);
+	printf("%s\n", input);            // do
 
 	return 0;
 }
