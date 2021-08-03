@@ -367,4 +367,27 @@ int main() {
 	return 0;
 }
 
+// ======================================================================
 
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+
+	// scanf()로 string 입력받을 때 글자 개수 제한 가능
+	// str[6] -> 끝은 '\0'니까 총 5글자 받을 수 있음
+	// %5s : 5개로 입력 제한
+	// 입력 : 123456789012345 -> 출력 : 12345 | 67890
+	char str1[6], str2[6];
+	int count = scanf("%5s %5s", str1, str2);
+
+	// scanf_s : Visual Studio에서 권장하는 방식
+	// 6 : 가장 크게 받을 사이즈
+	// int count = scanf_s("%5s %5s", str1, 6, str2, 6);
+
+	// int count = scanf("%6s %6s", str1, str2); -> Runtime ERROR!
+
+	printf("%s|%s \n", str1, str2);
+
+	return 0;
+}
