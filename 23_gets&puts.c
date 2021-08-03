@@ -49,6 +49,20 @@ int main() {
 }
 
 // ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+
+	char str[] = "Just do it, do it!";
+	printf("%s\n", str);
+	puts(str);             // 자동으로 \n 입력됨
+
+	return 0;
+}
+
+// ======================================================================
 // puts : \0을 만날 때까지 계속 출력
 
 #define _CRT_SECURE_NO_WARNINGS
