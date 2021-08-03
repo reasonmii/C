@@ -130,3 +130,70 @@ int main() {
 	return 0;
 }
 
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+
+	const char* mythings[5] = {
+		"Dancing in the rain",
+		"Counting apples",
+		"Watching movies with friends",
+		"Writing sad letters",
+		"Studying the C language",
+	};
+
+	char yourthings[5][40] = {
+		"Studying the C++ language",
+		"Eating",
+		"Watching Netflix",
+		"Walking around till dark",
+		"Deleting spam emails"
+	};
+
+	const char* temp1 = "Dancing in the rain";
+	const char* temp2 = "Studying the C++ language";
+
+	// Dancing in the rain 12090332 12090332        -> 포인터 : 문자 같으면 주소 같음
+	// Studying the C++ language 19922372 12092940  -> 배열 : 문자 같아도 주소 다름
+	printf("%s %u %u\n", mythings[0], (unsigned)mythings[0], (unsigned)temp1);
+	printf("%s %u %u\n", yourthings[0], (unsigned)yourthings[0], (unsigned)temp2);
+	printf("\n");
+
+	printf("%-30s %-30s\n", "My things:", "Your Things:");
+	for (int i = 0; i < 5; i++)
+		printf("%-30s %-30s\n", mythings[i], yourthings[i]);
+
+	// sizeof mythings: 20, sizeof yourthings: 200
+	// pointer : 4byte * 5 = 20byte
+	// array   : 5 * 40 = 200byte
+	printf("\nsizeof mythings: %zd, sizeof yourthings: %zd\n",
+		sizeof(mythings), sizeof(yourthings));
+	printf("\n");
+
+	// 아래 세 가지 출력 방식은 절대 추천하지 않는 코딩
+	// 이러한 방법도 있다는 것을 보여주기 위함
+
+	// Dancing in the rainMy things:%cThe value of ESP was not properly saved across a function call.
+	for (int i = 0; i < 100; i++)
+		printf("%c", mythings[0][i]);
+	printf("\n");
+	printf("\n");
+
+	// 전체 문자에 대한 ASCII CODE
+	for (int i = 0; i < 200; i++)
+		printf("%d", (int)yourthings[0][i]);
+	printf("\n");
+	printf("\n");
+
+	// Studying the C++ languageEatingWatching NetflixWalking around till darkDeleting spam emails
+	for (int i = 0; i < 200; i++)
+		printf("%c", yourthings[0][i]);
+	printf("\n");
+	printf("\n");
+
+
+	return 0;
+}
