@@ -6,6 +6,7 @@ fgets(array's pointer, maximum size, file's pointer)
 (데이터 사이즈를 모른다는 가정 하에) 데이터 받아들임
 따라서, 실제 입력한 글자보다 두 번째 maximum size 인수를 작게 해도 Runtime Error 발생X
 -> gets보다 안정적
+※ gets와 똑같이 작동하지만, 최대 받을 수 있는 글자 입력 받음
 
 fgets는 항상 반환값이 있음
 보통은 입력 받은 포인터 값 반환
@@ -47,6 +48,26 @@ int main() {
 	fputs(words, stdout);
 	fputs("END", stdout);
 	
+	return 0;
+}
+
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+
+	char line1[100];
+	// while (gets(line) != NULL)
+	while (gets(line1))
+		puts(line1);
+
+	char line2[100];
+	// 최대 받을 수 있는 글자 : 100
+	while (fgets(line2, 100, stdin))
+		fputs(line2, stdout);
+
 	return 0;
 }
 
