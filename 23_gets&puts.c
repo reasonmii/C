@@ -47,3 +47,36 @@ int main() {
 	
 	return 0;
 }
+
+// ======================================================================
+// puts : \0을 만날 때까지 계속 출력
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+#define TEST "A string from #define."
+
+int main() {
+
+	char str[60] = "String array initialized";
+	const char* ptr = "A pointer initialized";
+
+	puts("String without \\n");   // String without \n
+	puts("END");                  // END
+	puts(TEST);                   // A string from #define.
+	puts(TEST + 5);               // ing from #define.
+	puts(&str[3]);                // ing array initialized
+	puts(ptr + 3);                // ointer initialized
+
+	// No \0 at the end
+	char str2[] = { 'H', 'I', '!' };
+
+	// puts 함수는 \0을 만날 때까지 계속 출력하기 때문에
+	// 메모리에 우연히라도 존재하는 \0를 만날 때까지 이상한 문자들 출력
+	// HI!儆儆儆儆?{?
+	puts(str2);
+
+	return 0;
+}
+
+
