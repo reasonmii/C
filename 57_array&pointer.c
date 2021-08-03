@@ -244,7 +244,6 @@ int my_function(int (*ar)[][3][5][8], int rows);
 // 따라서 생략해도 상관 없음
 int sum2d_1(int ar[ROWS][COLS]);
 
-
 int sum2d_2(int ar[][COLS], int row);
 // 방법2)
 // int sum2d_2(int [][COLS], int row);
