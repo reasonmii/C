@@ -428,3 +428,59 @@ void fit_str(char* str, unsigned int size) {
 	if (size < strlen(str))
 		str[size] = '\0';
 }
+
+// ======================================================================
+// 문자 함수를 문자열에 사용하기
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>   // toupper(), ispunct(), ...
+
+#define NUM_LIMIT 1024
+
+void ToUpper(char*);
+int PunctCount(const char*);
+
+int main() {
+
+	char line[NUM_LIMIT];
+	char* new_line = NULL;
+	fgets(line, NUM_LIMIT, stdin);
+
+	// Find first newline -> NULL로 바꾸기
+	// strchr(string, character)
+	// string에서 character가 나타나는 첫 번째 포인터 return
+	new_line = strchr(line, '\n');
+	if (new_line)
+		*new_line = '\0';
+
+	// Hello, World!!!! -> HELLO, WORLD!!!!
+	ToUpper(line);
+	puts(line);
+
+	// Hello, World!!!! -> 5 : one ',' + four '!'
+	printf("%d\n", PunctCount(line));
+
+	return 0;
+}
+
+void ToUpper(char* str) {
+	while (*str) {
+		*str = toupper(*str);
+		/*if (islower(*str))
+			*str = toupper(*str);*/
+		str++;
+	}
+}
+
+int PunctCount(const char* str) {
+	int ct = 0;
+	while (*str) {
+		// ★ ispunct : 알파벳이 아닌 기호 개수
+		if (ispunct(*str))
+			ct++;
+		str++;
+	}
+	return ct;
+}
