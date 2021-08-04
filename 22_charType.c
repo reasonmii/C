@@ -28,6 +28,12 @@ strchr(s, c) : 문자열 s안에서 문자 c 찾기
 strstr(s1, s2) : 문자열 s1에서 문자열 s2 찾기
 char *strtok(s, delimit) : 문자열 s를 delimit을 이용하여 토큰으로 분리
 
+※ strcat() : string concatenation
+
+★ sprintf(array, string) : string을 array에 넣어서 출력
+수많은 파일 이름을 순서대로 만들어야 할 때 많이 사용
+ex) capture01.png, capture02.png, ...
+
 문자열 수치 변환
 int atoi(const char *str); : str을 int형으로 변환
 long atoi(const char *str); : str을 long형으로 변환
@@ -302,4 +308,123 @@ int main(void) {
 	}
 
 	return 0;
+}
+
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void fit_str(char*, unsigned int);
+
+int main() {
+
+	// Just, do it!
+	// Length 12
+	char msg[] = "Just,"" do it!";
+	puts(msg);
+	printf("Length %d\n", strlen(msg));
+
+	// Just
+	// Length 4
+	fit_str(msg, 4);
+	puts(msg);
+	printf("Length %d\n", strlen(msg));
+
+	// -------------------------------------------
+
+	char str1[100] = "First string";
+	char str2[] = "Second string";
+ 
+	strcat(str1, ", "); // First string,
+	strcat(str1, str2); // First stringSecond string
+
+	// Append 2 characters
+	// First stringSe
+	strncat(str1, str2, 2);
+	puts(str1);
+
+	// -------------------------------------------
+
+	printf("%d\n", strcmp("A", "A"));    // 0 : 같다
+	printf("%d\n", strcmp("A", "B"));    // -1 : 앞 문자가 뒷 문자보다 ASCII CODE가 더 작은 경우
+	printf("%d\n", strcmp("B", "A"));    // 1  : 앞 문자가 뒷 문자보다 ASCII CODE가 더 큰 경우
+	printf("%d\n", strcmp("Hello", "Hello"));         // 0 : 같다
+	printf("%d\n", strcmp("Banana", "Bananas"));      // -1 : null이 's' 문자보다 더 작음
+	printf("%d\n", strcmp("Bananas", "Banana"));      // 1  : 's' 문자가 null보다 더 큼
+	printf("%d\n", strncmp("Bananas", "Banana", 6));  // 0  : 6글자 비교해보면 같음
+
+	// -------------------------------------------
+
+	// ★ strcpy : '\0' is not added
+	// 딱 정해진 글자만 복사되고 NULL '\0'은 자동으로 복사되지 않음
+
+	// ※ dest : destination
+	char dest[100] = ""; 	// make sure memory is enough
+	char source[] = "Start programming!";
+	// dest = source -> ERROR
+	// dest = "Start something"; -> ERROR
+
+	// source를 dest에 복사하는 것
+	// Start programming!
+	strcpy(dest, source);
+	puts(dest);
+
+	// Start
+	strncpy(dest, source, 5);
+	puts(dest);
+
+	// 시작위치 변경 : source 6번째부터 복사
+	// programming!
+	strcpy(dest, source + 6);
+	puts(dest);
+
+	// dest : programming!
+	// dest의 6번째부터 글자에 "coding" overwrite
+	// progracoding!
+	strcpy(dest + 6, "coding!");  // Start coding!
+	puts(dest);
+
+	// -------------------------------------------
+
+	char str[100] = "";
+	int i = 123;
+	double d = 3.14;
+
+	// 00123.png 3.140000
+	sprintf(str, "%05d.png %f", i, d);
+	puts(str);
+
+	// -------------------------------------------
+
+	// strchr(string, character)
+	// string에서 character로 시작하는 부분의 포인터를 return
+	// 마치 그 부분부터 출력되는 것처럼 작동
+	printf("%s\n", strchr("Hello, World", 'W'));       // World
+
+	// strpbrk(string1, string2)
+	// string1에서 string2 글자 중 하나로 시작되는 글자를 찾음
+	printf("%s\n", strpbrk("Hello, World", "ABCDE"));  // (null)
+	printf("%s\n", strpbrk("Hello, World", "abcde"));  // ello, World
+
+	// strrchr(string, character)
+	// last occurrence
+	// string에서 character로 시작하는 가장 마지막 포인터를 return
+	// 해당 부분부터 출력
+	printf("%s\n", strrchr("Hello, World, Hello, World", 'l'));  // ld
+
+	// strstr(string1, string2)
+	// string1에서 string2로 시작하는 부분의 포인터를 return
+	// 해당 부분부터 출력
+	printf("%s\n", strstr("Hello, World", "wor"));    // (null)
+	printf("%s\n", strstr("Hello, World", "Wor"));    // World
+
+	return 0;
+}
+
+// 문자열에서 size번째에 '\0' 삽입
+void fit_str(char* str, unsigned int size) {
+
+	if (size < strlen(str))
+		str[size] = '\0';
 }
