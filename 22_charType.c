@@ -33,11 +33,6 @@ char *strtok(s, delimit) : 문자열 s를 delimit을 이용하여 토큰으로 �
 ★ sprintf(array, string) : string을 array에 넣어서 출력
 수많은 파일 이름을 순서대로 만들어야 할 때 많이 사용
 ex) capture01.png, capture02.png, ...
-
-문자열 수치 변환
-int atoi(const char *str); : str을 int형으로 변환
-long atoi(const char *str); : str을 long형으로 변환
-double atof(const char *str); : str을 double형으로 
 */
 
 // ======================================================================
