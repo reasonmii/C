@@ -4,9 +4,12 @@ main함수 변수 : 운영체제가 값을 넣는 방식
 How? 프로그래머, 사용자가 이 프로그램을 실행시킬 때 argument 입력
 Rule : 변수가 아예 없거나, 변수를 넣고 싶으면 두 개를 무조건 넣어야 함
 1) 현재 파일 Build하기 : ctrl + shift + B
-2) 상단 Tools - Command Line - Developer Command Prompt
-   실행파일의 위치 입력
-   C:\Users\User\Desktop\C_inflearn\myFirstSolution\Debug\myFirstPrj.exe
+2)
+방법1 : 상단 Tools - Command Line - Developer Command Prompt
+   	실행파일의 위치 입력
+   	C:\Users\User\Desktop\C_inflearn\myFirstSolution\Debug\myFirstPrj.exe
+방법2 : Solution Explorer 창 프로젝트 우클릭 - Properties - Debugging
+	Command Arguments 부분에 변수 입력 ex) 3 Hello
 
 ※ 파일 저장 위치 원리
 Solution Explorer 창 프로젝트 우클릭 - Properties - General
