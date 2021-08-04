@@ -280,3 +280,44 @@ int main() {
 	
 	return 0;
 }
+
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void custom_put(const char* str);
+int custom_put2(const char* str);
+
+int main() {
+
+	// Just Do it!
+	custom_put("Just ");
+	custom_put("Do it!");
+	printf("\n\n");
+
+	// 12345
+	// 5
+	printf("%d\n", custom_put2("12345"));
+
+	return 0;
+}
+
+// puts() which doesn't add a new line at the end
+// Use pointer increment operator and putchar()
+void custom_put(const char* str) {
+	while (*str != '\0')
+		putchar(*str++);
+	return;
+}
+
+int custom_put2(const char* str) {
+	int count = 0;
+	while (*str) {
+		putchar(*str++);
+		count++;
+	}
+	putchar('\n');
+	return count;
+}
+
