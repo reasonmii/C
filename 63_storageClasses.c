@@ -91,6 +91,37 @@ int main() {
 Static with no linkage 블록 영역의 정적 변수
 Scope : 블록 안
 선언 방법 : 블록 안에서 static 키워드 사용
+
+※ 함수 parameter에 static 사용
+ex) int func(static int i) {}
+-> Warning (Error in GCC)
+함수가 실행될 때는 새로운 stack이 배정이 됨
+즉, 함수 parameter 변수는 함수가 실행될 때 메모리를 배정받음
+그런데 변수 앞에 static을 붙인다는 건,
+paramter 변수를 static한 공간에 억지로 넣어 메모리를 차지하고 있겠다는 의미
+이렇게 static이 필요한 변수면 전역변수를 쓰거나 다른 방법을 해야 함
+
+★ 매우 안 좋은 프로그래밍
+지역변수의 포인터를 반환하는 함수인데 ct는 이 block이 끝나면 사라짐
+> Warning 발생 : returning address of local variable or temporary
+int* count() {
+	int ct = 0;
+	printf("count = %d %lld\n", ct, (long long)&ct);
+	ct++;
+
+	return &ct;
+}
+
+아래처럼 static 변수인 경우 고정된 메모리 자리를 가지고 있기 때문에,
+권장하지 않지만 어쩔 수 없는 경우에는 사용해도 됨
+이런 경우에는 차라리 전역변수 쓸 것
+int* static_count() {
+	static int ct = 0;
+	printf("static count = %d %lld\n", ct, (long long)&ct);
+	ct++;
+
+	return &ct;
+}
 */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -129,6 +160,4 @@ int main() {
 
 	return 0;
 }
-
-// ======================================================================
 
