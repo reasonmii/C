@@ -157,3 +157,44 @@ int main() {
 
 	return 0;
 }
+
+// ======================================================================
+// 동적 할당 메모리와 저장 공간 분류
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+
+int g = 123;
+
+void func() {
+	int i = 123;
+	printf("Local variable    \t %lld\n", (long long)&i);
+}
+
+int main() {
+
+	const char* message = "Banana";
+
+	// address of a function
+	void (*f_ptr)() = func;
+
+	printf("Local pointer     \t %lld\n", (long long)&message);   // 7338940
+	printf("Function pointer  \t %lld\n", (long long)&f_ptr);     // 7338928
+	printf("String data       \t %lld\n", (long long)message);    // 14056432
+	printf("Function address  \t %lld\n", (long long)f_ptr);      // 14029785
+	printf("Function address  \t %lld\n", (long long)main);       // 14029540
+	printf("Global variable   \t %lld\n", (long long)&g);         // 14065688
+
+	func();                                                       // 7338688
+
+	int* ptr = (int*)malloc(100 * sizeof(int));
+	if (!ptr) exit(EXIT_FAILURE);
+
+	printf("Allocated memory  \t %lld\n", (long long)ptr);        // 9806576
+	
+	free(ptr);
+
+	return 0;
+}
+
