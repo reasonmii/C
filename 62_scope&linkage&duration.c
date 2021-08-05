@@ -103,10 +103,11 @@ Do Something called
 int e1;           // file scope with external linkage (global variable)
 static int i1;    // file scope with internal linkage
 
+void testLinkage();
+
 int main() {
 
 	e1 = 1024;
-
 
 	testLinkage();
 	printf("%d\n", e1);
@@ -133,4 +134,54 @@ void testLinkage() {
 
 // ======================================================================
 
+/*
+Storage duration : 메모리의 지속 기간
+네 가지 종류
+
+1) static storage duration
+   프로그램 시작부터 끝날 때까지 메모리를 고정적으로 잡고 있는 것
+   ※ Note : 'static' keyword indicates the linkage type, not the storage duration
+
+2) automatic storage duration
+   보통 지역변수를 의미
+   stack에 메모리 저장
+
+3) allocated storage duration
+   동적할당과 관련 있음
+
+4) thread storage duration
+   multi threading 개념
+*/
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void count() {
+	// 이때, ct는 지역변수이기 때문에
+	// 다시 부를 때마다 0으로 초기화되어, 계산함
+	int ct = 0;
+	printf("count = %d\n", ct);
+	ct++;
+}
+
+void static_count() {
+
+	// static이 있어서 프로그램 시작부터 끝까지 메모리를 잡고 있는 변수
+	// ★ 즉, block단위 지역변수가 아님
+	// -> 다시 부르면 이전 값을 반영해서 반환
+	static int ct = 0;
+	printf("static count = %d\n", ct);
+	ct++;
+}
+
+int main() {
+
+	count();         // count = 0
+	count();         // count = 0
+
+	static_count();  // static count = 0
+	static_count();  // ★ static count = 1
+
+	return 0;
+}
 
