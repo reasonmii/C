@@ -161,3 +161,126 @@ int main() {
 	return 0;
 }
 
+
+// ======================================================================
+/*
+Static Variables with External Linkage
+정적 변수의 외부 연결
+- File scope, external linkage, static storage duration
+- External storage class
+- External variables
+
+Scope : 파일 안
+선언 방법 : 모든 함수들 밖
+연결 상태 : translation unit(번역 단위)의 외부로도 연결 가능
+           = 파일 밖으로도 연결 가능
+*/
+
+// defining declaration vs referencing declaration
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+// ※ g_int : global int
+// 전역변수는 compiler가 자동으로 초기화 : 0
+// 그러나, 가능하면 직접 0으로 초기화하는 것 권장
+// int g_int;
+int g_int = 0;
+double g_arr[1000] = { 0.0, };
+
+// Initializing External Variables
+// 초기화하는 방법
+int x = 5;               // ok, constant expression
+inty = 1 + 2;            // ok, constant expression
+size_t z = sizeof(int);  // ok, sizeof is a constant expression
+// int x2 = 2 * x;       // ERROR, x is a variable
+
+void func() {
+	printf("g_int in func() %d %p\n", g_int, &g_int);
+	g_int += 10;
+}
+
+// ★ 같은 프로젝트 내 다른 파일의 함수 선언
+// -> linker가 자동으로 연결시켜 줌
+void func_sec();
+
+int main() {
+
+	// Referencing declaration : Optional
+	// extern : block scope 바깥에서 찾아서 link
+	extern int g_int;
+	// extern int g_int = 1024; -> ERROR
+
+	// hides global g_int
+	// int g_int = 123;
+
+	// optional, size is not necessary
+	// 사이즈는 이미 전역변수에서 결정했기 때문
+	extern double g_arr[];
+
+	// g_int in func() 0 001BA150
+	printf("g_int in func() %d %p\n", g_int, &g_int);
+	g_int += 1;
+
+	// g_int in func() 1 001BA150
+	func();
+
+	// g_int in func() 1018 001BA150
+	func_sec();
+
+	return 0;
+}
+
+// -------------------------------------------
+// Solution Explorer 창에서 현재 프로젝트 우클릭
+// C파일 한 개 더 생성 ex) second.c
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+// main함수 있는 파일의 전역변수 값 가져오기
+// 방법1) 파일 내에서 전역변수로 제일 위에 한 번 선언
+// 방법2) 각 함수 내에서 각각 선언
+
+// extern int g_int;
+
+// main함수 파일에서 초기화 안 했으면 ERROR X
+// main함수 파일에서 초기화 했으면 ERROR
+// 가능하면 main함수에서 초기화 하고,
+// 이렇게 extern으로 가져올 때는 초기화하지 않는 방법이 깔끔함
+// extern int g_int = 77;
+
+void temp() {
+
+	extern int g_int;
+
+	// block scope에서는 어떤 방법으로도
+	// 초기화 불가능
+	// extern int g_int = 77; -> ERROR
+
+	g_int += 1000;
+}
+
+void func_sec() {
+
+	temp();
+
+	extern int g_int;
+
+	g_int += 7;
+	printf("g_int in func() %d %p\n", g_int, &g_int);
+
+}
+
+// ======================================================================
+/*
+Internal Linkage
+정적 변수의 내부 연결
+
+*/
+
+
+
+
+
+
