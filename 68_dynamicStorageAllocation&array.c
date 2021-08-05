@@ -105,6 +105,7 @@ int main() {
 ★ 해결방법 : 1차원 array를 2차원, 3차원... n차원처럼 사용
 
 -------------------------------------------
+Using 1D arrays as 2D arrays
 ex) row = 3, col = 2
 
 (r, c)
@@ -117,9 +118,10 @@ ex) row = 3, col = 2
 1D
 (0, 0) (0, 1) (1, 0) (1, 1) (2, 0) (2, 1)
  0		1	   2	  3		 4		5
--> ★ index : col * r + c
+-> ★ index : c + col * r
 
 -------------------------------------------
+Using 1D arrays as 3D arrays
 ex) row = 3, col = 2, depth = 2
 
 (r, c, d)
@@ -138,7 +140,13 @@ ex) row = 3, col = 2, depth = 2
 1D
 (0, 0, 0) (0, 1, 0) (1, 0, 0) (1, 1, 0) (2, 0, 0) (2, 1, 0) (0, 0, 1) (0, 1, 1) (1, 0, 1) (1, 1, 1) (2, 0, 1) (2, 1, 1)
  0         1         2         3         4         5         6         7         8         9        10        11
--> ★ index : col * r + (col * row) * d
+-> ★ index : c + col * r + (row * col) * d
+
+-------------------------------------------
+Using 1D arrays as 4D arrays
+ex) row, col, depth, height
+(r, c, d, h)
+★ index = c + col * r + (row * col) * d + (row * col * depth) * h
 */
 
 // ======================================================================
@@ -162,11 +170,11 @@ int main() {
 
 	for (int r = 0; r < row; r++)
 		for (int c = 0; c < col; c++)
-			ptr[col * r + c] = col * r + c;
+			ptr[c + col * r] = c + col * r;
 
 	for (int r = 0; r < row; r++) {
 		for (int c = 0; c < col; c++)
-			printf("%d ", *(ptr + col * r + c));
+			printf("%d ", *(ptr + c + col * r));
 		printf("\n");
 	}
 
@@ -176,12 +184,52 @@ int main() {
 // ======================================================================
 /* Using 1D arrays as 3D arrays
 
+결과
+0 1
+2 3
+4 5
 
+6 7
+8 9
+10 11
+*/
 
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>  // malloc(), free()
 
+int main() {
 
+	int row = 3, col = 2, depth = 2;
+	int* ptr = (int*)malloc(row * col * depth * sizeof(int));
+	if (!ptr) exit(1);
 
+	for (int d = 0; d < depth; d++)
+		for (int r = 0; r < row; r++)
+			for (int c = 0; c < col; c++)
+				// 매번 이렇게 쓰기 너무 복잡하니 함수 만들어서 쓰면 됨
+				ptr[c + col * r + (row * col) * d] = c + col * r + (row * col) * d;
 
+	
+	/* 함수 생성
+	int idx2(int c, int r) {
+		return c + col * r;
+	}
 
+	int idx3(int c, int r, int d) {
+		static const int cr = col * row;
+		return c + col * r + cr * d;
+	}
+	*/
 
+	for (int d = 0; d < depth; d++) {
+		for (int r = 0; r < row; r++) {
+			for (int c = 0; c < col; c++)
+				printf("%d ", *(ptr + c + col * r + (col * row) * d));
+			printf("\n");
+		}
+		printf("\n");
+	}
 
+	return 0;
+}
