@@ -267,3 +267,76 @@ int main(void) {
 	return 0;
 }
  
+// ======================================================================
+/*
+텍스트 파일을 바이너리처럼 읽어보기
+file 글자가 하나도 깨지지 않고 정상적으로 잘 출력됨
+
+1) test.txt 파일 생성
+2) test.txt 파일 내용
+   ABC
+   DE
+   123
+   C언어
+
+3) ASCII CODE 출력값 :
+65 A
+66 B
+67 C
+13
+10
+
+68 D
+69 E
+13
+10
+
+49 1
+50 2
+51 3
+13
+10
+
+67 C
+236
+150
+184
+236
+150
+180
+-> ASCII CODE가 3개 씩 묶여서 한글 한 개를 나타낸다는 것 알 수 있음
+   13 10 : 줄바꿈
+*/
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <windows.h>   // SetConsoleOutputCP()
+
+int main() {
+
+	// binary로 파일 open
+	FILE* fp = fopen("test.txt", "rb");
+
+	unsigned char ch;
+
+	// UTF-8 mode
+	SetConsoleOutputCP(CP_UTF8);
+
+	// fread(&ch, sizeof(unsigned char), 1, fp)
+	// - 1byte 씩 파일 읽기
+	// fread 함수의 반환값 : 읽은 데이터 양
+	// - 따라서, 반환값이 0이면 EOF라는 의미
+	while (fread(&ch, sizeof(unsigned char), 1, fp) > 0) {
+		
+		// binary 파일로 open해서 열어도
+		// file 글자가 하나도 깨지지 않고 정상적으로 잘 출력됨
+		printf("%c", ch);
+
+		// ASCII code, 원래  글자 출력
+		// printf("%hhu %c\n", ch, ch);
+	}
+
+	fclose(fp);
+
+	return 0;
+}
