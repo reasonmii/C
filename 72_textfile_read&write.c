@@ -159,4 +159,111 @@ int main(int argc, char* argv[]) {
 
 	return 0;
 }
+
+// ======================================================================
+/*
+Text file mode string & 다양한 입출력 함수들
+fprintf(), fscanf(), fgets(), fputs()
+
+-------------------------------------------
+
+★ fscanf와 fgets 차이점
+입력 : Happy Friday Smile
+
+fscanf 출력 :
+Happy
+Friday
+Smile
+
+fgets 출력 :
+Happy Friday Smile
+*/
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX 31
+
+int main(void) {
+
+	FILE* fp;
+
+	// 문자의 배열에 입력받기
+	char words[MAX] = { '\0', };
+
+	// 확장자를 꼭 .txt로 쓰지 않더라도
+	// 문자 파일로 저장하면 문자 파일로 읽음 
+	const char* filename = "record";
+	//const char* filename = "record.txt";
+
+	/*
+	Try r+ , w+ , a+
+
+	"r+"
+	1) 해당 경로에 파일이 없는 경우
+	result : Can't open "record" file.
+	2) 파일이 있는 경우
+	맨 앞부터 overwriting
+
+	"w+" : 파일이 없으면 새로 만들고, 있으면 전체 파일 overwriting
+	result : 글자 입력 -> 해당 경로에 record 파일 생김
+	그런데, filename을 "record"로 지정했기 때문에,
+	확장명 없이 'record'로 저장되어 있음
+	방법1) Visual Studio에 drag 해서 가져오면 열림
+	방법2) 메모장 열고 해당 파일 drag 하기
+	방법3) 이름 뒤에 .txt 붙이고 열기
+
+	"a+" : 파일을 열고 새로운 내용을 덧붙임
+	*/
+	if ((fp = fopen(filename, "a+")) == NULL) {
+		// stdout에 출력하면 console 입력
+		// stderr도 비슷하게 사용됨
+		fprintf(stderr, "Can't open \"%s\" file.\n", filename);
+		exit(EXIT_FAILURE);
+	}
+
+	/*
+	fscanf(stdin, "%30s", words) == 1
+	stdin 사용한 경우 : scanf와 동일하게 작동
+	words에 입력받은 내용 받아들임
+	== 1 : 입력 받은 것이 하나인지 (입력을 잘 받았는지) 확인
+
+	words[0] != '.'
+	입력 받은 첫 글자가 마침표면 종료
+
+	fprintf(fp, "%s\n", words)
+	fp에 프린트하고, 	문자열 words를 "%s\n" 형태로 출력함
+	*/ 
+	while ((fscanf(stdin, "%30s", words) == 1) && (words[0] != '.'))
+		fprintf(fp, "%s\n", words);
+
+	// ★ fgets는 EOF 파일을 만나면 NULL 값 반환함
+	/*while ((fgets(words, MAX, stdin) != NULL) && (words[0] != '.'))
+		fputs(words, fp);*/
+
+	/*
+	rewind : go back to beginning of file
+	fprint하면 계속 출력하면서,
+	커서가 파일의 마지막 부분으로 가는데
+	rewind를 하면 커서를 파일의 제일 첫 부분으로 옮김
+
+	이후 while문을 보면 파일 첫 번째 글자부터
+	fscanf로 한 단어씩 다시 읽어서 배열 words로 저장
+	*/
+	rewind(fp);
+
+	while (fscanf(fp, "%s", words) == 1)  // != EOF
+		fprintf(stdout, "%s\n", words);
+
+	/*while (fgets(words, MAX, fp) != NULL)
+		fputs(words, stdout);*/
+
+	// 파일이 닫히지 않는 경우
+	if (fclose(fp) != 0)
+		fprintf(stderr, "Error closing file\n");	
+
+	return 0;
+}
  
