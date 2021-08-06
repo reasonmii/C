@@ -1,5 +1,5 @@
 /*
-fgets() and fputs() : 파일입출력
+fgets() and fputs() : 파일 입출력
 
 fgets(array's pointer, maximum size, file's pointer)
 읽는 데이터가 언제 끝날지 모른다는 가정 하에
