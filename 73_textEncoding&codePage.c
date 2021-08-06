@@ -36,7 +36,7 @@ but, 파일 내 한글은 안 깨지는데
 // encoding을 위해 어떤 decoding 표를 사용할 지 결정
 #include <windows.h>  // SetConsoleOutputCP()
 
-int main(int argc, char* argv[]) {
+int main() {
 
 	// GetConsoleOutputCP() : 현재 사용 중인 CP 확인
 	const UINT default_cp = GetConsoleOutputCP();
