@@ -125,6 +125,172 @@ int main(void) {
 
 // ======================================================================
 
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX 41
+
+// ★ 구조체에서는 이렇게 template을 만드는
+//    것만으로는 메모리를 차지하지 않음
+// person : a tag of structure
+struct person {
+	// members of structure
+	char name[MAX];
+	int age;
+	float height;
+};
+
+int main() {
+
+	// Receives return value of scanf()
+	int flag;
+
+	// 이렇게 선언할 때 메모리를 할당하게 됨
+	struct person genie;
+
+	/*
+	dot(.) is structure membership operator
+	- member access operator
+	- member operator
+	*/
+
+	strcpy(genie.name, "Will Smith");
+	// strncpy(genie.name, "Will Smith", MAX);
+
+	genie.age = 1000;
+
+	// ※ dot(.) has higher precedence than &
+	flag = scanf("%f", &genie.height);  // &(genie.height)
+	printf("%f\n", genie.height);
+
+	// -------------------------------------------
+	// Initialization : 선언과 동시에 초기화하는 방법
+
+	// 방법1
+	struct person princess = { "Scott", 18, 160.0f };
+
+	// 방법2
+	struct person princess2 = {
+		"Scott",
+		18,
+		180.0f
+	};
+
+	// 방법3
+	strcpy(princess.name, "Scott");
+	princess.age = 18;
+	princess.height = 180.0f;
+
+	// -------------------------------------------
+	// Designated Initializers
+	// 어떤 멤버를 어떤 값으로 초기화할 지 지정하는 것
+	// ★ 지정이기 때문에 순서가 바뀌어도 됨
+
+	// 방법1
+	struct person beauty = {
+		.age = 19,
+		.name = "Bell",
+		.height = 160.0f
+	};
+
+	// 방법2
+	struct person beauty = { .age = 19, .name = "Bell", .height = 160.0f };
+
+	// -------------------------------------------
+	// Pointer to a structure variable
+
+	struct person* someone;
+
+	// 방법1
+	// 이미 선언된 다른 structure 'genie'를 대입하기
+	someone = &genie;
+
+	// 방법2
+	// 동적 할당을 이용해서 메모리 할당을 받고 주소 대입
+	// free later
+	// someone = (struct Person*)malloc(sizeof(struct Person));
+
+	// 방법3
+	// ★ Indirect membership operator or structure pointer operator
+	// ★ Pointer의 경우 dot(.) 대신 arror(->) operator 사용
+	someone->age = 1001;
+
+	// ★ someone에서 값으로 indirection 한 후
+	//    dot operator로 접근할 수도 있음
+	printf("%s %d\n", someone->name, (*someone).age);
+
+	// -------------------------------------------
+	// Structure declarations in a function
+	// 함수 안에서도 구조체 선언 가능
+	// 이 함수 안에서만 구조체 사용하고 영역 벗어나면 사용 불가
+
+	struct book {
+		char title[MAX];
+		float price;
+	};
+
+	// -------------------------------------------
+	// No tag
+
+	/*
+	★ tag없이 구조체 template 생성 뒤에
+	structure variable을 직접 선언도 가능
+	-> 일반적으로 많이 사용하는 방법
+
+	잠깐 사용할 구조체이면 이렇게 쓰는 것도 좋음
+	
+	단점
+	다른 변수 (apple3) 선언하고 싶으면
+	또 구조체 template 새로 만들고 뒤에 변수명 넣어야 함
+	ex)
+	struct {
+		char farm[MAX];
+		float price;
+	} apple3;
+	*/
+	struct {
+		char farm[MAX];
+		float price;
+	} apple, apple2;
+
+	strcpy(apple.farm, "Trade Joe");
+	apple.price = 1.2f;
+	
+	strcpy(apple2.farm, "Safeway");
+	apple2.price = 5.6f;
+
+	// -------------------------------------------
+	// typedef and structure
+	// 구조체를 사용자가 정의한 새로운 자료형처럼 사용 가능
+
+	// 방법1
+	// struct person이라는 type을 my_person으로 선언
+	// ★ 이후에는 my_person이라는 자료형이 있는 것처럼
+	//    int, float, double처럼 사용 가능
+	typedef struct person my_person;
+	my_person p3;
+
+	// 방법2
+	// ★ 보통은 이렇게 구조체랑 같은 이름으로 많이 사용함
+	typedef struct person person;
+	person p4;
+
+	// 방법3
+	// ★ 구조체를 선언할 때 아예 typedef 사용
+	typedef struct {
+		char name[MAX];
+		char hobby[MAX];
+	} friend;
+
+	friend f4;
+
+	return 0;
+}
+
+// ======================================================================
+
 #include <stdio.h>
 #include <string.h>
 
