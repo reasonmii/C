@@ -15,6 +15,7 @@ int main() {
 	// 4(== 4, 4, 4) 5(== 5, 5, 5) 6(== 6, 6, 6)
 	for (int j = 0; j < 2; ++j) {
 		for (int i = 0; i < 3; ++i)
+			// ★ *(parr + j) -> 주소값 반환
 			printf("%d(==%d, %d, %d) ", parr[j][i], *(parr[j] + i), *(*(parr + j) + i), (*(parr + j))[i]);
 		printf("\n");
 	}
