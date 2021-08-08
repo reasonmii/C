@@ -28,7 +28,7 @@ Solution Explorer 창 프로젝트 우클릭 - Properties - General
 Result
 Input : C:\Users\User\Desktop\C_inflearn\myFirstSolution\Debug\myFirstPrj.exe
 Output : The command line has 1 arguments:
-		 Arg 0 : C : \Users\User\Desktop\C_inflearn\myFirstSolution\Debug\myFirstPrj.exe
+	 Arg 0 : C : \Users\User\Desktop\C_inflearn\myFirstSolution\Debug\myFirstPrj.exe
 
 Input : C:\Users\User\Desktop\C_inflearn\myFirstSolution\Debug\myFirstPrj.exe hello world 1234 3.14
 Output
