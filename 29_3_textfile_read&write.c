@@ -234,7 +234,7 @@ int main(void) {
 	입력 받은 첫 글자가 마침표면 종료
 
 	fprintf(fp, "%s\n", words)
-	fp에 프린트하고, 	문자열 words를 "%s\n" 형태로 출력함
+	fp에 프린트하고, 문자열 words를 "%s\n" 형태로 출력함
 	*/ 
 	while ((fscanf(stdin, "%30s", words) == 1) && (words[0] != '.'))
 		fprintf(fp, "%s\n", words);
