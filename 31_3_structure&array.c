@@ -75,3 +75,109 @@ int main() {
 
 	return 0;
 }
+
+// ======================================================================
+/*
+Flexible Array Members
+신축성 있는 배열 멤버
+- 배열이 flexible하다 = 길이가 변한다
+- 예전에는 GCC에서 'struct hack'이라는 걸 이용해,
+  일종의 편법으로 사용하기도 했음
+
+★ 사용방법
+1) 구조체에서 "마지막" 멤버를 배열로 선언하되,
+   길이가 없는 빈 배열 []로 선언해야 함
+2) 내가 배열로 사용하고 싶은 크기에 대해 "추가로" 동적할당을 받아야 함
+   즉, 동적할당 = 원래 구조체의 크기 + 배열로 사용하고 싶은 크기
+*/
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+
+	struct flex {
+		size_t count;      // unsinged int : 4byte
+		double average;    // double : 8byte
+		// flexible array member - ★ Last member!
+		double values[];
+	};
+
+	// ★ 마지막 멤버인 배열의 크기 조절
+	const size_t n = 3;
+
+	// 동적할당 : 구조체 크기 + 배열에 들어갈 double 개수 * double 1개 당 크기 
+	struct flex* pf = (struct flex*)malloc(sizeof(struct flex) + n * sizeof(double));
+	if (pf == NULL) exit(1);
+
+	printf("\nFlexible array member\n");
+
+	/*
+	★ 구조체 크기가 16byte인 이유? Padding
+	count는 4byte, average는 double이라 8byte인데,
+	CPU는 기본적으로 8byte씩 데이터를 묶어 보냄
+	따라서, count 4 byte + 빈공간 4 byte로 먼저 보내고
+	그 다음에 average 8 byte 보냄
+	-> 총 16byte 필요
+	*/
+	printf("Sizeof struct flex : %zd\n", sizeof(struct flex));  // 16
+	printf("Sizeof *pf         : %zd\n", sizeof(*pf));          // 16
+	printf("Sizeof malloc      : %zd\n", sizeof(struct flex) + n * sizeof(double));  // 40
+
+	printf("%lld\n", (long long)pf);                                // 15687056
+	printf("%lld\n", (long long)&pf->count);                        // 첫 번째 멤버 주소 : 15687056
+	printf("%zd\n", sizeof(pf->count));                             // 첫 번째 멤버 사이즈 : 4
+	printf("%lld\n", (long long)&pf->average);                      // 15687064 : count주소 + 8byte -> ★ why? Padding
+	printf("Address of pf->value %lld\n", (long long)&pf->values);  // 15687072 : average주소 + 8byte
+	printf("Value of pf->value %lld\n", (long long)&pf->values);    // 15687072
+	printf("Sizeof pf->values %zd\n", sizeof(pf->values));          // 0
+
+	pf->count = n;
+
+	// value 초기화
+	pf->values[0] = 1.1;
+	pf->values[1] = 2.1;
+	pf->values[2] = 3.1;
+
+	// 평균 구하기
+	pf->average = 0.0;
+	for (unsigned i = 0; i < pf->count; ++i)
+		pf->average += pf->values[i];
+	pf->average /= (double)pf->count;
+
+	printf("Average = %f\n", pf->average);    // 2.100000
+
+	/*
+	마지막 멤버를 배열 대신 포인터로 사용하는 경우
+	 1) 배열은 구조체 내에서 아무 메모리도 차지하지 않지만,
+   포인터는 구조체 내에서 4byte 차지함
+2) '동적할당'을 할 때, 구조체 사이즈에 더하는 방식이 아니기 때문에
+   해당 메모리가 어디에 위치해야 할 지 알 수 없음
+   
+   구조체가 차지하는 메모리와
+   마지막 멤버가 가리키는 메모리가 전혀 엉뚱하게 멀리 떨어져 있을 수 있음
+*/
+
+	
+	
+	struct flex {
+		size_t count;      // unsinged int : 4byte
+		double average;    // double : 8byte
+		double *values;    // pointer : 4byte
+	};
+
+	// 구조체 내 value의 크기 조절
+	const size_t n = 3;
+	struct flex pf;
+	pf.values = (double*)malloc(sizeof(double) * n);
+	*/
+	
+	return 0;
+}
+
+// ======================================================================
+
+
+
+
