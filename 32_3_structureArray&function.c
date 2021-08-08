@@ -19,33 +19,33 @@ struct book {
 // void print_books(const struct book *books, int n); // ★ 동적할당메모리
 void print_books(const struct book books[], int n);
 
+
 int main() {
 
-  // 초기화 방법1) 직접 초기화
+	// 초기화 방법1) 직접 초기화
 	// struct book my_books[3] = { { "The Great Gatsby", "F. Scott Fitzgerald" }, ...};
-  
-  // 초기화 방법2) Compound Literal
-  // 보통 가장 많이 사용
+
+	// 초기화 방법2) Compound Literal
+	// 보통 가장 많이 사용
 	struct book my_books[3];
 	my_books[0] = (struct book){ "The Great Gatsby", "F. Scott Fitzgerald" };
 	my_books[1] = (struct book){ "Hamlet", "William Shakespeare" };
-	my_books[2] = (struct book){ "The Odyssey", "Homer" };	
-	
-  // 초기화 방법3) 동적할당메모리 사용
-  /*
-  struct book* my_books = (struct book*)malloc(sizeof(struct book) * 3);
-  
-  // malloc이 실패해서 my_books가 그냥 NULL 포인터인 경우 -> 종료
-  if (!my_books) {
-		printf("Malloc Failed");
-		exit(1);
-	}
-
-	my_books[0] = (struct book){ "The Great Gatsby", "F. Scott Fitzgerald" };
-	my_books[1] = (struct book){ "Hamlet", "William Shakespeare" };
 	my_books[2] = (struct book){ "The Odyssey", "Homer" };
-  */
-  
+
+	// 초기화 방법3) 동적할당메모리 사용
+	/*
+	struct book* my_books = (struct book*)malloc(sizeof(struct book) * 3);
+
+	// malloc이 실패해서 my_books가 그냥 NULL 포인터인 경우 -> 종료
+	if (!my_books) {
+		  printf("Malloc Failed");
+		  exit(1);
+	  }
+	  my_books[0] = (struct book){ "The Great Gatsby", "F. Scott Fitzgerald" };
+	  my_books[1] = (struct book){ "Hamlet", "William Shakespeare" };
+	  my_books[2] = (struct book){ "The Odyssey", "Homer" };
+	*/
+
 	print_books(my_books, 3);
 
 	return 0;
