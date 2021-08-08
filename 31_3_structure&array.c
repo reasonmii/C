@@ -111,7 +111,7 @@ int main() {
 	struct flex* pf = (struct flex*)malloc(sizeof(struct flex) + n * sizeof(double));
 	if (pf == NULL) exit(1);
 
-	printf("\nFlexible array member\n");
+	printf("\n===Flexible array member===\n");
 
 	/*
 	★ 구조체 크기가 16byte인 이유? Padding
@@ -148,19 +148,17 @@ int main() {
 
 	printf("Average = %f\n", pf->average);    // 2.100000
 
-	/*
-	마지막 멤버를 배열 대신 포인터로 사용하는 경우
-	 1) 배열은 구조체 내에서 아무 메모리도 차지하지 않지만,
-   포인터는 구조체 내에서 4byte 차지함
-2) '동적할당'을 할 때, 구조체 사이즈에 더하는 방식이 아니기 때문에
-   해당 메모리가 어디에 위치해야 할 지 알 수 없음
-   
-   구조체가 차지하는 메모리와
-   마지막 멤버가 가리키는 메모리가 전혀 엉뚱하게 멀리 떨어져 있을 수 있음
-*/
+	// -------------------------------------------
 
-	
-	
+	/*
+	★ 마지막 멤버를 배열 대신 포인터로 사용하는 경우
+	1) 배열은 구조체 내에서 아무 메모리도 차지하지 않지만,
+	   포인터는 구조체 내에서 4byte 차지함
+	2) '동적할당'을 할 때, 구조체 사이즈에 더하는 방식이 아니기 때문에
+	   해당 메모리가 어디에 위치해야 할 지 알 수 없음
+	   구조체가 차지하는 메모리와 마지막 멤버가 가리키는 메모리가
+	   전혀 엉뚱하게 멀리 떨어져 있을 수 있음
+
 	struct flex {
 		size_t count;      // unsinged int : 4byte
 		double average;    // double : 8byte
@@ -170,14 +168,38 @@ int main() {
 	// 구조체 내 value의 크기 조절
 	const size_t n = 3;
 	struct flex pf;
+
+	// 구조체 사이즈에 더하는 방식이 아니라,
+	// 단순히 포인터 자리에 들어갈 double 개수에 대한 메모리만 할당
 	pf.values = (double*)malloc(sizeof(double) * n);
 	*/
-	
+
+	// -------------------------------------------
+
+	struct flex* pf2 = (struct flex*)malloc(sizeof(struct flex) + n * sizeof(double));
+	if (pf2 == NULL) exit(1);
+
+	/*
+	Don't copy flexible members, use memcpy() instead
+
+	*pf2 = *pf;
+	복사가 잘 되지 않음
+	why? struct flex의 size는 사실 16
+		 *pf2에 *pf의 16byte만 복사가 됨
+		 ★ 추가로 요청한 배열 24byte는 compiler가 알지 못해 복사 못함
+
+	반면, memcpy()를 사용하면,
+	pf2에 대해 선언한 메모리 전체에 대해 pf에서 가져와서 복사해줌
+	*/
+	memcpy(pf2, pf, n * sizeof(double));
+
+	// 11313600  11313600  11313608  11313616
+	printf("\n===Flexible array member===\n");
+	printf("%lld  %lld  %lld  %lld\n",
+		(long long)pf2, (long long)&pf2->count, (long long)&pf2->average, (long long)&pf2->values);
+
+	free(pf);
+	free(pf2);
+
 	return 0;
 }
-
-// ======================================================================
-
-
-
-
