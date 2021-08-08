@@ -14,6 +14,11 @@ Change to : WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARN
 ★ scanf 한 단어를 입력받음
 - 공백을 만나면 더 이상 읽지 않음
 
+★ scanf로 줄바꿈 전까지 사용자가 입력한 글자 받는 방법
+scanf("%[^\n]%*c", ptr_nc->first)
+- [^\n] : 줄바꿈이 나타날 때까지 문자열 입력받기
+- *c : c를 하나 무시해라 = 줄바꿈 기호를 무시해라
+
 ★ scanf의 장점 : 여러 가지 자료형이 섞여 있을 때 입력받기 좋음
 - 단어, 정수, 실수, etc.
 */
