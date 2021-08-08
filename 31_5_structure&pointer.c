@@ -1,3 +1,137 @@
+/*
+구조체에서 포인터가 사용되는 경우
+- 구조체를 가리키는 포인터
+- 포인터를 멤버로 가지는 구조체
+
+구조체 포인터 변수를 이용한 구조체 멤버 접근
+
+포인터 변수 p가 가리키는 구조체의 멤버 name
+p->name
+(*p).name
+
+구조체 p의 멤버 (포인터 변수) name이 가리키는 내용
+*p.name
+*(p.name)
+
+p가 가리키는 구조체의 멤버 (포인터 변수) name이 가리키는 내용
+*p->name
+*(p->name)
+*/
+
+// ======================================================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+struct employee {
+	char name[10];
+	int year;
+	int pay;
+};
+
+void main() {
+
+	struct employee Lee;
+	struct employee* Sptr = &Lee;
+	strcpy(Sptr->name, "이순신");
+	Sptr->year = 2015;
+	Sptr->pay = 3700;
+
+	printf("이름 : %s\n", Sptr->name);
+	printf("입사 : %d\n", Sptr->year);
+	printf("연봉 : %d\n", Sptr->pay);
+
+	getchar();
+
+}
+
+// ======================================================================
+
+#include <stdio.h>
+
+// 날짜 구조체 선언
+struct date {
+	int year;
+	int month;
+	int day;
+};
+
+// 학생 구조체 선언
+struct student {
+	int num;
+	char name[20];
+	double grade;
+};
+
+// 함수 생성
+// 함수는 마지막에 ; 하지 않음
+int equal(struct student s1, struct student s2) {
+	if (s1.num == s2.num)
+		return 1;
+	else
+		return 0;
+}
+
+int pointEqual(struct student* p1, struct student* p2) {
+	if (p1->num == p2->num)
+		return 1;
+	else
+		return 0;
+}
+
+struct student create() {
+	struct student s;
+	s.num = 3;
+	strcpy(s.name, "Kim");
+	s.grade = 3.5;
+
+	return s;
+}
+
+int main(void) {
+	
+	struct student s = { 24, "Kim", 4.3 };
+
+	struct student* p;
+	p = &s;
+
+	// 같은 결과 : 학번 = 24        이름 = Kim     , 점수 = 4.30
+	printf("학번 = %d\t 이름 = %s\t, 점수 = %.2f\n", (*p).num, (*p).name, (*p).grade);
+	printf("학번 = %d\t 이름 = %s\t, 점수 = %.2f\n", p->num, p->name, p->grade);
+
+	// -------------------------------------------
+
+	struct student s1 = { 1, "Kim", 4.2 };
+	struct student s2 = { 2, "Lee", 4.4 };
+
+	// 결과 : 구조체 번호 다름
+	if (equal(s1, s2) == 1)
+		printf("구조체 번호 같음\n");
+	else
+		printf("구조체 번호 다름\n");
+
+	// -------------------------------------------
+
+	// 결과 : 구조체 번호 다름
+	if (pointEqual(&s1, &s2) == 1)
+		printf("구조체 번호 같음\n");
+	else
+		printf("구조체 번호 다름\n");
+
+	// -------------------------------------------
+
+	struct student s3 = create();
+
+	// 학번 = 3         이름 = Kim      점수 = 3.5
+	printf("학번 = %d \t 이름 = %s \t 점수 = %.1f\n", s3.num, s3.name, s3.grade);
+
+	return 0;
+
+}
+
+// ======================================================================
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #define LEN 20
