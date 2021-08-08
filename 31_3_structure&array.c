@@ -16,7 +16,7 @@ char* s_gets(char* st, int n) {
 	if (ret_val) {
 		find = strchr(st, '\n');        // look for new line
 		if (find)                       // if the address is not NULL
-			*find = '\0';               // place a null character there
+			*find = '\0';           // place a null character there
 		else
 			while (getchar() != '\n')   // dispose of rest of line
 				continue;
