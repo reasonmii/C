@@ -1,8 +1,7 @@
 /*
 구조체의 배열을 사용하는 함수
-*/
 
-/*
+결과
 Books 1 : "The Great Gatsby" written by "F. Scott Fitzgerald"
 Books 2 : "Hamlet" written by "William Shakespeare"
 Books 3 : "The Odyssey" written by "Homer"
