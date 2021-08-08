@@ -10,7 +10,8 @@ struct fortune {
 	double fund_invest;
 };
 
-/*★ 변수 대입 함수를 포인터 대입 함수로 바꾸기
+/*
+★ 변수 대입 함수를 포인터 대입 함수로 바꾸기
 double sum(double x, double y); -> double sum(double* x, double* y);
 1) sum부분 우클릭 - Quick Actions and Refactorings - Change Signature
 2) x부분 클릭 - Modify - double -> double*
@@ -19,8 +20,23 @@ double sum(double x, double y); -> double sum(double* x, double* y);
 */
 // double sum(double* x, double* y);
 
-// ★ 코드를 더 간단하게 하는 방법 : 구조체를 아예 함수에 대입
-double sum(struct fortune my_fortune);
+/*
+★ 구조체를 함수에 대입 : call by value
+- 코드를 더 간단하게 구현 가능
+- 단점
+  구조체의 값을 복사해서 다른 메모리에 사본을 저장하고
+  함수에 넣는 방식이기 때문에
+  데이터 양이 많은 경우, 사본 만드는데 시간도 오래 걸리고,
+  '원본 + 사본'으로 메모리도 너무 차지함
+*/
+// double sum(struct fortune my_fortune);
+
+/*
+★ 구조체를 함수에 포인터로 대입
+- 보통 가장 많이 사용하는 방법
+- 메모리를 많이 차지하거나 프로그램이 느려지는 것 방지
+*/
+double sum(struct fortune *my_fortune);
 
 int main() {
 
@@ -38,8 +54,11 @@ int main() {
 		// sum(&y_fortune.bank_saving, my_fortune.fund_invest) ->
 		// sum(&my_fortune.bank_saving, &my_fortune.fund_invest)
 
-		// 더 간단하게 쓰는 방법
-		sum(my_fortune)
+		// ★ 구조체를 함수에 대입
+		// sum(my_fortune)
+
+		// ★ 구조체를 함수에 포인터로 대입
+		sum(&my_fortune)
 	);
 
 	return 0;
@@ -53,6 +72,15 @@ int main() {
 }*/
 
 // ★ 구조체를 아예 함수에 대입
-double sum(struct fortune my_fortune) {
+/*double sum(struct fortune my_fortune) {
 	return my_fortune.bank_saving + my_fortune.fund_invest;
+}*/
+
+// ★ 구조체를 함수에 포인터로 대입
+//    const : 값을 바꾸면 안 되는 경우
+double sum(const struct fortune *my_fortune) {
+	return my_fortune->bank_saving + my_fortune->fund_invest;
 }
+
+// ======================================================================
+
