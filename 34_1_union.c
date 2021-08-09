@@ -45,50 +45,6 @@ int main() {
 
 // ======================================================================
 
-#include <stdio.h>
-
-// 구조체 선언
-struct exStruct {
-	char c;
-	int i;
-	int j;
-	int k;
-};
-
-// 공용체 선언
-union example {
-	char c;
-	int i;
-	int j;
-	int k;
-};
-
-int main(void) {	
-
-	struct exStruct est;          // 구조체
-	union  example e = { 'a' };  // 공용체
-
-	// 구조체 크기 : 16
-	// -> padding으로 한 개당 4byte 처리
-	printf("%d\n", sizeof(est));
-
-	// 공용체 크기 : 4
-	// 한 개의 사이즈만 잡음
-	printf("%d\n", sizeof(e));
-
-	// 공용체 출력
-	// a  97  97  97
-	printf("%c  %d  %d  %d\n", e.c, e.i, e.j, e.k);
-
-	e.i = 500;
-	// ? 500  500  500
-	printf("%c  %d  %d  %d\n", e.c, e.i, e.j, e.k);
-
-	return 0;
-}
-
-// ======================================================================
-
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
