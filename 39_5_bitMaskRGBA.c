@@ -1,7 +1,18 @@
 /*
-구글 검색 : RGB color table
+Bit Mask를 사용해서 16진수 color를 RGBA 형식으로 바꾸기
+
+※ 구글 검색 : RGB color table
 -> 그래픽디자인, 웹프로그래밍에서
    많이 사용하는 16진수 color table
+
+※ midium aqua marine 색상
+1) 16진수 : 0x66CDAAFF
+   - 이때, 66 : red, CD : green, AA : blue, FF : alpha 의미
+2) 4 bytes color로 표현하면 아래와 같음
+   - red : 102
+   - green : 205
+   - blue : 170
+   - alpha : 255 (투명도)
 */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -11,21 +22,11 @@
 
 int main() {
 
-	/*
-	0x66CDAAFF : midium aqua marine 색상
-	-> 이때, 66 : red, CD : green, AA : blue, FF : alpha 의미
-
-	4 bytes color로 표현하면 아래와 같음
-	- red : 102
-	- green : 205
-	- blue : 170
-	- alpha : 255 (투명도)
-	*/
 	unsigned int rgba_color = 0x66CDAAFF;
 
 	unsigned char red, green, blue, alpha;
 
-	// 4byte color로 바꿔서 표현하기
+	// 16진수 color를 4byte color로 변환
 	// Use right shift >> operator
 	// ★ 순서주의
 	alpha   = rgba_color & BYTE_MASK;
