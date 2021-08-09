@@ -21,6 +21,7 @@ void ToLower(char* str) {
 ToUpper와 ToLower는 구성이 거의 비슷함
 두 개를 합치면 가독성도 좋고
 유지보수 할 때도 아주 편리해짐
+-> 함수 포인터를 통해 합칠 수 있음
 
 int(*pf)(int)
 함수 포인터를 통해서
@@ -31,7 +32,7 @@ int(*pf)(int)
 // void UpdateString(char* str, int(__cdecl *pf)(int)) {
 void UpdateString(char* str, int(*pf)(int)) {
 	while (*str) {
-		*str = (*pf)(*str);
+		*str = (*pf)(*str);  // 함수를 실행
 		str++;
 	}
 }
