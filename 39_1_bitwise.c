@@ -7,13 +7,11 @@ Bitwise Logical Operators
 - EXCLUSIVE OR (XOR) : ^ (caret)
 
 OR과 XOR 차이
-      OR  XOR
-1 1 -  1   0
-1 0 -  1   1
-0 1 -  1   1
+★ XOR : OR과 같은데 둘 다 1이면 0이 되는 것만 다름
 */
 
 // ======================================================================
+
 /*
 1) 이진수를 십진수로 변환
 
@@ -43,6 +41,7 @@ void print_binary(const unsigned char num);
 
 int main() {
 
+	// 2진수 -> 10진수
 	printf("Binary (string) to Decimal conversion\n");
 
 	printf("%d\n", to_decimal("00000110"));   // 6
@@ -50,6 +49,7 @@ int main() {
 	printf("%d\n", to_decimal("10010100"));   // 148
 
 	// -------------------------------------------
+	// 10진수 -> 2진수
 
 	unsigned char i = to_decimal("01000110");
 	unsigned char mask = to_decimal("00000101");
@@ -66,10 +66,48 @@ int main() {
 	print_binary(mask);
 	print_binary(i & mask);
 
+	// -------------------------------------------
+	// 비트단위 논리연산
+
+	unsigned char a = 6;
+	unsigned char b = 5;
+
+	// 6
+	// Decimal   6 == Binary 00000110
+	printf("%hhu\n", a);
+	print_binary(a);
+
+	// 5
+	// Decimal   5 == Binary 00000101
+	printf("%hhu\n", b);
+	print_binary(b);
+
+	// 4
+	// Decimal   4 == Binary 00000100
+	printf("%hhu\n", a & b);
+	print_binary(a & b);
+
+	// 7
+	// Decimal   7 == Binary 00000111
+	printf("%hhu\n", a | b);
+	print_binary(a | b);
+
+	// ★ XOR : OR과 같은데
+	//          둘 다 1이면 0이 되는 것만 다름
+	// 3
+	// Decimal   3 == Binary 00000011
+	printf("%hhu\n", a ^ b);
+	print_binary(a ^ b);
+
+	// 249
+	// Decimal 249 == Binary 11111001
+	printf("%hhu\n", ~a);
+	print_binary(~a);
+
 	return 0;
 }
 
-// 이진수를 십진수로 변환
+// 이진수를 십진수로 변환하는 함수
 unsigned char to_decimal(const char bi[]) {
 
 	// size_t : x86일 때는 unsigned int,
@@ -90,7 +128,7 @@ unsigned char to_decimal(const char bi[]) {
 	// printf("Binary %s == Dcimal %d\n", bi, sum);
 }
 
-// &를 이용해서 십진수를 이진수로 변환
+// &를 이용해서 십진수를 이진수로 변환하는 함수
 void print_binary(const unsigned char num) {
 
 	printf("Decimal %3d \t== Binary ", num);
@@ -102,7 +140,7 @@ void print_binary(const unsigned char num) {
 		아래처럼 간단하게 코딩도 가능
 		unsigned char mask = pow(2, (bits - 1 - i));
 		-> warning 발생
-		
+
 		Why?
 		power는 기본적으로 double에 대해서 연산함
 		-> 결과값 = double
@@ -121,7 +159,7 @@ void print_binary(const unsigned char num) {
 
 	/*
 	for (size_t i = bits - 1; i >= 0; --i)
-	
+
 	'--i'처럼 i를 감소시키는 코드일 때
 	size_t 사용하면 ERROR 발생
 
@@ -144,6 +182,3 @@ void print_binary(const unsigned char num) {
 
 	printf("\n");
 }
-
-
-
