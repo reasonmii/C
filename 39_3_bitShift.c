@@ -23,8 +23,7 @@ Bitwise Shift Operator
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <math.h>     // pow()
-
-#define CHAR_BIT 8
+#include <limits.h>   // CHAR_BIT
 
 void int_binary(const int num);
 
