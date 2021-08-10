@@ -8,6 +8,7 @@ Header File 목적
 아래 두 가지 경우가 발생했을 때 에러가 발생하지 않도록 막아줌
 1) 하나의 Header File을 여러 곳에서 include 하다 보면
    이미 include 한 곳에 또 include하게 될 수도 있음
+   -> ERROR 발생 : already has a body
 2) Header File이 자기 자신을 include 하는 경우
    -> Header guard가 없으면 ERROR 발생
       too many include files
