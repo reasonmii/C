@@ -147,6 +147,7 @@ int main() {
 
 // ======================================================================
 // Multi Platform에서 작동할 수 있는 코드 작성하기
+// Compiler가 현재 Platform에 맞게 미리 정의를 해서 자동으로 값 입력함
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
