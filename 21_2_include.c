@@ -130,6 +130,7 @@ header guard 없이 파일이 자기 자신을 include 해도
 ERROR가 발생하지 않도록 방지하는 방법
 - 파일 맨 위에 #ifndef, #define 작성
 - 파일 맨 아래 #endif 작성
+- ★ 만약 A가 정의되어 있지 않다면, 정의한다는 if 조건
 
 // if '__MY_FUNCTIONS__' is not defined
 #ifndef __MY_FUNCTIONS__
