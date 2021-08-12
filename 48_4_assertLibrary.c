@@ -47,10 +47,18 @@ int divide(int a, int b) {
 	*/
 	assert(b != 0);
 
-	/*if (b == 0) {
+	
+	/*
+	아주 효율이 높은 프로그램을 위해서는
+	최소한의 기능만 담아야 하는데,
+	assert가 아닌, 이런 식으로 조건을 달면
+	효율도 떨어지고 overhead가 발생할 수 있음
+	
+	if (b == 0) {
 		printf("Cannot divide\n");
 		exit(1);
-	}*/
+	}
+	*/
 
 	return a / b;
 }
