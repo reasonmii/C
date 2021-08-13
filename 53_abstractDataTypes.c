@@ -11,6 +11,10 @@ Abstract Data Types 추상 자료형
 - 어떠한 프로그래밍 언어를 사용해서 어떻게 구현했는지를 제외
   ★ 추상 자료형의 실제구현 : 자료구조 사용
 
+★ Interface 인터페이스
+- "프로그래밍 언어"로 쓰여진 자료형의 명세서
+- 추상 자료형과 실제 구현 사이의 다리 역할
+
 Encapsulation 캡슐화
 - Data Encapsulation or Information Hiding is the concealing
   of the implementation details of a data object from the outside world
@@ -26,10 +30,6 @@ Abstraction 추상화
 - 이해하기 쉽고 수정하기 쉬움
 - 재사용이 편리 (명세가 명확하기 때문)
 - 프로그래밍의 효율 up
-
-Interface 인터페이스
-- 프로그래밍 언어로 쓰여진 자료형의 명세서
-- 추상 자료형과 실제 구현 사이의 다리 역할
 */
 
 
