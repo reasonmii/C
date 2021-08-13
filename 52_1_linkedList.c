@@ -33,7 +33,7 @@ struct movie {
 	struct movie* next;
 };
 
-// 편하게 사용하기 위해 만듦
+// 이중포인터가 필요할 때 편리하게 사용하기 위해 선언
 typedef struct movie* p_movie;
 
 // Linked List에 담긴 데이터 모두 출력
