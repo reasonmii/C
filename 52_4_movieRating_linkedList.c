@@ -161,7 +161,8 @@ void read_file(p_movie* p_head) {
 unsigned int count_items(const p_movie head) {
 	
 	unsigned int count = 0;
-	p_movie pnode = head;     // set to start of list
+	// set to start of the list
+	p_movie pnode = head;
 
 	while (pnode != NULL) {
 		count += 1;
@@ -204,7 +205,7 @@ void write_file(p_movie head) {
 
 	fclose(file);
 
-	assert(count == (int)count_items(head));
+	assert(count == (int)count_items(head));    //	반드시 만족해야 하는 조건
 	printf("%d items have been saved to the file.\n", count);
 }
 
@@ -253,6 +254,7 @@ void print_all(p_movie head) {
 }
 
 void print_an_item(p_movie head) {
+
 	printf("Input an index of item to print.\n");
 	int index = input_int();
 
@@ -309,10 +311,8 @@ void edit_an_item(p_movie head) {
 		printf("Invalid item.\n");
 }
 
-/*
-Linked list는 공간이 부족해서 ERROR가 발생할 일이
-없기 때문에 이와 관련된 조건문 필요 없음
-*/
+// Linked list는 공간이 부족해서 ERROR가 발생할 일이
+// 없기 때문에 이와 관련된 조건문 필요 없음
 void add_an_item(p_movie* p_head) {
 
 	printf("Input title and press enter.\n");
@@ -324,7 +324,6 @@ void add_an_item(p_movie* p_head) {
 		exit(1);
 	}
 	new_movie->next = NULL;
-
 
 	int f = scanf("%[^\n]%*c", new_movie->title);
 	printf("Input rating and press enter.\n");
