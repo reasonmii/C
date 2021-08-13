@@ -121,7 +121,7 @@ void read_file(struct movie movie_list[], int* ptr_n_items) {
 
 	for (int n = 0; n < num; ++n) {
 		if (fscanf(file, "%[^\n]%*c", movie_list[*ptr_n_items].title) != 1 ||
-			fscanf(file, "%[^\n]%*c", &movie_list[*ptr_n_items].rating) != 1)
+			fscanf(file, "%f%*c", &movie_list[*ptr_n_items].rating) != 1)
 		{
 			printf("ERROR: Wrong file format.\n");
 			exit(1);
