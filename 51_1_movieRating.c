@@ -298,7 +298,7 @@ void delete_an_item(struct movie movie_list[], int* ptr_n_items) {
 	// For loop implementation
 	for (int i = index; i < *ptr_n_items; i++) {
 		strcpy(movie_list[i].title, movie_list[i + 1].title);
-		movie_list[i + 1].rating = movie_list[i].rating;
+		movie_list[i].rating = movie_list[i + 1].rating;
 	}
 
 	*ptr_n_items -= 1;
