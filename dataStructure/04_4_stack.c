@@ -23,7 +23,7 @@ bool IsEmpty(const Stack* stack) {
 		return false;
 }
 
-void Push(Stack* stack, element iem) {
+void Push(Stack* stack, element item) {
 
 	if (IsFull(stack) == true)
 		printf("Stack is full. Cannot add.\n");
@@ -36,12 +36,12 @@ void Push(Stack* stack, element iem) {
 
 element Pop(Stack* stack) {
 
-	if (isEmpty(stack) == true) {
+	if (IsEmpty(stack) == true) {
 		printf("Stack is empty. Cannot remove.\n");
 
 		// -1을 가지고 있는 element를 반환
 		element temp = { -1 }; // Place holder, dummy : fake data  
 		return temp;
 	}
-	return stack->item[stack->top--];
+	return stack->items[stack->top--];
 }
