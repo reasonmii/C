@@ -6,7 +6,7 @@
 #define MAX_STACK_SIZE 5
 
 typedef struct stack {
-	element item[MAX_STACK_SIZE];
+	element items[MAX_STACK_SIZE];
 	int top;
 } Stack;
 
@@ -15,4 +15,3 @@ bool IsFull(const Stack* stack);
 bool IsEmpty(const Stack* stack);
 void Push(Stack* stack, element iem);
 element Pop(Stack* stack);
-
