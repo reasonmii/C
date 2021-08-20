@@ -4,7 +4,7 @@ Stack : Last In First Out (LIFO)
 - Stack은 보통 배열으로 많이 구현함 (속도↑)
   linked list 잘 사용x
 - 함수들 (연산들)
-  Initialize(), Push(), Pop(), IsFull(), IsEmpty(.)
+  Initialize(), Push(), Pop(), IsFull(), IsEmpty()
 
 ※ element : 배열에 저장된 각 요소를 지칭
 */
