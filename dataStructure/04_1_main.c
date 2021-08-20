@@ -18,8 +18,8 @@ print_stack(const Stack* stack) {
 	if (IsEmpty(stack) == true)
 		printf("Empty");
 	else
-		for (int i = 0; i < stack->top; ++i)
-			printf("%d ", stack->item[i].key);
+		for (int i = 0; i <= stack->top; ++i)
+			printf("%d ", stack->items[i].key);
 	printf("%\n");
 }
 
@@ -66,5 +66,5 @@ int main() {
 		printf("Pop : %d\n", Pop(&my_stack).key);
 		print_stack(&my_stack);
 	}
-		return 0;
+	return 0;
 }
