@@ -1,5 +1,17 @@
 /*
 Stack 연습문제 : Flood Fill Algorithm
+
+Cell : (0, 0)
+Stack : (0, 1)(1, 0)
+1 0 0 0 0 0 0
+0 1 1 1 1 1 0
+0 1 0 0 0 1 0
+0 1 0 0 0 1 0
+0 1 0 0 0 1 0
+0 1 1 1 1 1 0
+0 0 0 0 0 0 0
+
+
 */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -74,21 +86,23 @@ int main() {
 
 		map[cell.j][cell.i] = 1; // tag full
 
-		// ※ Push left, right을 먼저 하도록 순서 변경 가능
+		// ※ (3), (4)을 먼저 하도록 순서 변경 가능
+		// Push (1), (2) : 오른쪽부터 채움
+		// Push (3), (4) : 아래쪽부터 채움
 
-		// Push up
+		// Push (1)
 		if (cell.j - 1 >= 0 && map[cell.j - 1][cell.i] == 0)
 			Push(&to_visit, get_element(cell.i, cell.j - 1));
 
-		// Push down
+		// Push (2)
 		if (cell.j + 1 < HEIGHT && map[cell.j + 1][cell.i] == 0)
 			Push(&to_visit, get_element(cell.i, cell.j + 1));
 
-		// Push left
+		// Push (3)
 		if (cell.i - 1 >= 0 && map[cell.j][cell.i - 1] == 0)
 			Push(&to_visit, get_element(cell.i - 1, cell.j));
 
-		// Push right
+		// Push (4)
 		if (cell.i + 1 < WIDTH && map[cell.j][cell.i + 1] == 0)
 			Push(&to_visit, get_element(cell.i + 1, cell.j));
 
