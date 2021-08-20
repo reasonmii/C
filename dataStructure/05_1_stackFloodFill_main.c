@@ -94,7 +94,7 @@ int main() {
 
 		// Debugging
 		system("cls"); // system("clear"); in linux
-		printf("Cell : (%d, %d\n)", cell.i, cell.j);
+		printf("Cell : (%d, %d)\n", cell.i, cell.j);
 		print_stack(&to_visit);
 		print_map();
 		int dummy = _getch();
