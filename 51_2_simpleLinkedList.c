@@ -80,7 +80,6 @@ void insertLastNode(linkedList_h* L, char* x) {
 	temp->link = newNode;
 }
 
-
 // 단순 연결리스트 역순 변경
 void reverse(linkedList_h* L) {
 	listNode* p;
@@ -114,7 +113,6 @@ void printList(linkedList_h* L) {
 	printf(") \n");
 }
 
-
 // 단순 연결리스트 탐색
 listNode* searchNode(linkedList_h* L, char* x) {
 	listNode* temp;
@@ -126,7 +124,6 @@ listNode* searchNode(linkedList_h* L, char* x) {
 	}
 	return NULL;
 }
-
 
 // 단순 연결리스트 삭제
 // pre가 가리키는 노드의 다음 노드
@@ -146,8 +143,6 @@ void deleteNode(linkedList_h* L, listNode* pre) {
 		pre->link = old->link;
 	}
 }
-
-
 
 int main() {
 	linkedList_h* L;
