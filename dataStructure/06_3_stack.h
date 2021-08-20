@@ -13,6 +13,6 @@ typedef struct stack {
 void Initialize(Stack* stack);
 bool IsFull(const Stack* stack);
 bool IsEmpty(const Stack* stack);
-void Push(Stack* stack, element iem);
+void Push(Stack* stack, element item);
 element Pop(Stack* stack);
 
