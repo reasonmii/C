@@ -2,7 +2,7 @@
 Stack 연습문제 : Flood Fill Algorithm
 
 Cell : (0, 0)
-Stack : (0, 1)(1, 0)
+Stack : (0, 1) (1, 0)
 1 0 0 0 0 0 0
 0 1 1 1 1 1 0
 0 1 0 0 0 1 0
@@ -11,7 +11,14 @@ Stack : (0, 1)(1, 0)
 0 1 1 1 1 1 0
 0 0 0 0 0 0 0
 
-
+Result:
+1 1 1 1 1 1 1
+1 1 1 1 1 1 1
+1 1 0 0 0 1 1
+1 1 0 0 0 1 1
+1 1 0 0 0 1 1
+1 1 1 1 1 1 1
+1 1 1 1 1 1 1
 */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -60,7 +67,7 @@ print_stack(const Stack* stack) {
 		printf("Empty");
 	else
 		for (int i = 0; i <= stack->top; ++i)
-			printf("(%d, %d)", stack->items[i].i, stack->items[i].j);
+			printf("(%d, %d) ", stack->items[i].i, stack->items[i].j);
 	printf("\n");
 }
 
@@ -106,8 +113,10 @@ int main() {
 		if (cell.i + 1 < WIDTH && map[cell.j][cell.i + 1] == 0)
 			Push(&to_visit, get_element(cell.i + 1, cell.j));
 
-		// Debugging
+		// ★ Debugging
 		system("cls"); // system("clear"); in linux
+		// -> 이 부분 때문에 결과가 밑으로 이어서 출력되지 않고
+		//    계속 전체 화면 reset 후 새로 출력됨
 		printf("Cell : (%d, %d)\n", cell.i, cell.j);
 		print_stack(&to_visit);
 		print_map();
