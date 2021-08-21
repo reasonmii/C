@@ -139,6 +139,7 @@ const Item* binary_search(const Item items[], const int size, const char key[TMA
 
 	while (first <= last) {
 
+		// ★ strcmp : 1, 0, -1 반환
 		int comp = strcmp(items[middle].character, key);
 
 		if (comp < 0)
