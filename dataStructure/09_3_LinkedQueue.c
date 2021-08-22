@@ -65,7 +65,6 @@ bool EnQueue(Item item, Queue* pq) {
 
 	pq->rear = pnew;
 	pq->n_items++;
-
 	
 	return true;
 }
