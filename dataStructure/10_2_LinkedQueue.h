@@ -33,7 +33,3 @@ bool EnQueue(Item item, Queue* pq);
 bool DeQueue(Item* pitem, Queue* PQ);
 void EmptyTheQueue(Queue* pq);
 void TraverseQueue(Queue* pq, void (*func)(Item item));
-
-
-
-
