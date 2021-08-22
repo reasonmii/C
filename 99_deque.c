@@ -1,144 +1,221 @@
 // 추가 수정 필요
 
 #include <stdio.h>
+#include <stdbool.h>
 #include <stdlib.h>
+
 #define DSIZE 5
 
-// 데크 원소의 자료형을 int로 정의
-typedef int element;
+struct element {
+	char name[DSIZE];
+} element;
 
-typedef struct {
-	int front;
-	int rear;
-	element deque[DSIZE];  // 1차원 배열 데크 선언
-}dequeType;
+typedef struct element Item;
 
+typedef struct node {
+	Item item;
+	struct node* prev;
+	struct node* next;
+} Node;
 
-void error(char* message) {
-	printf(stderr, "%s\n", message);
-	exit(1);
+typedef struct dequeue {
+	Node* front;
+	Node* rear;
+	int n_items;
+} DeQueue;
+
+void CopyToNode(Item item, Node* pn) {
+	pn->item = item;
 }
 
-void createDeque(dequeType* D) {
-	D->front = -1;    // front 초기값 설정
-	D->rear = -1;     // rear 초기값 설정
+void CopyToItem(Node* pn, Item* pi) {
+	*pi = pn->item;
 }
 
-// 데크가 공백상태인지 검사
-// 공백상태 : front == rear
-int isEmpty(dequeType* D) {
-	if (D->front == D->rear) {
-		printf("데크 공백상태입니다\n");
-		return 1;
+Item get_item(const char* name) {
+	Item new_item;
+	strcpy(new_item.name, name);
+	return new_item;
+}
+
+void InitializeQueue(DeQueue* pq) {
+	pq->front = NULL;
+	pq->rear = NULL;
+	pq->n_items = 0;
+}
+
+bool QueueIsFull(const DeQueue* pq) {
+	return pq->n_items == DSIZE;
+}
+
+bool QueueIsEmpty(const DeQueue* pq) {
+	return pq->n_items == 0;
+}
+
+bool insertFront(Item item, DeQueue* pq) {
+
+	if (QueueIsFull(pq)) {
+		printf("Queue is full. Cannot EnQueue.\n");
+		return false;
 	}
-	else return 0;
-}
 
-// 데크가 포화상태인지 검사
-// 포화상태 : rear 값 = DSIZE - 1
-int isFull(dequeType* D) {
-	if (D->rear == DSIZE - 1) {
-		printf("데크가 포화상태입니다!\n");
-		return 1;
+	Node* pnew;
+	pnew = (Node*)malloc(sizeof(Node));
+
+	if (pnew == NULL) {
+		printf("Malloc() failed.\n");
+		return false;
 	}
-	else return 0;
-}
 
-// 데크 front에 원소 삽입하기
-void insertFront(dequeType* D, element item) {
-	if (isFull(D)) return;
+	CopyToNode(item, pnew);
+	pnew->next = NULL;
+
+	if (QueueIsEmpty(pq)) {
+		pq->front = pnew;
+		pq->rear = pnew;
+	}
 	else {
-		D->front--;
-		D->deque[D->front] = item;
+		Node* temp = pq->front;
+		pq->front = pnew;
+		pq->front->next = temp;
+		free(temp);
 	}
+
+	pq->n_items++;
+	return true;
 }
 
-// 데크 rear에 원소 삽입하기
-void insertRear(dequeType* D, element item) {
-	if (isFull(D)) return;     	// 포화 상태이면 삽입 중단
+bool insertRear(Item item, DeQueue* pq) {
+
+	if (QueueIsFull(pq)) {
+		printf("Queue is full. Cannot EnQueue.\n");
+		return false;
+	}
+
+	Node* pnew;
+	pnew = (Node*)malloc(sizeof(Node));
+
+	if (pnew == NULL) {
+		printf("Malloc() failed.\n");
+		return false;
+	}
+
+	CopyToNode(item, pnew);
+	pnew->next = NULL;
+
+	if (QueueIsEmpty(pq)) {
+		pq->front = pnew;
+		pq->rear = pnew;
+	}
 	else {
-		D->rear++;              // 포화 상태가 아니면 현재 rear보다 하나 뒤 위치에 원소 삽입
-		D->deque[D->rear] = item;
+		pq->rear->next = pnew;
+		pq->rear = pnew;
+	}
+
+	pq->n_items++;
+	return true;
+}
+
+bool deleteFront(Item* pitem, DeQueue* pq) {
+
+	if (QueueIsEmpty(pq)) {
+		printf("Queue is empty. Cannot deque.\n");
+		return false;
+	}
+
+	Node* pn;
+	CopyToItem(pq->front, pitem);
+	pn = pq->front;
+	pq->front = pq->front->next;
+
+	free(pn);
+	pq->n_items--;
+
+	if (pq->n_items == 0)
+		pq->rear = NULL;
+
+	return true;
+}
+
+
+bool deleteRear(Item* pitem, DeQueue* pq) {
+
+	if (QueueIsEmpty(pq)) {
+		printf("Queue is empty. Cannot deque.\n");
+		return false;
+	}
+
+	Node* pn;
+	CopyToItem(pq->rear, pitem);
+	pn = pq->rear;
+
+	Node* temp = pq->front;
+	while (temp->next != pn->next)
+		temp = temp->next;
+
+	pq->rear = temp;
+
+	free(pn);
+	pq->n_items--;
+
+	if (pq->n_items == 0)
+		pq->front = NULL;
+
+	return true;
+}
+
+void print_item(Item item) {
+	printf("%s ", item.name);
+}
+
+void Traverse(DeQueue* pq, void(*func)(Item item)) {
+	Node* temp = pq->front;
+	while (temp != NULL) {
+		(*func)(temp->item);
+		temp = temp->next;
 	}
 }
 
-// 데크 front에서 원소 삭제하기
-element deleteFront(dequeType* D) {
-	if (isEmpty(D)) return -1;      // 공백 상태이면 삭제 연산 중단
-	else {
-		D->front++;
-		return D->deque[D->front];  // 공백 상태가 아니면 현재 front 위치 원소 삭제
-	}
-}
-// 데크 rear에서 원소 삭제하기
-element deleteRear(dequeType* D) {
-	if (isEmpty(D)) return -1;      // 공백 상태이면 삭제 연산 중단
-	else {
-		D->rear--;
-		return D->deque[D->rear];  // 공백 상태가 아니면 현재 front 위치 원소 삭제
-	}
+void printDeque(DeQueue* pq) {
+
+	printf("DeQueue: ");
+	if (QueueIsEmpty(pq))
+		printf("Empty");
+	else
+		Traverse(pq, &print_item);
+	printf("\n\n");
 }
 
-// 데크 프린트하기
-void printDeque(dequeType* D) {
-	int i;
-	for (i = 0; i < DSIZE; i++) {
-		if (i <= D->front || i > D->rear) printf("");
-		else printf("%d ", D->deque[i]);
-	}
-	printf("\n");
-}
+int main() {
 
-// 데크 front에서 원소 검색
-element getFront(dequeType* D) {
-	if (isEmpty(D)) exit(1);    // 공백상태이면 연산 중단
-	else return D->deque[D->front + 1];
-}
+	DeQueue dequeue;
+	Item temp;
 
-// 데크 rear에서 원소 검색
-element getRear(dequeType* D) {
-	if (isEmpty(D)) exit(1);    // 공백상태이면 연산 중단
-	else return D->deque[D->rear - 1];
-}
+	InitializeQueue(&dequeue);
 
+	insertFront(get_item("Jack"), &dequeue);
+	printDeque(&dequeue);
 
+	insertFront(get_item("Harry"), &dequeue);
+	printDeque(&dequeue);
 
+	insertFront(get_item("Tom"), &dequeue);
+	printDeque(&dequeue);
 
+	insertRear(get_item("Coco"), &dequeue);
+	printDeque(&dequeue);
 
-int main(void) {
+	insertRear(get_item("Buzz"), &dequeue);
+	printDeque(&dequeue);
 
-	int item;
-	dequeType d;
+	deleteFront(&temp, &dequeue);
+	printDeque(&dequeue);
 
-	createDeque(&d);
+	deleteRear(&temp, &dequeue);
+	printDeque(&dequeue);
 
-	// 원소 삽입하기
-	printf("\n데크에 20을 삽입합니다 (Front)\n");
-	insertFront(&d, 20);
-	printDeque(&d);
-
-	printf("\n데크에 37을 삽입합니다 (Front)\n");
-	insertFront(&d, 37);
-	printDeque(&d);
-
-	printf("\n데크에 52을 삽입합니다 (Front)\n");
-	insertFront(&d, 52);
-	printDeque(&d);
-
-	printf("\n데크에 11을 삽입합니다 (Rear)\n");
-	insertRear(&d, 11);
-	printDeque(&d);
-
-	printf("\n데크에 69을 삽입합니다 (Rear)\n");
-	insertRear(&d, 69);
-	printDeque(&d);
-
-	printf("\n데크에 74을 삽입합니다 (Front)\n");
-	insertFront(&d, 74);
-	printDeque(&d);
-
-	// 원소 삭제하기
-	//printf("");
+	deleteRear(&temp, &dequeue);
+	printDeque(&dequeue);
 
 	return 0;
 
