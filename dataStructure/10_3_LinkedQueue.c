@@ -38,6 +38,8 @@ int QueueItemCount(const Queue* pq) {
 	return pq->n_items;
 }
 
+// Item item : 새로운 customer
+// Queue* pq : 현재 Queue
 bool EnQueue(Item item, Queue* pq) {
 
 	if (QueueIsFull(pq)) {
@@ -66,7 +68,6 @@ bool EnQueue(Item item, Queue* pq) {
 	pq->rear = pnew;
 	pq->n_items++;
 
-	
 	return true;
 }
 
@@ -76,15 +77,21 @@ bool DeQueue(Item* pitem, Queue* pq) {
 		printf("Queue is empty. Cannot deque.\n");
 		return false;
 	}
-	
+
 	Node* pn;
+
+	// 따로 Copy 하는 이유
+	// 이후 main.c에서 pitem으로 손님이 아이스크림을 받는데
+	// 몇 분 걸렸는지 printf를 통해 출력하기 위함
 	CopyToItem(pq->front, pitem);
+
 	pn = pq->front;
 	pq->front = pq->front->next;
-	
+
 	free(pn);
 	pq->n_items--;
 
+	// Queue에 아이템이 하나도 남아 있지 않은 경우
 	if (pq->n_items == 0)
 		pq->rear = NULL;
 
