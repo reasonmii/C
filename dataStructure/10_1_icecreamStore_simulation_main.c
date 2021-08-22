@@ -11,19 +11,17 @@ Icecream Store Simulation
 - 시뮬레이션이 끝나기 직전에 주문을 받은 경우에도
   아이스크림을 만들어드리는 것으로 가정
   즉, 'DeQueue'가 된 손님은 'customers served'에 포함됨
-
 Wait : 손님이 아이스크림을 주문하기 위해 줄에서 기다린 시간
 Lost : Queue가 꽉 차서 더 이상 손님을 받지 못하는데 손님이 온 경우
 */
 
-// 새로운 손님이 올지 안 올지를 시간 당 오는 손님에 비례하여 확률로 결정
-// x = min_per_cust = 60.0f / average_n_customers_per_hour;
-// It's a probabilistic number of n_queued_customers per an hour
+// 매 분마다 새로운 손님이 방문했는 지 여부 계산
+// x : probabilistic number of n_queued_customers per an hour
+//     = min_per_cust = 60.0f / average_n_customers_per_hour;
 bool newcustomer_visit(double x) {
 
 	// ★ 시뮬레이션, 게임 만들기에서 많이 사용하는 방법
 	// rand() / RAND_MAX : 0 이상 1 이하의 숫자
-	// x 값에 비례해서 true를 return 할 확률이 증가함
 	if (rand() * x / RAND_MAX < 1.0)
 		return true;
 	else
@@ -61,19 +59,20 @@ int main() {
 	long sum_line = 0;
 
 	// time left: 아이스크림 만드는 시간
-	int wait_time = 0; // 
+	int wait_time = 0;
 
 	// cumulative time in line: 누적 시간
 	int line_wait = 0;
 
 	InitializeQueue(&waiting_queue);
 
+	// ★ random number의 seed 역할
 	// random initializing of rand()
 	srand((unsigned int)time(0));
 
 	// for deterministic debugging
 	// time을 사용하면 완전한 random number지만
-	// debugging을 위해 고정된 random number를 사용하고 싶은 경우 코드
+	// ★ debugging을 위해 고정된 random number를 사용하고 싶은 경우 코드
 	// -> random number지만 매번 같은 number 출력
 	// srand(0);
 
@@ -86,11 +85,13 @@ int main() {
 
 	// ★ simulation 코딩에서 cycle이라는 용어 많이 사용함
 	// for로 돌릴 때, "한 사이클 돌았다"고 표현
+	// '시간'을 '분'으로 환산
 	cyclelimit = simulation_length_in_hours * 60;
 
-	// 매 cycle마다 이번 cycle에 손님이 올지 안 올지 결정
+	// 매 cycle마다 이번 cycle에 손님이 올지 여부를 결정 (분 단위)
 	min_per_cust = 60.0f / average_n_customers_per_hour;
 
+	// 1분 ~ cyclelimit : 1분씩 증가시키며 계산
 	for (cycle = 1; cycle <= cyclelimit; cycle++) {
 		if (newcustomer_visit(min_per_cust)) {
 			if (QueueIsFull(&waiting_queue)) {
@@ -105,6 +106,8 @@ int main() {
 			}
 		}
 
+		// wait_time이 0보다 작거나 같고 Queue가 비어있지 않다면
+		// 제일 앞 손님 아이스크림 만들기
 		if (wait_time <= 0 && !QueueIsEmpty(&waiting_queue)) {
 			Item customer_ready;
 			DeQueue(&customer_ready, &waiting_queue);
@@ -122,6 +125,7 @@ int main() {
 		if (wait_time > 0)
 			wait_time--;
 
+		// 매 사이클(분 단위)마다 평균 Queue Size를 구하기 위함
 		sum_line += QueueItemCount(&waiting_queue);
 	}
 
@@ -141,4 +145,3 @@ int main() {
 
 	return 0;
 }
-
